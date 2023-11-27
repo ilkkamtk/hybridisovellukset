@@ -3,57 +3,57 @@
 ## Table of contents
 
 ### Week 1
-#### Aihe
-#### Aihe
+
+- Aihe
+- Aihe
 
 ---
 
-### Week 2
-#### Aihe
-#### Aihe
+### Week 2 GraphQL
+
+- GraphQL, Apollo server
+- SDL, queries, types
+- Mutations, input types
+- Uploads and authentication
 
 ---
 
+### Week 3 React
 
-### Week 3
-#### Aihe
-#### Aihe
-
----
-
-
-### Week 4
-#### Aihe
-#### Aihe
+- React
+- Props
+- State management
 
 ---
 
+### Week 4 React
 
-### Week 5
-#### Aihe
-#### Aihe
-
----
-
-
-### Week 6
-#### Aihe
-#### Aihe
+- Routing
+- Hooks
+- Forms
+- UI libraries
 
 ---
 
+### Week 5 React
 
-### Week 7
-#### Aihe
-#### Aihe
-
----
-
-
-### Week 8
-#### Aihe
-#### Aihe
+- Advanced State Management
+- Socket IO
 
 ---
 
+### Week 6 React Native
+
+- Aihe
+- Aihe
+
+---
+
+### Week 7 Next.js
+
+- Next.js
+- Routing
+- Server Components
+
+---
 
