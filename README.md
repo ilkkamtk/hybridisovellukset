@@ -57,9 +57,7 @@
 
 ### Week 7 Next.js
 
-- Next.js
-- Routing
-- Server Components
+- [Next.js](Week7/intro.md)
+- [Getting started](Week7/getting_started.md)
 
 ---
-
