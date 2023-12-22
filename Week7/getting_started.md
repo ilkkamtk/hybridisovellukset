@@ -6,17 +6,16 @@
 
 ### Assignment
 
-**Create a new Next.js project called `MyNextApp` and push it to GitHub.**
+**Create a new Next.js project called `my-next-app` and push it to GitHub.**
 
 1. Run the following command in your terminal:
     ```bash
-    npx create-next-app MyNextApp
+    npx create-next-app my-next-app
     ```
 
 2. Answer the questions:
 
     ```text
-    What is your project named? my-next-app
     Would you like to use TypeScript? Yes
     Would you like to use ESLint? Yes
     Would you like to use Tailwind CSS? Yes
@@ -26,7 +25,7 @@
     ```
 
     ```bash
-    cd MyNextApp
+    cd my-next-app
     npm run dev
     ```
 
@@ -49,7 +48,7 @@
 
 **Add pages to the project**
 
-1. Create three folders to the app folder: `media`, `users` and `about`:
+1. Create three folders to the `src/app` folder: `media`, `users` and `about`:
     1. Add page.tsx to the `media` folder
     2. Add page.tsx to the `users` folder
     3. Add page.tsx to the `about` folder
@@ -66,7 +65,10 @@
     
     export default Page;
     ```
-3. Test the application in the browser.
+3. Test the application in the browser. Open the following URLs:
+    - [http://localhost:3000/media](http://localhost:3000/media)
+    - [http://localhost:3000/users](http://localhost:3000/users)
+    - [http://localhost:3000/about](http://localhost:3000/about)
 
 ---
 
@@ -128,7 +130,7 @@ how requests are handled, and how different parts of an application's functional
    content:
    ```tsx
    <main>
-    <h1 className="text-4xl font-bold">Media or Users or About</h1>
+    <h1 className="text-4xl font-bold">Home</h1>
    </main>
    ```
 2. Modify `app/layout.tsx`. Add a menu to navigate between pages:
@@ -140,18 +142,6 @@ how requests are handled, and how different parts of an application's functional
             <span className="font-semibold text-xl tracking-tight">
               Example Site
             </span>
-          </div>
-          <div className="block lg:hidden">
-            <button className="flex items-center px-3 py-2 border rounded text-teal-200 border-teal-400 hover:text-white hover:border-white">
-              <svg
-                className="fill-current h-3 w-3"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <title>Menu</title>
-                <path d="M0 0h20v20H0z" />
-              </svg>
-            </button>
           </div>
           <div className="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
             <div className="lg:flex-grow"></div>
@@ -245,7 +235,7 @@ how requests are handled, and how different parts of an application's functional
     DB_PASS=your_password
     DB_NAME=your_username
     ```
-3. Create `app/utils/db.ts` file and add the following content:
+3. Create `src/utils/db.ts` file and add the following content:
     ```ts
     import mysql from 'mysql2/promise';
 
@@ -432,6 +422,8 @@ server-side logic needed for your application.
       </div>
       );
     };
+
+    export default MediaForm;
     ```
 2. Modify `app/media/page.tsx` and add the following content:
     ```tsx
@@ -465,6 +457,7 @@ server-side logic needed for your application.
         method: 'POST',
         body: formData,
       };
+   
       const result = await fetchData<UploadResult>(
         `${process.env.MEDIA_SERVER}/api/v1/upload`,
         options,
@@ -504,4 +497,28 @@ server-side logic needed for your application.
 4. Test the application in the browser.
 
 ---
+
+## What have we done so far?
+1. Created a new Next.js project
+2. Added routing to the project
+3. Added a database connection to the project
+4. Added data fetching to the project
+5. Added API endpoints to the project
+6. Added a form to the project
+7. Used external API to upload a file to the server
+
+## Things to think about
+1. Why `MediaList` component is a server component and `MediaForm` component is a client component?
+   - MediaList component is a server component because it is not interactive and can be cached and reused.
+   - MediaForm component is a client component because forms are interactive and can be updated dynamically.
+2. What are the benefits of using Next.js API endpoints instead of external API?
+   - Same origin policy
+   - Network latency
+   - Type safety
+   - Performance
+   - Security
+3. Why is file upload handled by external API and not by Next.js API endpoints?
+   - Simplicity
+   - Performance
+   - Scalability
 
