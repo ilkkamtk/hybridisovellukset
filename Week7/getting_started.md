@@ -58,7 +58,7 @@
     const Page = () => {
         return (
             <main>
-                <h1 className="text-4xl font-bold">Media or Users or About</h1>
+                <h1 className="text-4xl font-bold">Use one of these: Media, Users or About</h1>
             </main>
         );
     };

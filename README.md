@@ -27,14 +27,14 @@
 ### Week 3 React
 
 - React
-- Props
 - State management
+- Props
+- Routing
 
 ---
 
 ### Week 4 React
 
-- Routing
 - Hooks
 - Forms
 - UI libraries
