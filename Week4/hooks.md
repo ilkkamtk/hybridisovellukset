@@ -35,8 +35,8 @@ function Example() {
 
 ## Rules of Hooks
 - Hooks are JavaScript/TypeScript functions, but they impose two additional rules:
-    - Only call Hooks at the top level. Don’t call Hooks inside loops, conditions, or nested functions.
-    - Only call Hooks from React function components. Don’t call Hooks from regular JavaScript/TypeScript functions.
+    - Only call Hooks at the top level of a component. Don’t call Hooks inside loops, conditions, or nested functions.
+    - Only call Hooks from React components. Don’t call Hooks from regular JavaScript/TypeScript functions.
     - Hooks start with the word `use` so that React knows to treat them as Hooks.
 
 ## useState
