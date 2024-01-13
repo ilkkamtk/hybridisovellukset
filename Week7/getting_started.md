@@ -113,9 +113,6 @@ resources on a server or within a web application.
 - **Security and Authorization:** Middleware can be used in routing to enforce security measures, authentication, or
   authorization checks before allowing access to certain routes.
 
-Routing in full-stack development is a fundamental aspect that determines how users navigate through web applications,
-how requests are handled, and how different parts of an application's functionality are organized and accessed.
-
 ---
 
 ## Routing in Next.js
