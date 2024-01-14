@@ -36,8 +36,9 @@
 ### Week 4 React
 
 - [Hooks](Week4/hooks.md)
-- Forms
-- UI libraries
+- [Custom hooks](Week4/custom-hooks.md)
+- [Forms](Week4/forms.md)
+- [Context](Week4/context.md)
 
 ---
 
