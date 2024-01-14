@@ -246,8 +246,12 @@ export default Example;
 8. Use the `setMediaArray` function to update the `mediaArray` state with the new array. Note that the type of the state
    is now `MediaItemWithOwner[]`, so you need to change the type of the state and also fix the types in all components that use the state.
 9. Add the owner's username to the `MediaItemCard` and `Single`/`SingleView` components.
-10. Git add, commit & push to remote repository.
-11. Build and deploy to users.metropolia.fi.
-12. Test that the app works in the browser.
-13. Submit link to the repository and the working app to Oma.
+
+## Submit
+1. Run `npm build` or `npm run build`
+2. Move build folder to your public_html
+3. Test your app: `http://users.metropolia.fi/~username/somefolder`
+4. Modify README.md. Change the link in `Open [X](X) to view it in the browser.` to point to the above link.
+5. git add, commit & push to remote repository
+6. Submit the link to your repository to Oma
 
