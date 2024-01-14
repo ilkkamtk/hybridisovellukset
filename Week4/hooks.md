@@ -246,5 +246,8 @@ export default Example;
 8. Use the `setMediaArray` function to update the `mediaArray` state with the new array. Note that the type of the state
    is now `MediaItemWithOwner[]`, so you need to change the type of the state and also fix the types in all components that use the state.
 9. Add the owner's username to the `MediaItemCard` and `Single`/`SingleView` components.
-8. Git add, commit & push to remote repository
+10. Git add, commit & push to remote repository.
+11. Build and deploy to users.metropolia.fi.
+12. Test that the app works in the browser.
+13. Submit link to the repository and the working app to Oma.
 
