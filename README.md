@@ -35,7 +35,7 @@
 
 ### Week 4 React
 
-- Hooks
+- [Hooks](Week4/hooks.md)
 - Forms
 - UI libraries
 
