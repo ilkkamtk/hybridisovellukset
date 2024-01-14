@@ -227,10 +227,14 @@ export default Example;
    console.log(newArray);
    ```
 
-7. Use the example above to get the user data for each media item and add it to the media item. Promise.all shoud return
+7. Use the example above to get the user data for each media item and add it to the media item. Promise.all should return
    an array of media items with user data. The type of the array is `MediaItemWithOwner`.
     - You can do this in the `array.map` part of the `Promise.all` function.
     - Consider what type is returned from the `fetchData` function, and what type is returned from the `Promise.all`
       function. Then you can use object spread to add the user data to the media
-      item: `{ ...mediaItem, username: result.username }`.
+      item: `{ ...item, username: result.username }`.
+8. Use the `setMediaArray` function to update the `mediaArray` state with the new array. Note that the type of the state
+   is now `MediaItemWithOwner[]`, so you need to change the type of the state and also fix the types in all components that use the state.
+9. Add the owner's username to the `MediaItemCard` and `Single`/`SingleView` components.
+8. Git add, commit & push to remote repository
 
