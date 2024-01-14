@@ -98,7 +98,7 @@ function Example() {
 
 export default Example;
 ```
-- In the example the cleanup function is used to clear the timer when the component is removed from the UI. Without it the timer would continue to run and cause a memory leak. To test it without the cleanup function, remove the `return () => clearTimeout(timer);` line. You will see in the console that the timer continues to run even after the component is removed from the UI.
+- In the example the cleanup function is used to clear the timer when the component is removed from the UI. Without it the timer would continue to run and cause a memory leak. To test it without the cleanup function, remove the `return () => clearTimeout(timer);` line. You will see in the console that the timer continues to run even after the component is removed from the UI (e.g., if you navigate to another page and then back to the page with the timer).
 - Typical situations where cleanup functions are used:
     - Timers
     - Event listeners
