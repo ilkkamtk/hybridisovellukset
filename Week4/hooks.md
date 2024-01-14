@@ -16,21 +16,22 @@ specific events or points in the program's execution.
           component that occurs outside the usual component rendering process.
     - `useContext` for sharing state between components
 - Hooks can be used in components or other hooks.
-- Example of `useEffect` hook:
+- Example of `useState`, `useEffect` and `useRef` hooks:
 
 ```tsx
-import {useState, useEffect} from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function Example() {
     const [count, setCount] = useState<number>(0);
+    const testElement = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Update the document title using the browser API
-        document.title = `You clicked ${count} times`;
+        // Update div element's color based on count
+        testElement.current?.style.setProperty('color', `rgb(${count * 5}, 0, 0)`);
     }, [count]); // Only re-run the effect if count changes
 
     return (
-        <div>
+        <div ref={testElement}>
             <p>You clicked {count} times</p>
             <button onClick={() => setCount(count + 1)}>Click me</button>
         </div>
@@ -165,6 +166,12 @@ export default Example;
         - the term subscription refers to a mechanism for receiving notifications when new data is available. To use
           subscriptions you would need to use a library such as [RxJS](https://rxjs.dev/) which is not covered in this
           course.
+
+## useRef
+- `useRef` is usually used to access DOM elements or to store mutable values.
+   - in React you should avoid using DOM-related APIs directly, such as `document.getElementById` or `document.querySelector`
+- `useRef` returns a mutable ref object whose `.current` property is initialized to the passed argument (`initialValue`). For example `const someHTMLElement = useRef<HTMLDivElement>(null);`
+   - `someHTMLElement.current` can then be used to access the DOM element.
 
 ## Lab assignment 1
 
