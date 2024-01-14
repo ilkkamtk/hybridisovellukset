@@ -108,4 +108,4 @@ export default Example;
 ## Lab assignment
 1. Continue last exercise. Create a new branch 'hooks' with git.
 2. Remove `mediaArray` from `Home`component.
-   - The data for the media items will be fetched from a static JSON file using the `fetchData` function and the `useEffect` hook.
+   - The data for the media items will be fetched from a static JSON file using the [fetchData](https://gist.github.com/ilkkamtk/0ef1b6b740e8f3a23a3fce2bd8233bd5) function and the `useEffect` hook.
