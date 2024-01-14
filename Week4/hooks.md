@@ -105,3 +105,7 @@ export default Example;
     - Subscriptions
       - the term subscription refers to a mechanism for receiving notifications when new data is available. To use subscriptions you would need to use a library such as [RxJS](https://rxjs.dev/) which is not covered in this course. 
     
+## Lab assignment
+1. Continue last exercise. Create a new branch 'hooks' with git.
+2. Remove `mediaArray` from `Home`component.
+   - The data for the media items will be fetched from a static JSON file using the `fetchData` function and the `useEffect` hook.
