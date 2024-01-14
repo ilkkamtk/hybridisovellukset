@@ -13,24 +13,27 @@ The term hook often implies a mechanism for extending or customizing behavior by
     - `useContext` for sharing state between components
 - Hooks can be used in components or other hooks.
 - Example of `useEffect` hook:
+
 ```tsx
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 
 function Example() {
-  const [count, setCount] = useState<number>(0);
+    const [count, setCount] = useState<number>(0);
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
-  }, [count]); // Only re-run the effect if count changes
+    useEffect(() => {
+        // Update the document title using the browser API
+        document.title = `You clicked ${count} times`;
+    }, [count]); // Only re-run the effect if count changes
 
-  return (
-    <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>Click me</button>
-    </div>
-  );
+    return (
+        <div>
+            <p>You clicked {count} times</p>
+            <button onClick={() => setCount(count + 1)}>Click me</button>
+        </div>
+    );
 }
+
+export default Example;
 ```
 
 ## Rules of Hooks
@@ -62,6 +65,8 @@ function Example() {
         </div>
     );
 }
+
+export default Example;
 ```
 
 ## useEffect
@@ -69,34 +74,34 @@ function Example() {
 - Side effects are operations that affect other components or the outside world and can include data fetching, setting up a subscription, and manually changing the DOM.
 - `useEffect` runs after the component renders and after every re-render.
 - `useEffect` takes a function as an argument. This function is the effect.
-- Second argument to `useEffect` is an array of values (dependencies). If any of the values change, the effect is re-run.
+- Second argument to `useEffect` is an array of values (dependencies). If any of the values change, the effect is re-run. If the array is empty, the effect is only run once, after the initial render. If you omit the second argument, the effect is run after every render which is not recommended.
+   - **Infinte re-renders can occur** if there is a problem with the dependencies. E.g., if you forget to add the dependencies to the array or if you add a dependency that changes every time the component renders.
+- You can have multiple `useEffect` hooks in a component.
 - Cleanup function can be returned from the effect. This function runs before the component is removed from the UI to prevent memory leaks.
-- Example:
+- Example of `useEffect` hook with cleanup function:
+
 ```tsx
 import { useState, useEffect } from 'react';
 
 function Example() {
-  const [user, setUser] = useState<User | null>(null);
+    const [count, setCount] = useState<number>(0);
 
     useEffect(() => {
-        fetchUser().then((user) => setUser(user));
-        
-        return () => {
-            // Cleanup function
-        };
-    }, []);
+        const timer = setTimeout(() => {
+            setCount((prevCount) => prevCount + 1);
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [count]);
 
-    return (
-        <div>
-            {user ? (
-                <div>
-                    <p>Name: {user.name}</p>
-                    <p>Email: {user.email}</p>
-                </div>
-            ) : (
-                <p>Loading...</p>
-            )}
-        </div>
-    );
+    return <div>{count}</div>;
 }
+
+export default Example;
 ```
+- In the example the cleanup function is used to clear the timer when the component is removed from the UI. Without it the timer would continue to run and cause a memory leak. To test it without the cleanup function, remove the `return () => clearTimeout(timer);` line. You will see in the console that the timer continues to run even after the component is removed from the UI.
+- Typical situations where cleanup functions are used:
+    - Timers
+    - Event listeners
+    - Subscriptions
+      - the term subscription refers to a mechanism for receiving notifications when new data is available. To use subscriptions you would need to use a library such as [RxJS](https://rxjs.dev/) which is not covered in this course. 
+    
