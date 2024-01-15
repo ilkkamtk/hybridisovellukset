@@ -165,8 +165,8 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
     - Make `doLogin` function call `postLogin` and pass the form data as a parameter. Then `postLogin` should log the result to the console. Use the username and password you created earlier.
 13. When logging in, save token to [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). Also [redirect](https://tylermcginnis.com/react-router-programmatically-navigate/) to 'Home'
 14. display user's info (username, email etc.) in Profile.js. For this functionality you need to add a new hook `useUser` to `apiHooks`. Create a new function `getUserByToken` to `useUser` hook. `getUserByToken` should get the user data from the Auth API from this endpoint: [/users/user](http://media.mw.metropolia.fi/wbma/docs/#api-User-GetCurrentUser). Use the token from localStorage as a parameter for the `fetchData` function. Then use `getUserByToken` in Profile.js to get the user data and display it.
-15. Make `RegisterForm` component have similar functionality as `LoginForm`, but it should create a new user. So it has `email` field in addition. Use the same `useForm` hook to get the values from input fields.
-    - Instead of `doLogin`, use `doRegister` as the name for the function that is called when the form is submitted.
+15. Make `RegisterForm` component have similar functionality as `LoginForm`, but it should create a new user, so it also features an `email` field. Use the same `useForm` hook to get the values from input fields.
+    - Instead of `doLogin` use `doRegister` as the name for the function that is called when the form is submitted.
     - Create `postRegister` function to `useUser` hook. `postRegister` should post the form data to the Auth API to this endpoint: [/users](http://media.mw.metropolia.fi/wbma/docs/#api-User-CreateUser).
     - Then `doRegister` should log the result to the console.
 
