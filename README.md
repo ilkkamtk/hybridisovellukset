@@ -4,8 +4,8 @@
 
 ### Week 1
 
-- Aihe
-- Aihe
+- [Databases](Week1/01-databases.md)
+- [Server architecture](Week1/02-server-arch.md)
 
 ---
 
