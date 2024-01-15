@@ -2,7 +2,7 @@
 
 ## Custom Hooks in React
 
-- Custom hooks are functions that can use React hooks
+- [Custom hooks](https://react.dev/learn/reusing-logic-with-custom-hooks) are functions that can use React hooks
 - Custom hooks can be used to share logic between components. In other words to create reusable logic
 - Custom hooks can be used to abstract away complex logic, which means that your components can be more readable and
   easier to maintain when the business logic is separated from the component

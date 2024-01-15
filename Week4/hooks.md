@@ -7,7 +7,7 @@ specific events or points in the program's execution.
 
 ## React Hooks
 
-- React Hooks are functions that let us hook into the React state and lifecycle features from function components.
+- [React Hooks ](https://react.dev/reference/react/hooks)are functions that let us hook into the React state and lifecycle features from function components.
 - Hooks promote code reuse and organization by allowing logic to be extracted and shared across components.
 - Hooks are a more direct way to use the React features such as state, lifecycle, context, and refs. E.g.:
     - `useState` for managing state

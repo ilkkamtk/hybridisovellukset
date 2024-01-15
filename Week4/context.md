@@ -12,7 +12,7 @@
 
 ## Context API
 
-- Context is created with `createContext`.
+- [Context](https://react.dev/learn/passing-data-deeply-with-context) is created with `createContext`.
 - It returns a `Provider` component and a `Consumer` component.
 - **Provider:**
     - The `Provider` is used to wrap components and share the context values down the component tree. The `useContext`
