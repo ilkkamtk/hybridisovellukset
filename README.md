@@ -45,8 +45,8 @@
 
 ### Week 5 React
 
+- UI libraries
 - Advanced State Management
-- Socket IO
 
 ---
 
