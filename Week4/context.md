@@ -7,7 +7,7 @@
 - Context is designed to share data that can be considered “global” for a tree of React components, such as the current
   authenticated user, theme, or preferred language.
 - Context is primarily used when some data needs to be accessible by many components at different nesting levels.
-- There are also other ways to share state between components, such as using Redux or Zustand if you need more advanced
+- There are other ways to share state between components, such as using [Redux](https://redux.js.org/) or [Zustand](https://github.com/pmndrs/zustand) if you need more advanced
   state management.
 
 ## Context API
