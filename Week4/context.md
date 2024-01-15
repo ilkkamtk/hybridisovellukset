@@ -31,7 +31,8 @@ export const MyProvider = ({ children }) => {
   );
 };
 
-export { MyContext, MyProvider };
+// Current recommendation is to use custom hook instead of the context directly:
+export const useMyContext = () => useContext(MyContext);
 ```
 
 **App.js:**
@@ -55,11 +56,11 @@ export default App;
 
 **ComponentA.js:**
 ```jsx
-import {useContext} from 'react';
-import { MyContext } from './MyContext';
+import React from 'react';
+import { useMyContext } from './MyContext';
 
 const ComponentA = () => {
-  const contextValue = useContext(MyContext)
+  const contextValue = useMyContext();
   return <div>Consumed via useMyContext in ComponentA: {contextValue}</div>;
 };
 
@@ -68,11 +69,11 @@ export default ComponentA;
 
 **ComponentB.js:**
 ```jsx
-import {useContext} from 'react';
-import { MyContext } from './MyContext';
+import React from 'react';
+import { useMyContext } from './MyContext';
 
 const ComponentB = () => {
-  const contextValue = useContext(MyContext)
+  const contextValue = useMyContext();
   return <div>Consumed via useMyContext in ComponentB: {contextValue}</div>;
 };
 
@@ -81,10 +82,10 @@ export default ComponentB;
 
 ## Sharing state with context
 - Context is often used to share state between components.
-- In the following example we will create a context for the currently logged-in user.
+- In the following example we will create a context for the currently logged in user.
 ```tsx
 // UserContext.tsx
-import { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { User } from '../types';
 
 type UserContextType = {
@@ -92,7 +93,7 @@ type UserContextType = {
   setUser: React.SetStateAction<User | null>;
 };
 
-const UserContext = createContext<UserContextType | null>(null);
+const UserContext = createContext<UserContextType>(null);
 
 export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -104,5 +105,5 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export { MainContext, MainProvider }
+export const useUser = () => useContext(UserContext);
 ```
