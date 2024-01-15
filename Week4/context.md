@@ -107,3 +107,27 @@ export const UserProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useUser = () => useContext(UserContext);
 ```
+
+```tsx
+// Pofile.tsx
+import { useUser } from '../contexts/UserContext';
+
+const Profile = () => {
+  const { user } = useUser();
+
+  return (
+    <div>
+      {user &&
+        <>
+            <h1>Profile</h1>
+            <p>Username: {user.username}</p>
+            <p>Email: {user.email}</p>
+        </>
+      }
+    </div>
+  );
+};
+
+export default Profile;
+```
+
