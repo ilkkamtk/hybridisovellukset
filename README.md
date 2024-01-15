@@ -39,6 +39,7 @@
 - [Custom hooks](Week4/custom-hooks.md)
 - [Forms](Week4/forms.md)
 - [Shared State](Week4/context.md)
+- Protected routes
 
 ---
 

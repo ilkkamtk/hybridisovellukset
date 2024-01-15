@@ -60,6 +60,8 @@
 6. The app should work as before. Test it.
 7. Git add, commit and push the changes to your repository.
 
+**(If we have time, we can refactor the other functionalities to custom hooks as well. For example, useUser hook for the user functionalities: `getUserByToken()`, `postUser()` etc. )**
+
 ## Submit
 1. Run `npm build` or `npm run build`
 2. Move build folder to your public_html
