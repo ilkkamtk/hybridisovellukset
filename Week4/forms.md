@@ -122,9 +122,16 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
             - Also note that the argument for `setInputs` is a function. This is because we need to add to the existing
               state, not replace it.
 
-8. Then in LoginForm add these to the component function:
+8. We are already using shared types, but often you need some types that are only used this project. Create a new file `src/types/LocalTypes.ts`. Add type for credentials:
    ```typescript
-   const initValues = {
+   import { User } from '@sharedTypes/DBTypes';
+   type Credentials = Pick<User, 'username' | 'password'>;
+   export { Credentials };
+   ```
+   - The reason for using `Pick` instead of creating a new type is that if the `User` type changes, the `Credentials` type will change as well.
+9. Then in LoginForm add these to the component function:
+   ```typescript
+   const initValues: Credentials = {
       username: '',
       password: '',
    };
@@ -138,9 +145,9 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
    
    console.log(inputs);
    ```
-9. Add `handleInputChange` and `doLogin` to the `<form>` and `<input>` components. Which one goes where?
-10. Test the form. Check the console. What is happening?
-11. In APiHooks.ts create a new hook `useAuthentication`. Create `postLogin` function to `useAuthentication`:
+10. Add `handleInputChange` and `doLogin` to the `<form>` and `<input>` components. Which one goes where?
+11. Test the form. Check the console. What is happening?
+12. In APiHooks.ts create a new hook `useAuthentication`. Create `postLogin` function to `useAuthentication`:
      ```typescript
      const postLogin = async (inputs) => {
        const fetchOptions = {
@@ -156,9 +163,9 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
      ```
     - Fix the possible type errors. What should be the type of loginResult?
     - Make `doLogin` function call `postLogin` and pass the form data as a parameter. Then `postLogin` should log the result to the console. Use the username and password you created earlier.
-12. When logging in, save token to [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). Also [redirect](https://tylermcginnis.com/react-router-programmatically-navigate/) to 'Home'
-13. display user's info (username, email etc.) in Profile.js. For this functionality you need to add a new hook `useUser` to `apiHooks`. Create a new function `getUserByToken` to `useUser` hook. `getUserByToken` should get the user data from the Auth API from this endpoint: [/users/user](http://media.mw.metropolia.fi/wbma/docs/#api-User-GetCurrentUser). Use the token from localStorage as a parameter for the `fetchData` function. Then use `getUserByToken` in Profile.js to get the user data and display it.
-14. Make `RegisterForm` component have similar functionality as `LoginForm`, but it should create a new user. So it has `email` field in addition. Use the same `useForm` hook to get the values from input fields.
+13. When logging in, save token to [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage). Also [redirect](https://tylermcginnis.com/react-router-programmatically-navigate/) to 'Home'
+14. display user's info (username, email etc.) in Profile.js. For this functionality you need to add a new hook `useUser` to `apiHooks`. Create a new function `getUserByToken` to `useUser` hook. `getUserByToken` should get the user data from the Auth API from this endpoint: [/users/user](http://media.mw.metropolia.fi/wbma/docs/#api-User-GetCurrentUser). Use the token from localStorage as a parameter for the `fetchData` function. Then use `getUserByToken` in Profile.js to get the user data and display it.
+15. Make `RegisterForm` component have similar functionality as `LoginForm`, but it should create a new user. So it has `email` field in addition. Use the same `useForm` hook to get the values from input fields.
     - Instead of `doLogin`, use `doRegister` as the name for the function that is called when the form is submitted.
     - Create `postRegister` function to `useUser` hook. `postRegister` should post the form data to the Auth API to this endpoint: [/users](http://media.mw.metropolia.fi/wbma/docs/#api-User-CreateUser).
     - Then `doRegister` should log the result to the console.

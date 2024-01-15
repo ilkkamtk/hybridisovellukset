@@ -131,3 +131,8 @@ const Profile = () => {
 export default Profile;
 ```
 
+## Lab assignment 1
+1. Continue last exercise. Create a new branch 'context' with git.
+2. Create `contexts` folder in the `src` of your project. Add `UserContext.tsx` file to the `contexts` folder.
+3. 
+
