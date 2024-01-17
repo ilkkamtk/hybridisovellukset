@@ -12,7 +12,7 @@
 ### Week 2 GraphQL
 
 - [Introduction to GraphQL](Week2/intro.md)
-- Toolchain and server setup
+- [Toolchain and server setup](Week2/toolchain-setup.md)
 - [Schema and queries](Week2/concepts.md)
 - Adding schemas to Apollo server
 - [Resolvers](Week2/concepts2.md)
