@@ -14,9 +14,8 @@
 - [Introduction to GraphQL](Week2/intro.md)
 - [Toolchain and server setup](Week2/toolchain-setup.md)
 - [Schema and queries](Week2/concepts.md)
-- Adding schemas to Apollo server
 - [Resolvers](Week2/concepts2.md)
-- Adding resolvers to Apollo server
+- [Adding schemas and resovers to Apollo server](Week2/schemas-resolvers.md)
 - [Input types and mutations](Week2/concepts3.md)
 - Adding mutations to Apollo server
 - Authentication and authorization

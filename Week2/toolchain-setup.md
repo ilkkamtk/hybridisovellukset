@@ -23,7 +23,7 @@
     - `npm i @apollo/server graphql`
     - `npm i @graphql-tools/load-files @graphql-tools/merge`
 2. Create a new schema file `media-type.graphql` in the `src/api/schemas` folder.
-3. Add a new type definition for `MediaItem` based on the TypeScript type with the same name:
+3. Add a new type definition for `MediaItem` based on the return type of `fetchAllMedia` in `mediaModel.ts`:
    ```graphql
    type MediaItem {
      media_id: ID!
