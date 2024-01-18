@@ -2,11 +2,11 @@
 
 ## Step 1 - Tag schema
 
-1. Create a new schema file `tag.graphql` in the `src/api/schemas` folder.
-2. Add a new type definition for `Tag` based on the return type of `fetchAllTags` in `tagModel.ts`:
+1. Create a new branch `schemas` with git.
+2. Create a new schema file `tag.graphql` in the `src/api/schemas` folder.
+3. Add a new type definition for `Tag` based on the return type of `fetchAllTags` in `tagModel.ts`:
     ```graphql
     type Tag {
-      tag_id: ID
       etc...
     }
 
@@ -14,7 +14,7 @@
       tags: [Tag]
     }
     ```
-3. Create a new resolver file `tagResolver.ts` in the `src/api/resolvers` folder:
+4. Create a new resolver file `tagResolver.ts` in the `src/api/resolvers` folder:
     ```typescript
     import {fetchAllTags} from '../models/tagModel';
 
@@ -26,14 +26,13 @@
         },
     };
     ```
-4. Restart the server by typing `rs` in the terminal where the server is running.
-5. Test the server with Sandbox. Create a new query:
+5. Restart the server by typing `rs` in the terminal where the server is running.
+6. Test the server with Sandbox. Create a new query:
     ```graphql
     query {
       tags {
         tag_id
         tag_name
-        media_id
       }
     }
     ```
@@ -48,7 +47,7 @@
     ```
 2. Why in `args: {media_id: string}` `media_id`is of type `string` and not `number`?
 3. Why is `args.media_id` causing type error? How to fix it?
-4. Add a new query to `media-type.graphql`: `mediaItem(media_id: ID!): MediaType`.
+4. Add a new query to `media-item.graphql`: `mediaItem(media_id: ID!): MediaType`.
 5. Because changes to _graphql_ files don't invoke restart automatically, restart the server manually by typing `rs` in the terminal where the server is running.
 6. Test the server with Sandbox. Create a new query:
     ```graphql
@@ -63,7 +62,7 @@
     - You should get a response with the media item with id X.
 
 ## Step 3 - Show all tags that media item has when getting all media items or a single media item
-1. Add new property `tags` to `MediaType` in `media-type.graphql`:
+1. Add new property `tags` to `MediaType` in `media-item.graphql`:
     ```graphql
     type MediaType {
       ...
@@ -101,7 +100,25 @@
 
 ## Step 4 - Get media items by tag
 1. Add a new resolver to `mediaResolver.ts` where the input argument is `tag_id`. The argument is then passed to `fetchMediaItemsByTag` function.
-2. Add a new query to `media-type.graphql`: `mediaItemsByTag(tag: String!): [MediaItem]`.
+2. Add a new query to `media-item.graphql`: `mediaItemsByTag(tag: String!): [MediaItem]`.
+3. Restart the server by typing `rs` in the terminal where the server is running.
+4. Test the server with Sandbox. Create a new query:
+    ```graphql
+    query {
+      mediaItemsByTag(tag: "tag_name") {
+        media_id
+        title
+        description
+        tags {
+          tag_id
+          tag_name
+        }
+      }
+    }
+    ```
+    - You should get a response with all the media items that have tag with name `tag_name`.
+
+5. Commit and push your changes to GitHub.
 
 
 
