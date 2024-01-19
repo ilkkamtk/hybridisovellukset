@@ -4,34 +4,41 @@ The server system is composed of three main components: the authentication serve
 
 ```mermaid
 graph LR
-    client(Client) -->|requests with credentials| authServer(Authentication Server)
-    authServer -->|validates and returns JWT| client
-    client -->|requests with JWT| apiServer(REST API Server)
-    apiServer -->|verifies JWT| authServer
-    apiServer -->|queries| dbServer(Database Server)
-    client -->|requests| fileServer(File Server)
-    apiServer -->|stores/retrieves| fileServer
+    client(Client) -->|requests with credentials| authApi(Authentication API)
+    authApi -->|validates and returns JWT| client
+    client -->|requests with JWT| apiServer(Media REST API)
+    apiServer -->|verifies JWT?| authApi
+    apiServer -->|queries media data| db(Database)
+    authApi -->|queries user data| db(Database)
+    client -->|requests with JWT| fileApi(File API)
+    apiServer <-->|stores/retrieves/requests ?| fileApi
 
-    subgraph Authentication
-    authServer
+    subgraph Authentication server
+    authApi
     end
 
-    subgraph Data Handling
+    subgraph Media API Server
     apiServer
-    dbServer
     end
 
-    subgraph File Management
-    fileServer
+    subgraph Database server
+    db
+    end
+
+    subgraph File Server
+    fileApi
+    fs(File System)
+    fileApi <-->|stores/deletes| fs
     end
 ```
 
 1. The Client makes requests to the Authentication Server for authentication.
-1. Upon successful authentication, the Authentication Server returns a JWT to the Client. (All of the servers share the same secret key for verifying JWTs.)
-1. The Client makes direct requests to the REST API Server for various operations. API server may check the validity of the shared JWT with the authentication server. 
-1. The REST API Server queries the Database Server for data-related operations.
-1. The Client might directly request resources from the File Server based on the data returned by the REST API Server.
-1. The REST API Server can also interact with the File Server for storing (or retrieving) files.
+2. Upon successful authentication, the Authentication Server returns a JWT to the Client. (All of the servers share the same secret key for verifying JWTs.)
+3. The Client makes direct requests to the Media REST API Server for various operations. API server may check the validity of the shared JWT with the authentication server. 
+4. The Media REST API Server queries the Database Server for data-related operations.
+5. The Client may directly request resources from the File Server based on the data returned by the REST API Server.
+6. The Client may directly upload files to the File server (in the example, the file data responded by the File server must be stored to the Media REST API by doing an another request)
+7. The Media REST API Server and the File server may also interact with each other for deleting, storing or retrieving files.
 
 Separating the authentication, database, REST API, and file server into distinct components in a system architecture offers several advantages:
 
