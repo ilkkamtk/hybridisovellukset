@@ -266,6 +266,8 @@ FROM Users
 JOIN MediaItems ON Users.user_id = MediaItems.user_id;
 ```
 
+Note: MySQL creates some indexes for tables automatically by default. Existing idexes of the `Users` table can be displayed with `SHOW INDEX FROM Users;` command. 
+
 Considerations for using indexes:
 
 - Indexes take up storage space.
