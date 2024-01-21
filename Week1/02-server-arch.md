@@ -4,34 +4,41 @@ The server system is composed of three main components: the authentication serve
 
 ```mermaid
 graph LR
-    client(Client) -->|requests with credentials| authServer(Authentication Server)
-    authServer -->|validates and returns JWT| client
-    client -->|requests with JWT| apiServer(REST API Server)
-    apiServer -->|verifies JWT| authServer
-    apiServer -->|queries| dbServer(Database Server)
-    client -->|requests| fileServer(File Server)
-    apiServer -->|stores/retrieves| fileServer
+    client(Client) -->|requests with credentials| authApi(Authentication API)
+    authApi -->|validates and returns JWT| client
+    client -->|requests with JWT| apiServer(Media REST API)
+    apiServer -->|verifies JWT?| authApi
+    apiServer -->|queries media data| db(Database)
+    authApi -->|queries user data| db(Database)
+    client -->|requests with JWT| fileApi(File API)
+    apiServer <-->|stores/retrieves/requests ?| fileApi
 
-    subgraph Authentication
-    authServer
+    subgraph Authentication server
+    authApi
     end
 
-    subgraph Data Handling
+    subgraph Media API Server
     apiServer
-    dbServer
     end
 
-    subgraph File Management
-    fileServer
+    subgraph Database server
+    db
+    end
+
+    subgraph File Server
+    fileApi
+    fs(File System)
+    fileApi <-->|stores/deletes| fs
     end
 ```
 
 1. The Client makes requests to the Authentication Server for authentication.
-1. Upon successful authentication, the Authentication Server returns a JWT to the Client. (All of the servers share the same secret key for verifying JWTs.)
-1. The Client makes direct requests to the REST API Server for various operations. API server may check the validity of the shared JWT with the authentication server. 
-1. The REST API Server queries the Database Server for data-related operations.
-1. The Client might directly request resources from the File Server based on the data returned by the REST API Server.
-1. The REST API Server can also interact with the File Server for storing (or retrieving) files.
+2. Upon successful authentication, the Authentication Server returns a JWT to the Client. (All of the servers share the same secret key for verifying JWTs.)
+3. The Client makes direct requests to the Media REST API Server for various operations. API server may check the validity of the shared JWT with the authentication server. 
+4. The Media REST API Server queries the Database Server for data-related operations.
+5. The Client may directly request resources from the File Server based on the data returned by the REST API Server.
+6. The Client may directly upload files to the File server (in the example, the file data responded by the File server must be stored to the Media REST API by doing an another request)
+7. The Media REST API Server and the File server may also interact with each other for deleting, storing or retrieving files.
 
 Separating the authentication, database, REST API, and file server into distinct components in a system architecture offers several advantages:
 
@@ -69,25 +76,30 @@ Separating the authentication, database, REST API, and file server into distinct
 
 1. Read documentation: <http://localhost:AUTH-SERVER-PORT/>
 1. Test the endpoints (Postman or similar)
-1. Store the JWT from login response for testing other servers
+1. Store the JWT from _POST login_ response for testing other servers
+1. Review the code (e.g. `deleteUser` function in `/src/api/models/userModel.ts` has an example how to use _SQL transactions_ with _mysql2_ package, and the route files have examples how to write _apiDoc_ annotations in code comments)
 
 ### Media API server
 
 1. Review the code and test that the existing media endpoints work as expected
    - e.g. `GET http://localhost:3000/api/v1/media`, refer to route files for other endpoints
+   - for endpoints that need authentication use the JWT as _Bearer token_
 1. Start writing missing endpoints
    - for the _models_ refer to `@sharedTypes/DBTypes` (`hybrid-types/DBTypes.ts`, see `tsconfig.json`)
+   - **or the preferred option: design a database for your individual project and start writing endpoints for that**
 
-### File server
+### File/Upload server
 
 1. Review the code, figure out how uploads work and how they are integrated to media api
-1. Test uploading media files 
-
-Implement TODOs in the teacher's lecture examples (see link in Oma).
-
-Start designing your individual project (see Oma for details) and implementing features you would need for the application.
+1. Test uploading media files (You need to set the JWT as _Bearer token_)
+   - Store the _json response_ details for POSTing the mediafile details to Media API server
+   - In the example architecture the _client application_ needs to _POST media_ to Media API server after uploading the file to the Media API
+   - Idea (optional): refactor the architecture so that after a successful file upload, the file server automatically POSTs the Media file details to Media API (or vice versa)
+     - Note that the _MediaItem_ model has the _title_ and _description_ fields too 
 
 **Returning:** Check assignment in OMA.
+
+Start designing your individual project (see project requirements in Oma for details) and start implementing back-end features you would need for the application.
 
 ### Extras
 
