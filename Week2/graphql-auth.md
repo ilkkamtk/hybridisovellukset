@@ -46,6 +46,7 @@
     ```
 
 7. Create a new resolver file `userResolver.ts` to `src/api/resolvers` folder. Add resolvers to get all users and a single user by id. This time we are making requests to a REST API instead of a database. So instead of using functions from the model files we are going to use the `fetchData()` function in `src/lib/functions.ts`.
+   - Remember to update `resolvers/index.ts`.
 8. Add a new query to `user.graphql`:
     ```graphql
     type Query {
@@ -110,7 +111,10 @@
      ```typescript
      import {UserWithLevel} from '@sharedTypes/DBTypes';
    
-     type UserFromToken = Pick<UserWithLevel, 'user_id' | 'level_name'>;
+     type UserFromToken = Pick<UserWithLevel, 'user_id' | 'level_name'> & {
+       token: string;
+     };
+
 
      export type MyContext = {
          user?: UserFromToken;
@@ -158,6 +162,8 @@
                     token,
                     process.env.JWT_SECRET as string,
                    ) as UserFromToken;
+                // add token to user object so we can use it in resolvers
+                user.token = token;
                 return {user};
             } catch (error) {
                 throw new GraphQLError('Invalid/Expired token', {
@@ -228,18 +234,18 @@
 2. Add the following to `src/api/resolvers/userResolver.ts`:
     ```typescript
     login: async (_parent: undefined, args: Pick<User, 'username' | 'password'>) => {
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(args),
+        };
         const user = await fetchData<UserWithNoPassword>(
-            process.env.AUTH_SERVER + '/auth/login',
-                {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(args),
-            },
-        );
+            process.env.AUTH_SERVER + '/auth/login', options
+            );
         return user;
     },
     ```
-   - Since a login operation changes the state on the server (for example, it might create a new session, update the last login time for a user, or generate a new authentication token), it should be implemented as a mutation. 
+   - Since a login operation should be implemented as a mutation because it changes the state on the server (for example, it might create a new session, update the last login time for a user, or generate a new authentication token). 
 4. Test the mutation in Sandbox. Create a new mutation:
     ```graphql
     mutation Login($username: String!, $password: String!) {
@@ -264,4 +270,34 @@
     ```
    - You should get a response with a token and user data.
 
-   
+## Step 4 - List of queries and mutations
+Try to implement the following queries and mutations (some are already done). You can use the existing code as a reference. Remember to add the necessary code to the schema and resolver files. You can also add new files if necessary.
+1. Queries
+    - `users: [User]`
+    - `user(user_id: ID!): User`
+    - `checkToken: User`
+    - `checkEmail(email: String!): Boolean`
+    - `checkUsername(username: String!): Boolean`
+    - `mediaItems: [MediaType]`
+    - `mediaItem(media_id: ID!): MediaType`
+    - `mediaItemsByTag(tag_id: ID!): [MediaType]`
+    - `tags: [Tag]`
+    - `tag(tag_id: ID!): Tag`
+2. Mutations
+    - `register(input: UserInput!): User`
+    - `login(username: String!, password: String!): LoginResponse`
+    - `updateUser(input: UserInput!): User`, get user_id from token
+    - `deleteUser: Boolean`, get user_id from token
+    - `updateUserAsAdmin(user_id: ID!, input: UserInput!): User`
+    - `deleteUserAsAdmin(user_id: ID!): Boolean`
+    - `createMediaItem(input: MediaItemInput!): MediaType`
+    - `updateMediaItem(input: MediaItemInput!): MediaType`, user must be admin or the owner of the media item
+    - `deleteMediaItem(media_id: ID!): Boolean`, user must be admin or the owner of the media item
+    - `createTag(input: TagInput!): Tag`
+    - `updateTag(input: TagInput!): Tag`
+    - `deleteTag(tag_id: ID!): Boolean`, user must be admin
+    - `addTagToMediaItem(media_id: ID!, tag_id: ID!): Boolean`, user must be admin or the owner of the media item
+    - `removeTagFromMediaItem(media_id: ID!, tag_id: ID!): Boolean`, user must be admin or the owner of the media item
+
+Commit and push your changes to GitHub.
+
