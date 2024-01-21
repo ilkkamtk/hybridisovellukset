@@ -270,7 +270,17 @@
     ```
    - You should get a response with a token and user data.
 
-## Step 4 - List of queries and mutations
+## Step 4 - Add owner to media item
+1. Add the following to `src/api/schemas/media-item.graphql`:
+    ```graphql
+    type MediaType {
+        ...
+        owner: User
+    }
+    ```
+2. Modify `userResolver.ts` to populate the `owner` property. Use `tagResolver.ts` as a reference.
+
+## Step 5 - List of queries and mutations
 Try to implement the following queries and mutations (some are already done). You can use the existing code as a reference. Remember to add the necessary code to the schema and resolver files. You can also add new files if necessary.
 1. Queries
     - `users: [User]`
