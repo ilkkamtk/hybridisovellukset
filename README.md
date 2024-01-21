@@ -46,6 +46,7 @@
 
 - [Tailwind CSS](Week5/tailwind.md)
 - Advanced State Management
+- Using GraphQL with React
 
 ---
 
