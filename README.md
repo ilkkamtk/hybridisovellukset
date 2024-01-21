@@ -18,8 +18,8 @@
 - [Adding schemas and resovers to Apollo server](Week2/schemas-resolvers.md)
 - [Input types and mutations](Week2/concepts3.md)
 - [Adding mutations to Apollo server](Week2/mutations.md)
-- Authentication and authorization
-- File uploads
+- [Authentication and authorization](Week2/auth.md)
+- [File uploads](Week2/upload.md)
 
 ---
 
