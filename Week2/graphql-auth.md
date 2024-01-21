@@ -20,7 +20,7 @@
 
 
 ## Step 1 - Add handling users to GraphQL server
-1. Download the [authentication server]() as a separate project.
+1. Clone [authentication server](https://github.com/ilkkamtk/hybrid-auth-server.git) as a separate project.
 2. Install dependencies and save `.env.sample` as `.env` and add your own values to the file. Remeber to use the same `JWT_SECRET` in all servers.
 3. Start the server with `npm run dev`
 4. Test the server with [Postman](https://www.postman.com/) or similar app. Create a new POST request to `http://localhost:3001/api/v1/auth/login` with the following body:
