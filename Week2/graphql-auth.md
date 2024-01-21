@@ -227,14 +227,16 @@
 2. Create a new type `LoginResponse` to `src/api/schemas/user.graphql` based on the response from the authentication server.
 2. Add the following to `src/api/resolvers/userResolver.ts`:
     ```typescript
-    login: async (_parent: undefined, args: {username: string; password: string}) => {
-        const response = await fetch(process.env.AUTH_SERVER + '/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(args),
-        });
-        const data = await response.json();
-        return data;
+    login: async (_parent: undefined, args: Pick<User, 'username' | 'password'>) => {
+        const user = await fetchData<UserWithNoPassword>(
+            process.env.AUTH_SERVER + '/auth/login',
+                {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(args),
+            },
+        );
+        return user;
     },
     ```
    - Since a login operation changes the state on the server (for example, it might create a new session, update the last login time for a user, or generate a new authentication token), it should be implemented as a mutation. 
