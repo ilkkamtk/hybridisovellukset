@@ -50,8 +50,8 @@
 6. Add the following to `src/app.ts`:
     ```typescript
     ...
-    import {ApolloServer} from 'apollo-server';
-    import {loadFilesSync} from '@graphql-tools/load-files';
+    import {ApolloServer} from '@apollo/server';
+    import {expressMiddleware} from '@apollo/server/express4';
     import typeDefs from './api/schemas/index';
     import resolvers from './api/resolvers/index';
     ...
