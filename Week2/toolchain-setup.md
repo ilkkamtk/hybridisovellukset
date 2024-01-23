@@ -9,10 +9,10 @@
 
 ## Step 1 - Project Boilerplate
 
-1. Clone the starter project from [GitHub](https://github.com/ilkkamtk/hybrid-graphql-starter).
+1. Clone or download as ZIP the starter project from [GitHub](https://github.com/ilkkamtk/hybrid-graphql-starter).
 2. Rename the project folder to `hybrid-graphql-server`.
 3. Enter the project folder and run `npm i` to install the dependencies.
-4. Create a new repository in GitHub and push the project to it.
+4. (Create a new repository in GitHub and push the project to it.)
 5. Run `npm run dev` to start the server. Open `localhost:3000` in your browser to see if the server is running.
     - Run also `npm run test` to see if the tests are passing.
 6. Open the project in VSCode.
