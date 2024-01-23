@@ -31,7 +31,7 @@
    }
    
    type Query {
-     mediaItems: [MediaType]
+     mediaItems: [MediaItem]
    }
    ```
 4. Uncomment every line in `src/api/schemas/index.ts`.
