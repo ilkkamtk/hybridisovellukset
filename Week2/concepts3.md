@@ -35,7 +35,7 @@ input PostInput {
 }
 
 type Mutation {
-  createPost(input: PostInput!): Post
+  createPost(blogPost: PostInput!): Post
 }
 ```
 
