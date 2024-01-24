@@ -94,7 +94,7 @@ In this example:
   };
   
   const query = `
-      query GetPosts($limit: Int!, $offset: Int!, $search: String) {
+      query {
       getPosts(limit: ${variables.limit}, offset: ${variables.offset}, search: ${variables.search}) {
           id
           title
