@@ -47,7 +47,7 @@
     ```
 2. Why in `args: {media_id: string}` `media_id`is of type `string` and not `number`?
 3. Why is `args.media_id` causing type error? How to fix it?
-4. Add a new query to `media-item.graphql`: `mediaItem(media_id: ID!): MediaType`.
+4. Add a new query to `media-item.graphql`: `mediaItem(media_id: ID!): MediaItem`.
 5. Because changes to _graphql_ files don't invoke restart automatically, restart the server manually by typing `rs` in the terminal where the server is running.
 6. Test the server with Sandbox. Create a new query:
     ```graphql
@@ -62,9 +62,9 @@
     - You should get a response with the media item with id X.
 
 ## Step 3 - Show all tags that media item has when getting all media items or a single media item
-1. Add new property `tags` to `MediaType` in `media-item.graphql`:
+1. Add new property `tags` to `MediaItem` in `media-item.graphql`:
     ```graphql
-    type MediaType {
+    type MediaItem {
       ...
       tags: [Tag]
     }
