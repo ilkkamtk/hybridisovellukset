@@ -99,7 +99,7 @@
     - You should get a response with all the media items and their tags.
 
 ## Step 4 - Get media items by tag
-1. Add a new resolver to `mediaResolver.ts` where the input argument is `tag_id`. The argument is then passed to `fetchMediaByTag` function.
+1. Add a new resolver to `mediaResolver.ts` where the input argument is `tag`. The argument is then passed to `fetchMediaByTag` function.
 2. Add a new query to `media-item.graphql`: `mediaItemsByTag(tag: String!): [MediaItem]`.
 3. Restart the server by typing `rs` in the terminal where the server is running.
 4. Test the server with Sandbox. Create a new query:
