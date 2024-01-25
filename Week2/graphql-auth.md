@@ -141,14 +141,13 @@
 4. Add the following to `src/lib/functions.ts`:
     ```typescript
     import jwt from 'jsonwebtoken';
-    import jwt from 'jsonwebtoken';
     import {MyContext, UserFromToken} from '../local-types';
     import {Request} from 'express';
     import {GraphQLError} from 'graphql';
     
     ...
     
-    export const authenticate = (req: Request): Promise<MyContext> => {
+    const authenticate = (req: Request): Promise<MyContext> => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const token = authHeader.split(' ')[1];
