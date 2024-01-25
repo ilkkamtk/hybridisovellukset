@@ -193,6 +193,7 @@ resources on a server or within a web application.
 - Not interactive and cannot be updated on the client.
 - Useful for SEO, as search engines can crawl and index them easily.
 - [Next.js docs](https://nextjs.org/docs/app/building-your-application/rendering/server-components)
+- [Good video about React Server Components](https://www.youtube.com/watch?v=rGPpQdbDbwo)
 
 ### Client Components
 
