@@ -111,7 +111,7 @@
      };
 
 
-     export type MyContext = {
+     type MyContext = {
          user?: UserFromToken;
      };
    
