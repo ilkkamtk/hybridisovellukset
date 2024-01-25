@@ -91,8 +91,8 @@
       addTagToMediaItem(input: AddTagToMediaItemInput!): MediaItem
     ```
    - The reason why this is in `media-item.graphql` (and `mediaResolver`) and not in `tag.graphql` is because return type is `MediaItem`.
-2. Add a new input type `AddTagToMediaItemInput` to `media-item.graphql` where you define `media_id` and `tag_id`.
-3. Add new resolver to `mediaResolver.ts` where you call `postTagToMediaItem` function from `mediaModel.ts` and return the result.
+2. Add a new input type `AddTagToMediaItemInput` to `media-item.graphql` where you define `media_id` and `tag_name`.
+3. Add new resolver to `mediaResolver.ts` where you call `postTagToMedia` function from `mediaModel.ts` and return the result.
    - Capitalize the first letter of tag_name before you send it to `postTagToMediaItem()`because we want all tags to be the same format in the database, so we can query them and check for duplicates more easily without having to worry about case sensitivity.
 
 ## Step 4 - Add a new mutation to delete a tag

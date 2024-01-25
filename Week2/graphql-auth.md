@@ -3,11 +3,6 @@
 1. [In Apollo authentication](https://www.apollographql.com/docs/apollo-server/security/authentication/) is done by adding user data to [context](https://www.apollographql.com/docs/apollo-server/data/resolvers/#the-contextvalue-argument)
 2. [Example with Express.js](https://www.apollographql.com/docs/apollo-server/api/express-middleware/#context)
 
-#### Distributed authentication with JSON Web Tokens
-- [JWT](https://jwt.io/introduction)
-- Download starter files: [GraphQL server](https://github.com/ilkkamtk/SSSF-graphql-auth-starter), [Auth server](https://github.com/ilkkamtk/SSSF-auth-server-starter), [Upload server](https://github.com/ilkkamtk/SSSF-upload-server-starter)
-
-
 ## Apollo Server Context
 - Context is an object that is shared by all resolvers and is created for each request
 - Context can be used to store user data for authentication and authorization.
@@ -116,14 +111,14 @@
      };
 
 
-     export type MyContext = {
+     type MyContext = {
          user?: UserFromToken;
      };
    
      export type {MyContext, UserFromToken};
      ```
     - Note that user is optional because it is not available when the user is not authenticated.
-3. Add the following to `src/api/index.ts`:
+3. Add the following to `src/api/app.ts`:
     ```typescript
     ...
     import {MyContext} from '../local-types';
@@ -146,14 +141,13 @@
 4. Add the following to `src/lib/functions.ts`:
     ```typescript
     import jwt from 'jsonwebtoken';
-    import jwt from 'jsonwebtoken';
     import {MyContext, UserFromToken} from '../local-types';
     import {Request} from 'express';
     import {GraphQLError} from 'graphql';
     
     ...
     
-    export const authenticate = (req: Request): Promise<MyContext> => {
+    const authenticate = async(req: Request): Promise<MyContext> => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const token = authHeader.split(' ')[1];

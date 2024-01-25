@@ -1,15 +1,5 @@
 # GraphQL Core Concepts, pt 3
 
-## Mutations
-
-- **Definition**: Explain mutations as operations that modify data on a GraphQL server.
-- **Syntax**: Introduce the syntax for writing mutations, including fields, input types, and variables.
-- **Creating, Updating, Deleting**: Discuss how mutations are used for creating, updating, and deleting data.
-- **Response Handling**: Explain how to handle responses from mutations and retrieve specific data after a mutation is
-  performed.
-
----
-
 ## Input Types in GraphQL
 
 In GraphQL, Input Types are special object types used specifically for passing complex data as arguments to mutations or
@@ -45,7 +35,7 @@ input PostInput {
 }
 
 type Mutation {
-  createPost(input: PostInput!): Post
+  createPost(blogPost: PostInput!): Post
 }
 ```
 
@@ -104,7 +94,7 @@ In this example:
   };
   
   const query = `
-      query GetPosts($limit: Int!, $offset: Int!, $search: String) {
+      query {
       getPosts(limit: ${variables.limit}, offset: ${variables.offset}, search: ${variables.search}) {
           id
           title
