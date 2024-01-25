@@ -156,6 +156,51 @@
       ```
     - You should get a response with the updated media item.
 
+## Step 8 - Validation
+1. With `@constraint` directive you can add validation to your GraphQL schema. To enable it install the following packages:
+    ```bash
+    npm i @graphql-tools/schema graphql-constraint-directive graphql-tag
+    ```
+   - Note that `graphql-tag` should already be installed, but currently (2024) there seems to be a bug with it, so you need to install it separately. 
+
+2. Make the following changes to `src/app.ts`:
+    ```typescript
+    import {makeExecutableSchema} from '@graphql-tools/schema';
+   import {
+      constraintDirectiveTypeDefs,
+      createApollo4QueryValidationPlugin,
+   } from 'graphql-constraint-directive/apollo4';
+   
+   ...
+   
+   // create executable schema for validation
+    const schema = makeExecutableSchema({
+      typeDefs: [constraintDirectiveTypeDefs, typeDefs],
+      resolvers,
+    });
+   
+   const server = new ApolloServer<MyContext>({
+      schema,
+      plugins: [
+        createApollo4QueryValidationPlugin({schema}),
+        process.env.NODE_ENV === 'production'
+          ? ApolloServerPluginLandingPageProductionDefault()
+          : ApolloServerPluginLandingPageLocalDefault(),
+      ],
+    });
+   
+    ```
+   - Note that you need to import `createApollo4QueryValidationPlugin` and `constraintDirectiveTypeDefs` from `graphql-constraint-directive/apollo4` and not from `graphql-constraint-directive` because the latter is for Apollo Server 3.
+3. Validate input type `InputUser` in `user.graphql`:
+    ```graphql
+    input InputUser {
+       username: String! @constraint(minLength: 3, maxLength: 255)
+       email: String! @constraint(format: "email", maxLength: 255)
+       password: String! @constraint(minLength: 5)
+   }
+   ```
+4. Try to post a new user with wrong data in Sandbox. You should get an error message.
+
 ## Step 7 - Fixes?
 - Consider which properties in the GraphQL schemas should be required and which should be optional by using the `!` non-null assertion operator. 
 - Also consider do you need to extra input types for mutations or can you use the existing ones.
