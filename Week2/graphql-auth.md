@@ -118,7 +118,7 @@
      export type {MyContext, UserFromToken};
      ```
     - Note that user is optional because it is not available when the user is not authenticated.
-3. Add the following to `src/api/index.ts`:
+3. Add the following to `src/api/app.ts`:
     ```typescript
     ...
     import {MyContext} from '../local-types';
