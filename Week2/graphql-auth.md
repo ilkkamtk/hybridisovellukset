@@ -147,7 +147,7 @@
     
     ...
     
-    const authenticate = (req: Request): Promise<MyContext> => {
+    const authenticate = async(req: Request): Promise<MyContext> => {
         const authHeader = req.headers.authorization;
         if (authHeader) {
             const token = authHeader.split(' ')[1];
