@@ -4,7 +4,7 @@
 
 ## Step 1 - Upload server
 
-1. Clone [upload server](https://github.com/ilkkamtk/hybrid-upload-server.git) as a separate project
+1. Domnload [upload server](https://github.com/ilkkamtk/hybrid-upload-server.git) as Zip.
 2. Install dependencies: `npm i`
 3. Start server: `npm run dev`
 4. Use your GraphQL server to log in and get a token
