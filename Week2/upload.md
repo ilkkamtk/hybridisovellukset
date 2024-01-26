@@ -4,7 +4,7 @@
 
 ## Step 1 - Upload server
 
-1. Domnload [upload server](https://github.com/ilkkamtk/hybrid-upload-server.git) as Zip.
+1. Download [upload server](https://github.com/ilkkamtk/hybrid-upload-server.git) as Zip.
 2. Install dependencies: `npm i`
 3. Start server: `npm run dev`
 4. Use your GraphQL server to log in and get a token
@@ -24,7 +24,7 @@
 5. Keep server running
 
 ## Step 2 - Client
-1. Clone the [client](https://github.com/ilkkamtk/hybrid-upload-client-starter) as a separate project.
+1. Download the [client](https://github.com/ilkkamtk/hybrid-upload-client-starter) as Zip.
 2. Install dependencies: `npm i`
 3. Start client: `npm run dev`
 4. Open `http://localhost:5173/` in your browser (or whatever port you have configured in Vite)
