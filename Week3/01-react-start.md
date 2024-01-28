@@ -198,6 +198,8 @@ This is a JSX expression. It will be transpiled to React.createElement function 
 
 Props and JSX work together in React to create dynamic and reusable components. Props allow you to pass data and behavior to components, and JSX provides a way to structure and display these components. By using props within JSX, you can customize the content and behavior of components, making them adaptable to different needs and scenarios.
 
+---
+
 ## Exercise: First Components
 
 1. Create and checkout a new branch for the exercise `git checkout -b first-component`

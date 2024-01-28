@@ -15,7 +15,7 @@
 - [Toolchain and server setup](Week2/toolchain-setup.md)
 - [Schema and queries](Week2/concepts.md)
 - [Resolvers](Week2/concepts2.md)
-- [Adding schemas and resovers to Apollo server](Week2/schemas-resolvers.md)
+- [Adding schemas and resolvers to Apollo server](Week2/schemas-resolvers.md)
 - [Input types and mutations](Week2/concepts3.md)
 - [Adding mutations to Apollo server](Week2/mutations.md)
 - [Authentication and authorization](Week2/graphql-auth.md)
@@ -25,10 +25,9 @@
 
 ### Week 3 React
 
-- React
-- State management
-- Props
-- Routing
+- [Getting started, Components, JSX and Props](Week3/01-react-start.md)
+- [State management](Week3/02-react-state.md)
+- [Routing, Views and Navigation](Week3/03-react-routing.md)
 
 ---
 
