@@ -36,7 +36,7 @@ See [Learn React JS](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
       - Git + GitHub
       - Node.js + npm
       - VS Code + extensions, add 'ES7+ React/Redux/React-Native snippets'
-      - Browser + dev tools
+      - Browser + dev tools (+ [React Developer Tools](https://chromewebstore.google.com/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi))
     - [Vite](https://vitejs.dev/) for project scaffolding and automated development tasks
 1. Create a new project with Vite
     - `npm create vite@latest my-app`
