@@ -272,7 +272,7 @@ Props and JSX work together in React to create dynamic and reusable components. 
     ];
     ```
 
-1. To use the `MediaItem` type, copy the types from the [hybrid-types repo](tba) to `src/types` folder and import from there:
+1. To use the `MediaItem` type, copy the types from the [hybrid-types repo](https://github.com/ilkkamtk/hybrid-types) to `src/types` folder and import from there:
 
     ```js
     import {MediaItem} from '../types/DBTypes';
