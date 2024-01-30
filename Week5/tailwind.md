@@ -44,7 +44,7 @@
 7. Do you really need to add the same styles to all `<li>` components? Isn't that repeating
    yourself? [Yes it is. And it is supposed to be like that.](https://tailwindcss.com/docs/reusing-styles#/dashboard)
    - You can however use pseudo classes like `*:` to [add styles to direct children](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children) of E.g. `ul` element.
-8. Go through `index_old.css` and make the app look like it did before with Tailwind CSS classes.
+8. Go through `index_old.css` and make the app look like it did before (or better) with Tailwind CSS classes.
     - [Colors](https://tailwindcolor.com/)
     - [Default spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale)
     - [Font size](https://tailwindcss.com/docs/font-size)

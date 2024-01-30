@@ -4,8 +4,7 @@
 
 ### Definition and Purpose
 
-- **Foundation of API**: The schema acts as a contract between the client and the server, specifying how clients can
-  request and manipulate data.
+- **Foundation of API**: The schema acts as a contract between the client and the server, specifying how clients can request and manipulate data.
 - **Type System**: It's built around a strongly typed system where types represent the shape of the data available in
   the API.
 
@@ -45,8 +44,7 @@ schema of a GraphQL API.
 ### Type Definitions and Resolvers
 
 - **Type Definitions**: In a schema, type definitions specify the structure of types, their fields, and relationships.
-- **Resolvers**: Functions that define how to fetch the data associated with a particular field. Resolvers retrieve the
-  data from the appropriate data source.
+- **Resolvers**: Functions that define how to fetch the data associated with a particular field. Resolvers retrieve the data from the appropriate data source.
 
 ### Schema Evolution
 
