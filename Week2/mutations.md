@@ -162,6 +162,7 @@
     npm i @graphql-tools/schema graphql-constraint-directive graphql-tag
     ```
    - Note that `graphql-tag` should already be installed, but currently (2024) there seems to be a bug with it, so you need to install it separately. 
+   - [API documentation for `@constraint` directive](https://www.npmjs.com/package/graphql-constraint-directive#api)
 
 2. Make the following changes to `src/app.ts`:
     ```typescript
