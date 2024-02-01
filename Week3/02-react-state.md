@@ -82,17 +82,19 @@ const Greeting = (props) => {
 
 ## Exercise: Using state for media item selection
 
+`SingleView` component is renreded to display full media file contents when a media item is selected from the list.
+
 ```mermaid
 graph TD;
-    Home-->|props: item, selectedItem|MediaRow;
-    Home-->|props: item!=null, selectedItem|SingleView;
+    Home-->|props: item, setSelectedItem|MediaRow;
+    Home-->|props: selectedItem!=undefined, setSelectedItem|SingleView;
 ```
 
 1. Create a git branch `state-management` from the previous exercise and checkout to it.
 1. Create a new component `SingleView` for rendering a single media item. It should display the title, description, and media content itself.
     - The `SingleView` component should be rendered when a user chooses a media item in the `MediaRow` component. The `SingleView` component could be displayed e.g. on top of the the `MediaRow` component.
 1. The choice between the `MediaRow` and `SingleView` components should be controlled by a state variable `selectedItem` in the `Home` component. The `selectedItem` should be initialized to `null` and updated when a user clicks a media item in the `MediaRow` component.
-    - Create a new state variable `selectedItem` in the `Home` component using the `useState` hook with a initial value `null` : `const [selectedItem, setSelectedItem] = useState<MediaItem | null>(null);`
+    - Create a new state variable `selectedItem` in the `Home` component using the `useState` hook with a initial value `null` : `const [selectedItem, setSelectedItem] = useState<MediaItem | undefined>();`
 1. Use `SingleView` component in the `Home` component and pass the `selectedItem` state variable and the `setSelectedItem` function as props to the `SingleView` component.
 
     ```js
@@ -100,8 +102,8 @@ graph TD;
     import {MediaItem} from '../types/DBTypes';
 
     const SingleView = (props: {
-      item: MediaItem | null;
-      setSelectedItem: (item: MediaItem | null) => void;
+      item: MediaItem;
+      setSelectedItem: (item: MediaItem | undefined) => void;
     }) => {
       const {item, setSelectedItem} = props;
       return (
@@ -121,7 +123,7 @@ graph TD;
     ...
     ```
 
-1. Pass the `selectedItem` state variable and the `setSelectedItem` function as props to the `MediaRow` component too (similarly as with the `SingleView` component) Note that the item value should never be `null` in this case.
+1. Pass the `selectedItem` state variable and the `setSelectedItem` function as props to the `MediaRow` component too (similarly as with the `SingleView` component) Note that the item value should never be `null / undefined` when passed as a prop.
 1. Add a button for each file in the `MediaRow` component that calls the `setSelectedItem` function with the corresponding media item as a parameter.
     - Use the `setSelectedItem` function to update the `selectedItem` state variable in the `MediaRow` component.
     - Use the `selectedItem` state variable to [conditionally render](https://react.dev/learn/conditional-rendering) the `SingleView` component in the `Home` component.
