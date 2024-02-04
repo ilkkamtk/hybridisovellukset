@@ -91,7 +91,7 @@ In this example, we have a simple counter component. The state is an object with
 
    type LikeAction = {
      type: "setLikeCount" | "like";
-     like?: Like;
+     like?: Like | null;
      count?: number;
    };
    ```
