@@ -1,6 +1,6 @@
 # Advanced state management in React
 
-React's built-in state management is enough for many use cases. However, when the application grows, the state management can become complex. In this chapter we'll learn how to use the `useReducer` hook and the `Context` API to manage the state in a more organized way.
+React's built-in state management is enough for many use cases. However, when the application grows, the state management can become complex. In React `useReducer` hook can be used to manage the state in a more organized way.
 
 ## useReducer
 
