@@ -54,7 +54,7 @@ export default function Counter() {
 }
 ```
 
-In this example, we have a simple counter component. The state is an object with a `count` property. The reducer function takes the current state and an action as arguments and returns the new state. The `dispatch` function is used to dispatch an action.
+In this example, we have a simple counter component. The state is an object with a `count` property. In the switch statement in the `reducer` function, we check the `action.type` and return the new state based on the action type. When the user clicks the `+` button, the `dispatch` function is called with the `increment` action. When the user clicks the `-` button, the `dispatch` function is called with the `decrement` action.
 
 ## Lab assignment 1
 1. Create a new branch `likes` with git.
