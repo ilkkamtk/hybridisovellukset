@@ -44,7 +44,7 @@
 ### Week 5 React
 
 - [Tailwind CSS](Week5/tailwind.md)
-- Advanced State Management
+- [Advanced State Management](Week5/advanced-state-management.md)
 - Using GraphQL with React
 
 ---
