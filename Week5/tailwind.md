@@ -43,11 +43,29 @@
       find the right classes. The old styles are in `index_old.css` if you need to check them.
 7. Do you really need to add the same styles to all `<li>` components? Isn't that repeating
    yourself? [Yes it is. And it is supposed to be like that.](https://tailwindcss.com/docs/reusing-styles#/dashboard)
-   - You can however use pseudo classes like `*:` to [add styles to direct children](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children) of E.g. `ul` element.
+    - You can however use pseudo classes like `*:`
+      to [add styles to direct children](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children)
+      of E.g. `ul` element.
 8. Go through `index_old.css` and make the app look like it did before (or better) with Tailwind CSS classes.
     - [Colors](https://tailwindcolor.com/)
     - [Default spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale)
     - [Font size](https://tailwindcss.com/docs/font-size)
+
+## Lab assignment 2
+
+1. Continue in the same branch.
+2. In this exercise we'll add two buttons to `MediaItemCard` component: `Modify` and `Delete` which are shown only when the user is logged in. At this point the buttons don't do anything but console.log something.
+3. Use `useUserContext()` to get the `user` from the context.
+4. Add the buttons to the `MediaItemCard` component. Use Tailwind CSS classes to style the buttons the same way as the `Show` button is styled.
+5. Use conditional rendering to show the buttons only when the user is logged in and the user is the owner of the media. If user is admin, the buttons are shown always. If the user is not logged in, the buttons are not shown at all.
+6. Add event listeners to the buttons. Something like this:
+    ```tsx
+    <button
+      className="your tailwind classes here"
+      onClick={() => console.log("modify/delete", item)}
+    >
+    ```
+7. Test that the buttons are shown only when the user is logged in and that the event listeners work.
 
 ## Submit
 
