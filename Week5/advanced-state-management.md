@@ -58,9 +58,19 @@ In this example, we have a simple counter component. The state is an object with
 
 ## Lab assignment 1
 1. Create a new branch `likes` with git.
-2. The goal of this exercise is to use `useReduser` instead of `useState` to handle likes in the `SingleView` component.
-3. Add a like button to the `SingleView` component. The button should be shown only when the user is logged in. The button should be styled the same way as the `Show` button. Also add a paragraph to show the number of likes.
-4. To send and receive likes from the server, we need to add a new hook to `ApiHooks.ts`. The hook is called `useLike` and it is used to send and receive likes from the server. The hook should look like this:
+2. The goal of this exercise is to use `useReduser` instead of `useState` to handle a state with multiple sub-values. The state is used to show the number of likes and to show if the user has liked the media. The state should look like this:
+   ```tsx
+   type LikeState = {
+     count: number;
+     userLike: Like | null;
+   };
+   ```
+   - In `LikeState` the `count` property is the number of likes and the `userLike` property is the user's like. It is `null` if the user hasn't liked the media.
+3. Create a new component `Likes.tsx` to `components` folder.
+4. Add a like button to the `Likes` component. The button should be shown only when the user is logged in. The button should be styled the same way as the `Show` button in `MediaItemCard`. Also add a paragraph to show the number of likes with a hard-coded number.
+5. Add prop `item` to the `Likes` component. The `item` is the media item that the user can like. The type of the `item` is `MediaItemWithOwner` or `null` like in the `SingleView` component (because it is passed from the `SingleView` component).
+6. Add `<Likes item={item} />` to the `SingleView` component where you want to show the like button and the number of likes.
+7. To send and receive likes from the server, we need to add a new hook to `ApiHooks.ts`. The hook is called `useLike` and it is used to send and receive likes from the server. The hook should look like this:
    ```tsx
    const useLike = () => {
      const postLike = async (media_id: number, token: string) => {
@@ -82,7 +92,7 @@ In this example, we have a simple counter component. The state is an object with
      return { postLike, deleteLike, getCountByMediaId, getUserLike };
    }
    ```
-5. Add types for the state and the action after the imports in `SingleView.tsx`: 
+8. Add types for the state and the action after the imports in `Likes` component: 
    ```tsx
    type LikeState = {
      count: number;
@@ -95,9 +105,8 @@ In this example, we have a simple counter component. The state is an object with
      count?: number;
    };
    ```
-   - In `LikeState` the `count` property is the number of likes and the `userLike` property is the user's like. It is `null` if the user hasn't liked the media.
    - In `LikeAction` the `type` property is the action type. The `like` property is the like object and the `count` property is the new like count.
-6. Add `likeInitialState` object after the `LikeAction` type:
+9. Add `likeInitialState` object after the `LikeAction` type:
    ```tsx
    const likeInitialState: LikeState = {
      count: 0,
@@ -105,34 +114,34 @@ In this example, we have a simple counter component. The state is an object with
    };
    ```
    - The initial state is used to set the initial state of the reducer when the component is first rendered.
-7. Add the `likeReducer` function after the `likeInitialState` object:
-   ```tsx
-    function likeReducer(state: LikeState, action: LikeAction): LikeState {
-      switch (action.type) {
-         case "setLikeCount":
-            return { ...state, count: action.count ?? 0 };
-         case "like":
-            if (action.like !== undefined) {
-                return { ...state, userLike: action.like };
-            }
-      return state; // no change if action.like is undefined
-         default:
-            return state; // Return the unchanged state if the action type is not recognized
-      }
-    }
+10. Add the `likeReducer` function after the `likeInitialState` object:
+    ```tsx
+     function likeReducer(state: LikeState, action: LikeAction): LikeState {
+       switch (action.type) {
+          case "setLikeCount":
+             return { ...state, count: action.count ?? 0 };
+          case "like":
+             if (action.like !== undefined) {
+                 return { ...state, userLike: action.like };
+             }
+       return state; // no change if action.like is undefined
+          default:
+             return state; // Return the unchanged state if the action type is not recognized
+       }
+     }
+     ```
+     - Note the use of the spread operator (`...`) to copy the state and only change the properties that change. 
+     - Also note the use of the nullish coalescing operator (`??`) to provide a default value for the `count` property if `action.count` is `undefined` or `null`.
+11. Add the `useReducer` hook to the `Likes` component:
+    ```tsx
+    const [likeState, likeDispatch] = useReducer(likeReducer, likeInitialState);
     ```
-    - Note the use of the spread operator (`...`) to copy the state and only change the properties that change. 
-    - Also note the use of the nullish coalescing operator (`??`) to provide a default value for the `count` property if `action.count` is `undefined` or `null`.
-8. Add the `useReducer` hook to the `SingleView` component:
-   ```tsx
-   const [likeState, likeDispatch] = useReducer(likeReducer, likeInitialState);
-   ```
-   - The `likeState` is the current state and the `likeDispatch` is the dispatch function. 
-9. Import the `useLike` hook to `SingleView.tsx` and all four functions from `ApiHooks.ts`:
-   ```tsx
-   const { postLike, deleteLike, getCountByMediaId, getUserLike } = useLike();
-   ```
-10. Create a function to get the like count and the user's like:
+    - The `likeState` is the current state and the `likeDispatch` is the dispatch function. 
+12. Import the `useLike` hook to `Likes` component and all four functions from `ApiHooks.ts`:
+    ```tsx
+    const { postLike, deleteLike, getCountByMediaId, getUserLike } = useLike();
+    ```
+13. Create a function to get the like count and the user's like:
     ```tsx
     const getLikes = async () => {
          const token = localStorage.getItem("token");
@@ -151,8 +160,8 @@ In this example, we have a simple counter component. The state is an object with
     }
     ```
     - The `getLikes` uses the `getUserLike` function from the `useLike` hook to get the user's like and the `getCountByMediaId` function to get the like count and dispatches the results to the state.
-11. Call the `getLikes` function in the `useEffect` hook. It should be called when the component is first rendered and when the `item` changes.
-12. Create a function `handleLike` to handle the like button click:
+14. Call the `getLikes` function in the `useEffect` hook. It should be called when the component is first rendered and when the `item` changes.
+15. Create a function `handleLike` to handle the like button click:
    ```tsx
    const handleLike = async () => {
         try {
@@ -171,9 +180,9 @@ In this example, we have a simple counter component. The state is an object with
         }
     }
    ```
-13. Add the `handleLike` function to the like button's `onClick` event.
-14. Use `likeState.count` to show the number of likes and `likeState.userLike` to conditionally render `like` or `unlike` to the like button.
-15. Test the like button. You can use the `like` and `unlike` buttons in the `SingleView` component to test the like functionality.
+16. Add the `handleLike` function to the like button's `onClick` event.
+17. Use `likeState.count` to show the number of likes and `likeState.userLike` to conditionally render `like` or `unlike` to the like button.
+18. Test the like button. You can use the `like` and `unlike` buttons in the `SingleView` component to test the like functionality.
 
 ## Submit
 
