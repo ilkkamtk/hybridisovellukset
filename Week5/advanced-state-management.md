@@ -141,14 +141,14 @@ In this example, we have a simple counter component. The state is an object with
     ```tsx
     const { postLike, deleteLike, getCountByMediaId, getUserLike } = useLike();
     ```
-13. Create a function to get the like count and the user's like:
+13. Create a function to get the user's like and like count:
     ```tsx
+    // get user like
     const getLikes = async () => {
          const token = localStorage.getItem("token");
          if (!item || !token) {
             return;
          }
-         // get user like
          try {
             const userLike = await getUserLike(item.media_id, token);
             likeDispatch({ type: "like", like: userLike });
@@ -156,11 +156,15 @@ In this example, we have a simple counter component. The state is an object with
             likeDispatch({ type: "like", like: null });
             console.log("get user like error", (e as Error).message);
          }
+    }
+    
+    // get like count
+    const getLikeCount = async () => {
          // TODO: get like count and dispatch it to the state
     }
     ```
     - The `getLikes` uses the `getUserLike` function from the `useLike` hook to get the user's like and the `getCountByMediaId` function to get the like count and dispatches the results to the state.
-14. Call the `getLikes` function in the `useEffect` hook. It should be called when the component is first rendered and when the `item` changes.
+14. Call the `getLikes` and `getLikeCount` function in the `useEffect` hook. It should be called when the component is first rendered and when the `item` changes.
 15. Create a function `handleLike` to handle the like button click:
    ```tsx
    const handleLike = async () => {
@@ -171,9 +175,9 @@ In this example, we have a simple counter component. The state is an object with
             }
             // If user has liked the media, delete the like. Otherwise, post the like.
             if (likeState.userLike) {
-                // TODO: delete the like and dispatch the new like count to the state. Dispatching is already done in the getLikes function.
+                // TODO: delete the like and dispatch the new like count to the state. Dispatching is already done in the getLikes and getLikeCount functions.
             } else {
-                // TODO: post the like and dispatch the new like count to the state. Dispatching is already done in the getLikes function.
+                // TODO: post the like and dispatch the new like count to the state. Dispatching is already done in the getLikes and getLikeCount functions.
             }
         } catch (e) {
             console.log("like error", (e as Error).message);
