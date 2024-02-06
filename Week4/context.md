@@ -99,15 +99,15 @@ export default ComponentB;
 
 ```tsx
 // UserContext.tsx
-import React, {createContext, useContext, useState} from 'react';
+import {createContext, useContext, useState, Dispatch, SetStateAction} from 'react';
 import {User} from '../types';
 
 type UserContextType = {
     user: User | null;
-    setUser: React.SetStateAction<User | null>;
+    setUser: Dispatch<SetStateAction<User | null>>;
 };
 
-const UserContext = createContext<UserContextType>(null);
+const UserContext = createContext<UserContextType | null>(null);
 
 export const UserProvider = ({children}: { children: React.ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
