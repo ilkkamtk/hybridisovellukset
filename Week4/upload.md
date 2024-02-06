@@ -113,7 +113,6 @@
     ```
     - Finally, add `PostFile` and `postMedia` to `doUpload` function.
     - Test the app. Upload a file and check that it is added to the media list.
-   
 
 ## Submit
 1. Run `npm build` or `npm run build`

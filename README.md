@@ -47,7 +47,7 @@
 - [Advanced State Management](Week5/advanced-state-management.md) (likes)
    - [Zustand](Week5/zustand.md) (comments)
    - [React Query](Week5/react-query.md) 
-- Using GraphQL with React
+- [Using GraphQL with React](Week5/react-graphql.md)
 
 ---
 
