@@ -20,6 +20,7 @@
 ## Lab assignment 1
 
 1. Continue last exercise. Create a new branch 'tailwind' with git.
+2. Download the full version of the [MediaAPI](https://github.com/ilkkamtk/hybrid-media-api). Put it in the same main folder as the rest of this course's projects.
 2. [Install Tailwind CSS to your project.](https://tailwindcss.com/docs/guides/vite#react)
 3. [Editor setup.](https://tailwindcss.com/docs/editor-setup)
     - Change `prettier.config.js` to:
