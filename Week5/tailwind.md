@@ -67,6 +67,29 @@
     ```
 7. Test that the buttons are shown only when the user is logged in and that the event listeners work.
 
+## Lab assignment 3
+1. Continue in the same branch.
+2. Check if the username and/or email are available. If not, show an error message below the input field.
+3. Add two new functions to `useUser` hook `ApiHooks.tsx`: `getUsernameAvailable` and `getEmailAvailable`:
+    ```tsx
+      const getUserNameAvailable = async (username: string) => {
+        const result = await fetchData<{available: boolean}>(
+            import.meta.env.VITE_AUTH_API + '/users/username/' + username,
+        );
+        return result;
+    };
+    
+    const getEmailAvailable = async (email: string) => {
+        const result = await fetchData<{available: boolean}>(
+            import.meta.env.VITE_AUTH_API + '/users/email/' + email,
+        );
+        return result;
+    };
+    ``` 
+   
+4. Add two new states with boolean values to `RegisterForm` component: `usernameAvailable` and `emailAvailable`. Set the default value to `true`.
+5. Use `getUsernameAvailable` and `getEmailAvailable` in `doRegister` function to check if the username and email are available. Set the state values to the return values of the functions. If the username or email is not available, don't send the form data to the server. Also show an error message below the input field by using conditional rendering. Use Tailwind CSS classes to style the error messages.
+
 ## Submit
 
 1. Run `npm build` or `npm run build`
