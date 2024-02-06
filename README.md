@@ -53,8 +53,11 @@
 
 ### Week 6 React Native
 
-- Aihe
-- Aihe
+- Expo
+- Native components
+- Routing & navigation
+- Native device features
+- Component libraries
 
 ---
 
