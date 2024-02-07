@@ -190,7 +190,7 @@ export default Example;
 4. Create a new function `getMedia` that fetches the media items from the JSON file using the `fetchData` function and
    updates the `mediaArray` state using the `setMediaArray` function.
     - Download [test.json](https://gist.github.com/ilkkamtk/9b935c507d1f5b67ada63169e76009f1) and save it to
-      the `assets` folder.
+      the `public` folder.
     ```tsx
     const getMedia = async () => {
        const json = await fetchData<MediaItem[]>('test.json');
@@ -219,11 +219,11 @@ export default Example;
 ## Lab assignment 2
 
 1. Continue last exercise. Now we get the data from the Media API.
-2. Edit `env.local` to include `VITE_MEDIA_API=https://osotetähän` environment variable.
+2. Add and edit `.env.local` file to include `VITE_MEDIA_API=https://osotetähän` environment variable.
 3. Replace `test.json` with `import.meta.env.VITE_MEDIA_API + '/media'` in `getMedia` function.
 4. Next we want to display the owner's username with the media item. The owner's id is in the media item, but we need to
    fetch the username from the User API.
-5. Edit `env.local` to include `VITE_AUTH_API=https://osotetähän` environment variable.
+5. Edit `.env.local` to include `VITE_AUTH_API=https://osotetähän` environment variable.
 6. Each media item has `user_id` property, which means that we need to make multiple requests to the API. We can
    use [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) to
    make multiple requests and combine the results to a single array. Example:
