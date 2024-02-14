@@ -88,7 +88,7 @@ In this example, we have a simple counter component. The state is an object with
      };
 
      const getUserLike = async (media_id: number, token: string) => {
-       // TODO: Send a GET request to /likes/bymedia/:media_id to get the user's like on the media.
+       // TODO: Send a GET request to /likes/bymedia/user/:media_id to get the user's like on the media.
      };
 
      return {postLike, deleteLike, getCountByMediaId, getUserLike};
