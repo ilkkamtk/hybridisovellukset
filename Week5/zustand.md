@@ -1,5 +1,5 @@
 # Zustand
-Zustand is a library for managing state in React applications. It is similar to Redux, but with a much simpler API and less boilerplate. It is also built with hooks, so you can use it in functional components without needing to use classes.
+Zustand is a library for managing state in React applications. It is similar to Redux, but with a much simpler API and less boilerplate. It is a small library that is easy to learn and use. It is a good choice for small to medium-sized applications.
 
 Zustand is simple and unopinionated. It doesn't wrap the applications in a provider component, so you can use it in any component you like. You can use it with any other library you like.
 
