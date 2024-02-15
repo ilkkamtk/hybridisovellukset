@@ -99,8 +99,9 @@ In this example, we have a simple counter component. The `useStore` hook is used
           // TODO: Send a POST request to /comments with the comment object and the token in the Authorization header.
       };
    
-      const getComments = async (media_id: number) => {
-          // TODO: Send a GET request to /comments/:media_id to get the comments.
+      const getCommentsByMediaId = async (media_id: number) => {
+          // TODO: Send a GET request to /comments/bymedia/:media_id to get the comments.
+          // TODO: Send a GET request to auth api and add username to all comments
       };
    
       return { postComment, getComments };
@@ -132,7 +133,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
    }));
    ```
    - Add `setComments: (comments: Partial<Comment & {username: string}>[]) => void;` to the `CommentStore` type.
-4. Modify the `Comments` component. Add a `useEffect` hook to fetch the comments from the server when the component is mounted. Use the `getComments` function from the `useComment` hook to fetch the comments. Use the `setComments` function from the store to set the comments to the store.
+4. Modify the `Comments` component. Add a `useEffect` hook to fetch the comments from the server when the component is mounted. Use the `getCommentsByMediaId` function from the `useComment` hook to fetch the comments. Use the `setComments` function from the store to set the comments to the store.
 5. Test that the comments are fetched from the server and that the form works.
    - New comments are not saved to the server yet.
 6. Modify the `Comments` component to post the comments to the server. Use the `postComment` function from the `useComment` hook to post the comments to the server. Use the `addComment` function from the store to add the comments to the store. 
