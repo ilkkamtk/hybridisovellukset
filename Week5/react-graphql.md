@@ -23,7 +23,7 @@ const doFetch = async (query) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify( query ),
   });
   const result = await response.json();
   console.log(result.data.allPersons);
