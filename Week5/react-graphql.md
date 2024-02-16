@@ -1,5 +1,5 @@
 # GraphQL with React
-Previously we made a GraphQL server with Apollo Server. Now we will use that server with a React application. We could use [Apollo Client,](https://www.apollographql.com/docs/react/) but we will use normal fetch for now.
+Previously we made a GraphQL server with Apollo Server. [Download the full version here](https://github.com/ilkkamtk/hybrid-graphql). Now we will use that server with a React application. We could use [Apollo Client,](https://www.apollographql.com/docs/react/) but we will use normal fetch for now.
 
 ## Using fetch() with GraphQL
 When using fetch with GraphQL, we need to send a POST request with the query and possible variables in the body. The server will respond with a JSON object. The object will have a `data` property with the requested data or an `errors` property with an array of errors. The `data` that has the requested data is an object with the same structure as the query.
