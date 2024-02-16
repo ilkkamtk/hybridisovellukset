@@ -5,15 +5,17 @@ Previously we made a GraphQL server with Apollo Server. [Download the full versi
 When using fetch with GraphQL, we need to send a POST request with the query and possible variables in the body. The server will respond with a JSON object. The object will have a `data` property with the requested data or an `errors` property with an array of errors. The `data` that has the requested data is an object with the same structure as the query.
 
 ```tsx
-const query = `
-  query {
-    allPersons {
-      name
-      phone
-      id
+const query = {
+  query: `
+    query {
+      allPersons {
+        name
+        phone
+        id
+      }
     }
-  }
-`;
+  `
+};
 
 const doFetch = async (query) => {
   const response = await fetch('http://localhost:4000/graphql', {
