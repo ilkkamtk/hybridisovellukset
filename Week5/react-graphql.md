@@ -14,7 +14,7 @@ const query = {
         id
       }
     }
-  `
+  `,
 };
 
 const doFetch = async (query) => {
