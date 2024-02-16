@@ -40,7 +40,7 @@ doFetch(query);
 5. Since using fetch with GraphQL is always the same, create a new generic function `makeQuery` to `src/lib/functions.ts`. The function should take a query (string), optional variables (Record), and an optional token (string) as parameters. The function should return a Promise of generic type that describes the fetched data. The function should call `fetchData` function so send a `POST` request to the server:
     ```tsx
     
-     const makeQuery = async (query, variables, token) => {
+     const makeQuery = async <TF, TV>(query, variables, token) => {
         const headers = {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
