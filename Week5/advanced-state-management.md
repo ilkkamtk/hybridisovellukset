@@ -10,7 +10,7 @@ The term **reducer** comes from the [reducer function](https://medium.com/@jsmus
 
 [Dispatch function](https://react.dev/reference/react/useReducer#dispatch) is used to dispatch an action. An **action** is an object that describes what happened. It is a convention to use the `type` property to describe the action and the `payload` property to pass additional data.
 
-`useReducer` is similar to `useState`, but it is more powerful. It is used when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one. It is also useful when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
+`useReducer` is similar to `useState`, but it is more powerful. It is used when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
 
 Example:
 
