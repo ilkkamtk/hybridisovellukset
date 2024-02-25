@@ -57,7 +57,7 @@ In this example, we have a simple counter component. The state is an object with
 ## Lab assignment 1
 
 1. Create a new branch `likes` with git.
-2. The goal of this exercise is to use `useReduser` instead of `useState` to handle a state with multiple sub-values. The state is used to show the number of likes and to show if the user has liked the media. The state should look like this:
+2. The goal of this exercise is to use `useReducer` instead of `useState` to handle a state with multiple sub-values. The state is used to show the number of likes and to show if the user has liked the media. The state should look like this:
 
    ```tsx
    type LikeState = {
