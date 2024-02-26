@@ -261,8 +261,8 @@ resources on a server or within a web application.
    ```
 
 4. We are using the same database tables as earlier in this course. Copy all the model files to `src/models` folder of your project.
-5. Also copy the `src/lib/functions.ts` file.
-6. Fix the paths in imports in the copied files: `../../src/lib` -> `@/lib`
+5. Also copy the contents of `src/lib` to `src/app/lib`.
+6. Fix the paths in imports in the copied files: `../../src/lib` -> `@/app/lib/`
 7. Create new file `src/components/MediaList.tsx` and add the following content:
 
    ```tsx
@@ -316,6 +316,78 @@ resources on a server or within a web application.
 
 ---
 
+## Authentication in Next.js
+
+[App Router Authentication](https://www.youtube.com/watch?v=DJvM2lSPn6w)
+
+### Cookies and Sessions
+
+#### Cookies
+
+Cookies are small pieces of data stored in the user's browser, often used for authentication, tracking, or personalization.
+
+- **Client-Side Storage:** Cookies are stored in the user's browser and sent with each request to the server.
+
+- **Expiration and Security:** Cookies can have an expiration date and can be secured with flags like `HttpOnly` and
+  `Secure`.
+
+- **Limitations:** Cookies have size and quantity limitations, and can be disabled by users.
+
+- Example of setting a cookie:
+
+  ```ts
+  import { cookies } from 'next/headers';
+  import { NextResponse } from 'next/server';
+
+  const res = new NextResponse.next();
+  res.cookies.set({
+    name: 'user',
+    value: 'John Doe',
+    httpOnly: true,
+    secure: true,
+    expires: new Date('2022-01-01'),
+  });
+  ```
+
+- Example of reading a cookie:
+
+  ```ts
+  import { cookies } from 'next/headers';
+
+  export async function getCookie() {
+    const cookie = cookies().get('user')?.value;
+    console.log(cookie);
+  }
+  ```
+
+#### Sessions
+
+Sessions are server-side data storage mechanisms that maintain state for each user across multiple requests.
+
+- **Server-Side Storage:** Session data is stored on the server, and a unique session identifier is sent to the client (often via a cookie).
+
+- **Security and Flexibility:** Sessions can be more secure and flexible than cookies, and can store larger amounts of data since they are stored on the server.
+
+- More on this in the next course. For now you can check out [Database Sessions](https://nextjs.org/docs/app/building-your-application/authentication#database-sessions).
+
+### Assignment 4
+
+#### Add authentication to the project
+
+1. Use the example from the video to add authentication to the project. The example files are in [this repository](https://github.com/balazsorban44/auth-poc-next/tree/main).
+2. Create new file `src/app/lib/authActions.ts` and copy the content of `lib.ts` from the example repository.
+3. Create new file `middleware.ts` to the root of your project and copy the content of `middleware.ts` from the example repository.
+4. Create new file `src/app/login/page.tsx` and copy the content of `app/page.tsx` from the example repository.
+5. Install `bcrypt` and `jsonwebtoken` packages:
+
+   ```bash
+   npm i bcrypt jsonwebtoken
+   ```
+
+6. In `src/app/lib/authActions.ts` we are going to use the user model instead of the Auth API. Copy the `userModel.ts` from the [Auth API repository](https://github.com/ilkkamtk/hybrid-auth-server/tree/main/src/api/models) to the `src/models` folder of your project.
+
+---
+
 ## Next.js API Endpoints
 
 API endpoints allow you to handle various types of HTTP requests, enabling data retrieval, modification, or any
@@ -354,7 +426,7 @@ server-side logic needed for your application.
 - **Advanced Functionality:** They can be used to implement complex server-side logic, integrate with external services
   or databases etc.
 
-### Assignment 4
+### Assignment 5
 
 #### Create a form and API endpoints to upload a media file
 
@@ -378,7 +450,7 @@ server-side logic needed for your application.
            body: formData,
          });
          console.log(response);
-         router.refresh();
+         router.push('/');
        } catch (error) {
          console.error(error);
        }
@@ -442,24 +514,7 @@ server-side logic needed for your application.
    export default MediaForm;
    ```
 
-2. Modify `app/media/page.tsx` and add the following content:
-
-   ```tsx
-   import MediaList from '@/components/MediaList';
-   import MediaForm from '@/components/MediaForm';
-
-   const MediaPage = () => {
-     return (
-       <main>
-         <h1 className="text-4xl font-bold">Media</h1>
-         <MediaForm />
-         <MediaList />
-       </main>
-     );
-   };
-
-   export default MediaPage;
-   ```
+2. Modify `app/upload/page.tsx` and add `MediaForm` component to the page.
 
 3. Create new file `app/api/media/route.ts` and add the following content:
 
@@ -478,7 +533,7 @@ server-side logic needed for your application.
          body: formData,
        };
 
-       const result = await fetchData<UploadResult>(
+       const result = await fetchData<UploadResponse>(
          `${process.env.MEDIA_SERVER}/api/v1/upload`,
          options,
        );
