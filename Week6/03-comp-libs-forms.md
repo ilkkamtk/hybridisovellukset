@@ -192,6 +192,7 @@ We use React Native Elements in this lab assignment example. You are free to cho
 1. Add a button on Profile page which opens MyFiles:
    - Display a list of user's own files, very similar to Home: You can use Home and MediaListItem as example and make new components
 1. Refer to the 'plain' React app and add likes, comments, tags and ratings to the `Single` view
+   - For ratings, you can use [react-native-star-rating-widget](https://github.com/bviebahn/react-native-star-rating-widget)
    - Implementing upload page with image picker, and other native apis will be covered in the next lab assignments
 1. Add and commit changes to git, push to Github.
 

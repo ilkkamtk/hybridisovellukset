@@ -45,19 +45,18 @@
 
 - [Tailwind CSS](Week5/tailwind.md)
 - [Advanced State Management](Week5/advanced-state-management.md) (likes)
-   - [Zustand](Week5/zustand.md) (comments)
-   - [React Query](Week5/react-query.md) 
+  - [Zustand](Week5/zustand.md) (comments)
+  - [React Query](Week5/react-query.md) 
 - [Using GraphQL with React](Week5/react-graphql.md)
 
 ---
 
 ### Week 6 React Native
 
-- Expo
-- Native components
-- Routing & navigation
-- Native device features
-- Component libraries
+- [Expo & Native components](Week6/01-rn-start.md)
+- [Routing & navigation](Week6/02-rn-routing.md)
+- [Component libraries](Week6/03-comp-libs-forms.md)
+- [Native device features](Week6/04-native-apis.md)
 
 ---
 
