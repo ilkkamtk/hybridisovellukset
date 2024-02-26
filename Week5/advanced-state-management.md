@@ -10,7 +10,7 @@ The term **reducer** comes from the [reducer function](https://medium.com/@jsmus
 
 [Dispatch function](https://react.dev/reference/react/useReducer#dispatch) is used to dispatch an action. An **action** is an object that describes what happened. It is a convention to use the `type` property to describe the action and the `payload` property to pass additional data.
 
-`useReducer` is similar to `useState`, but it is more powerful. It is used when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one. It is also useful when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
+`useReducer` is similar to `useState`, but it is more powerful. It is used when the state logic is complex and involves multiple sub-values or when the next state depends on the previous one.
 
 Example:
 
@@ -57,7 +57,7 @@ In this example, we have a simple counter component. The state is an object with
 ## Lab assignment 1
 
 1. Create a new branch `likes` with git.
-2. The goal of this exercise is to use `useReduser` instead of `useState` to handle a state with multiple sub-values. The state is used to show the number of likes and to show if the user has liked the media. The state should look like this:
+2. The goal of this exercise is to use `useReducer` instead of `useState` to handle a state with multiple sub-values. The state is used to show the number of likes and to show if the user has liked the media. The state should look like this:
 
    ```tsx
    type LikeState = {

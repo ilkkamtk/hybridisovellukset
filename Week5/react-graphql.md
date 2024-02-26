@@ -1,19 +1,21 @@
 # GraphQL with React
-Previously we made a GraphQL server with Apollo Server. Now we will use that server with a React application. We could use [Apollo Client,](https://www.apollographql.com/docs/react/) but we will use normal fetch for now.
+Previously we made a GraphQL server with Apollo Server. [Download the full version here](https://github.com/ilkkamtk/hybrid-graphql). Now we will use that server with a React application. We could use [Apollo Client,](https://www.apollographql.com/docs/react/) but we will use normal fetch for now.
 
 ## Using fetch() with GraphQL
 When using fetch with GraphQL, we need to send a POST request with the query and possible variables in the body. The server will respond with a JSON object. The object will have a `data` property with the requested data or an `errors` property with an array of errors. The `data` that has the requested data is an object with the same structure as the query.
 
 ```tsx
-const query = `
-  query {
-    allPersons {
-      name
-      phone
-      id
+const query = {
+  query: `
+    query {
+      allPersons {
+        name
+        phone
+        id
+      }
     }
-  }
-`;
+  `,
+};
 
 const doFetch = async (query) => {
   const response = await fetch('http://localhost:4000/graphql', {
@@ -21,7 +23,7 @@ const doFetch = async (query) => {
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ query }),
+    body: JSON.stringify( query ),
   });
   const result = await response.json();
   console.log(result.data.allPersons);
@@ -38,7 +40,7 @@ doFetch(query);
 5. Since using fetch with GraphQL is always the same, create a new generic function `makeQuery` to `src/lib/functions.ts`. The function should take a query (string), optional variables (Record), and an optional token (string) as parameters. The function should return a Promise of generic type that describes the fetched data. The function should call `fetchData` function so send a `POST` request to the server:
     ```tsx
     
-     const makeQuery = async (query, variables, token) => {
+     const makeQuery = async <TF, TV>(query, variables, token) => {
         const headers = {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
