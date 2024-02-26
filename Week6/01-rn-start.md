@@ -95,13 +95,12 @@ Study:
 
     ```tsx
     import {StatusBar} from 'expo-status-bar';
-    import {Platform, SafeAreaView, StyleSheet} from 'react-native';
-    import Home from './src/views/Home';
+    import {Platform, SafeAreaView, StyleSheet, Text} from 'react-native';
 
     const App = () => {
       return (
         <SafeAreaView style={styles.container}>
-          <Home />
+          <Text>Hello, React Native!</Text>
           <StatusBar style="auto" />
         </SafeAreaView>
       );
@@ -140,6 +139,5 @@ Study:
    - Use React Native [Core Components](https://reactnative.dev/docs/components-and-apis) like `<View>`, `<Text>`, `<Flatlist>` and `<Image>` instead of HTML elements.
    - Use `<TouchableOpacity>` instead of `<button>` to record taps.
    - Use [StyleSheet](https://reactnative.dev/docs/stylesheet) to style the components.
-
-1. Develop your app further. Open 'filename' image in a [Modal](https://facebook.github.io/react-native/docs/modal.html) when `<TouchableOpacity>` is tapped.
+   - Convert `App.tsx` to use the new `Home` component.
 1. Add, commit and push your branch to GitHub.
