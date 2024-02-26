@@ -72,6 +72,7 @@ Study:
            },
          },
        ],
+       rules: {'import/order': ['error', {'newlines-between': 'never'}]},
      };
      ```
 
