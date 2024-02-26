@@ -63,6 +63,7 @@
 
 ### Week 7 Next.js
 
+- [Rendering Strategies](Week7/strategies.md)
 - [Next.js](Week7/intro.md)
 - [Getting started](Week7/getting_started.md)
 

@@ -6,8 +6,8 @@ Next.js simplifies the creation of **server-rendered** React applications. It pr
 ### Simplified Setup and Configuration
 - **Zero Configuration:** Next.js requires minimal setup, providing sensible defaults for configuration, webpack bundling, and routing. This allows developers to start building quickly without spending time on complex setups.
 
-### [Server-Side Rendering (SSR) and Static Site Generation (SSG)](strategies.md)
-- **Improved Performance:** Next.js supports SSR and SSG, enabling faster initial page loads by rendering content on the server and optimizing performance for search engines.
+### Rendering Strategies
+- **Improved Performance:** Next.js supports ISR, SSR and SSG, enabling faster initial page loads by rendering content on the server and optimizing performance for search engines.
 - **SEO-Friendly:** Server-side rendering ensures that search engines can crawl and index content easily, contributing to better SEO rankings.
 
 ### Automatic Code Splitting and Bundling
@@ -18,7 +18,7 @@ Next.js simplifies the creation of **server-rendered** React applications. It pr
 
 ### API Routes and Backend Integration
 - **API Routes:** It provides an easy way to create API endpoints within the application, simplifying backend integration and facilitating communication between the client and server.
-- **Serverless Deployment:** Next.js seamlessly integrates with serverless deployments, enabling cost-effective scaling and easy deployment.
+- **Serverless Deployment:** Next.js integrates with serverless deployments, enabling cost-effective scaling and easy deployment.
 
 ### TypeScript Support and Strong Typing
 - **TypeScript Integration:** Next.js offers excellent support for TypeScript, allowing developers to write type-safe applications and components, reducing runtime errors.
