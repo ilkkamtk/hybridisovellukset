@@ -240,6 +240,10 @@ resources on a server or within a web application.
    DB_USER=your_username
    DB_PASS=your_password
    DB_NAME=your_username
+   UPLOAD_URL=http://localhost:3002/uploads/
+   AUTH_API=http://localhost:3001/auth-api/api/v1
+   UPLOAD_SERVER=http://localhost:3002/upload/api/v1
+   JWT_SECRET=your_secret
    ```
 
 3. Create `src/lib/db.ts` file and add the following content:
@@ -284,7 +288,9 @@ resources on a server or within a web application.
              >
                <h3 className="text-lg font-bold self-start">{item.title}</h3>
                <p>Description: {item.description}</p>
-               <p>Date: {new Date(item.created_at).toLocaleDateString()}</p>
+               <p>
+                 Date: {new Date(item.created_at).toLocaleDateString('fi-FI')}
+               </p>
              </li>
            ))}
          </ul>
@@ -312,7 +318,7 @@ resources on a server or within a web application.
    export default MediaPage;
    ```
 
-9. Test the application in the browser.
+9. Test the application in the browser. Note that there are no images shown yet and that is OK.
 
 ---
 
@@ -370,6 +376,10 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 
 - More on this in the next course. For now you can check out [Database Sessions](https://nextjs.org/docs/app/building-your-application/authentication#database-sessions).
 
+#### Server Actions
+
+"[Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications."
+
 ### Assignment 4
 
 #### Add authentication to the project
@@ -377,14 +387,129 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 1. Use the example from the video to add authentication to the project. The example files are in [this repository](https://github.com/balazsorban44/auth-poc-next/tree/main).
 2. Create new file `src/app/lib/authActions.ts` and copy the content of `lib.ts` from the example repository.
 3. Create new file `middleware.ts` to the root of your project and copy the content of `middleware.ts` from the example repository.
-4. Create new file `src/app/login/page.tsx` and copy the content of `app/page.tsx` from the example repository.
-5. Install `bcrypt` and `jsonwebtoken` packages:
+4. Create new file `src/app/login/page.tsx` and use this as the content (a modified version of the example from the video):
+
+   ```tsx
+   import { redirect } from 'next/navigation';
+   import { getSession, login, logout } from '../lib/authActions';
+
+   export default async function Page() {
+     // const session = await getSession();
+
+     return (
+       <section>
+         <div className="flex flex-col p-8">
+           {/* {!session ? ( */}
+           <form
+             action={async (formData) => {
+               'use server';
+               await login(formData);
+               redirect('/');
+             }}
+           >
+             <div className="mb-4">
+               <label
+                 htmlFor="username"
+                 className="block text-gray-700 text-sm font-bold mb-2"
+               >
+                 Username
+               </label>
+               <input
+                 type="text"
+                 name="username"
+                 id="username"
+                 placeholder="Username"
+                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+               />
+             </div>
+             <div className="mb-4">
+               <label
+                 htmlFor="password"
+                 className="block text-gray-700 text-sm font-bold mb-2"
+               >
+                 Password
+               </label>
+               <input
+                 type="password"
+                 name="password"
+                 id="password"
+                 placeholder="Password"
+                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+               />
+             </div>
+             <button
+               type="submit"
+               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+             >
+               Login
+             </button>
+           </form>
+           {/* ) : ( */}
+           <form
+             action={async () => {
+               'use server';
+               await logout();
+               // redirect('/');
+             }}
+           >
+             <button
+               type="submit"
+               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+             >
+               Logout
+             </button>
+           </form>
+           {/* )} */}
+         </div>
+       </section>
+     );
+   }
+   ```
+
+5. Add link to the login page to the menu in `app/layout.tsx`.
+
+6. Install `bcrypt` and `jsonwebtoken` packages:
 
    ```bash
    npm i bcrypt jsonwebtoken
    ```
 
-6. In `src/app/lib/authActions.ts` we are going to use the user model instead of the Auth API. Copy the `userModel.ts` from the [Auth API repository](https://github.com/ilkkamtk/hybrid-auth-server/tree/main/src/api/models) to the `src/models` folder of your project.
+7. In `src/app/lib/authActions.ts` we are going to use the user model instead of the Auth API. Copy the `userModel.ts` from the [Auth API repository](https://github.com/ilkkamtk/hybrid-auth-server/tree/main/src/api/models) to the `src/models` folder of your project.
+
+8. In `src/app/lib/authActions.ts` delete the hard coded user and replace it with user from the database: `const user = await getUserByUsername(formData.get('username') as string);`
+
+9. Check that you get user and the password is correct with `bcrypt.compareSync` method. Use [auhtCotroller.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L29) as an example. Throw `new Error()` instead of `new CustomError()`.
+
+10. Instead of `jose` use `jsonwebtoken` to create the token. Use the same JWT_SECRET as in the Auth API.
+
+    - Delete the `encrypt()` and `decrypt()` functions and all references to them. Instead of `encrypt()` use `jwt.sign()` and instead of `decrypt()` use `jwt.verify()`.
+    - Create the token the same way as in the [authController.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L53).
+    - Note that the video example's `session` variable is the same as `token` variable in the Auth API. Use `session` as the variable name.
+
+11. Add [`expiresIn` property to the options](https://github.com/auth0/node-jsonwebtoken?tab=readme-ov-file#usage) in `jwt.sign` method. Use the `7d` as the value. This means that the token is valid for 7 days.
+
+12. To set the expiration date to seven days in the future, you can use this as the value for the `expires` property in the `set` method of the `cookies` object: `new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)`.
+
+13. Modify `getSession()` and `updateSession()` functions to use jwt.verify() and jwt.sign() methods. The type for the `getSession()` function is `Promise<TokenContent | null>`.
+
+14. To handle login errors, add a `error.tsx` to the `src/app/login` folder and use [this example](https://nextjs.org/docs/app/building-your-application/routing/error-handling#recovering-from-errors) as content.
+
+15. To protect routes, add `requireAuth()` function to the `src/app/lib/authActions.ts`:
+
+    ```ts
+    export async function requireAuth() {
+      const session = await getSession();
+      if (!session?.user_id) {
+        redirect('/');
+      }
+    }
+    ```
+
+    Then use this function in the `profile` and `upload` pages.
+
+16. Add conditional rendering to the `app/layout.tsx` to show/hide `upload` and `profile` links based on the user's authentication status.
+
+17. Test the application in the browser. Use the users that you have in your database from previous classes to test the login.
 
 ---
 
@@ -444,13 +569,9 @@ server-side logic needed for your application.
        e.preventDefault();
 
        try {
-         const formData = new FormData(e.currentTarget);
-         const response = await fetchData('/api/media', {
-           method: 'POST',
-           body: formData,
-         });
-         console.log(response);
-         router.push('/');
+         // TODO: create form data and add the form content to it
+         // TODO: send the form data to Next.js API endpoint /api/media using fetchData function
+         // TODO: if result OK, redirect to the home page to see the uploaded media
        } catch (error) {
          console.error(error);
        }
@@ -519,60 +640,40 @@ server-side logic needed for your application.
 3. Create new file `app/api/media/route.ts` and add the following content:
 
    ```ts
-   import { addMedia } from '@/models/media-model';
-   import { MediaItem, UploadResult } from '@/types/Types';
-   import { fetchData } from '@/utils/functions';
+   import { fetchData } from '@/app/lib/functions';
+   import { postMedia } from '@/models/mediaModel';
+   import { MediaItem } from '@sharedTypes/DBTypes';
+   import { UploadResponse } from '@sharedTypes/MessageTypes';
+   import { cookies } from 'next/headers';
 
    export async function POST(request: Request) {
      try {
-       const formData = await request.formData();
-       console.log(formData);
+       // TODO: get the form data from the request
+       // TODO: get the token from the cookie
+       // TODO: send the form data to the uppload server. See apiHooks from previous classes.
+       // TODO: if the upload response is valid, add the media to the database
+       // TODO: get title, description, size and type from the form data
+       // TODO: get the filename from the upload response
+       // TODO: create a media item object, see what postMedia funcion in mediaModel wants for input.
+       // TODO: use the postMedia function from the mediaModel to add the media to the database. Since we are putting data to the database in the same app, we dont need to use a token.
 
-       const options = {
-         method: 'POST',
-         body: formData,
-       };
-
-       const result = await fetchData<UploadResponse>(
-         `${process.env.MEDIA_SERVER}/api/v1/upload`,
-         options,
-       );
-
-       // check if the result is not valid
-       if (!result.message || !result.data || !result.data.image) {
-         return new Response('Invalid response from media server', {
-           status: 500,
-         });
+       if (!postResult) {
+         return new Response('Error adding media to database', { status: 500 });
        }
-       // add data to database
-
-       const { title, description, file } = Object.fromEntries(
-         formData.entries(),
-       );
-       const { size, type } = file as File;
-       const mediaItem: Omit<MediaItem, 'media_id' | 'created_at'> = {
-         user_id: 4,
-         filename: result.data.image,
-         filesize: size,
-         mediaType: type,
-         title: title.toString(),
-         description: description.toString(),
-       };
-
-       const addResult = await addMedia(mediaItem);
-       console.log('addResult', addResult);
-       result.message += ' ' + addResult.media_id;
+       result.message += ' ' + postResult.media_id;
        return new Response(JSON.stringify(result), {
          headers: { 'content-type': 'application/json' },
        });
      } catch (error) {
-       console.error((error as Error).message);
+       console.error('Wtf' + (error as Error).message, error);
        return new Response((error as Error).message, { status: 500 });
      }
    }
    ```
 
 4. Test the application in the browser.
+
+Why do we need separate `MediaForm` client component instead if putting the form to the server component `upload/page.tsx`? Because the form is interactive; in this case that means the handleSumbit function. If a component is interactive and can be updated on the client, it has to be a client component. Server components can include client components, but not the other way around.
 
 ---
 
@@ -582,15 +683,15 @@ server-side logic needed for your application.
 2. Added routing to the project
 3. Added a database connection to the project
 4. Added data fetching to the project
-5. Added API endpoints to the project
-6. Added a form to the project
+5. Added authentication to the project
+6. Added API endpoints to the project
 7. Used external API to upload a file to the server
 
 ## Things to think about
 
 1. Why `MediaList` component is a server component and `MediaForm` component is a client component?
-   - MediaList component is a server component because it is not interactive and can be cached and reused.
-   - MediaForm component is a client component because forms are interactive and can be updated dynamically.
+   - MediaList component is a server component because it uses data straight from the database.
+   - MediaForm component is a client component because file upload is handled by Next.js API endpoints and not by the component itself. Also if a component is interactive and can be updated on the client, it has to be a client component.
 2. What are the benefits of using Next.js API endpoints instead of external API?
    - Same origin policy
    - Network latency
