@@ -1,5 +1,7 @@
 # Getting started with React Native Development
 
+Read: [What is Hybrid Mobile App Development?](https://ionic.io/resources/articles/what-is-hybrid-app-development)
+
 ## React Native
 
 React Native is an open-source framework developed by Facebook (now Meta) for building native mobile applications using JavaScript and React. It enables developers to use the same design principles as React for web development, but instead of targeting web browsers, React Native targets mobile platforms. Essentially, you can write your application's codebase in JavaScript and React, and React Native will compile it into native code for both iOS and Android platforms.
