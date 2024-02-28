@@ -49,6 +49,14 @@ Add tags to the media items.
 
 4. To add the tags to `mediaList` array in `mediaModel`, you need to use Promise.all to wait for all the tags to be fetched. You can use the `fetchTagsByMediaId()` function in `tagModel` to get the tags for each media item. Show the tags in the `MediaList` component. You can use a simple `<p>` for now.
 
+### Building and deploying the application
+
+1. Run `npm run build` to build the application. This will create a `.next` folder in the root of your project.
+
+2. Run `npm run start` to start the application in production mode. Open your browser and go to `http://localhost:3000` to see the application running in production mode.
+
+3. Deploy the application to Azure or Metropolia ecloud. For Azure you can use the same method as in the previous weeks. For Metroplia ecloud, the instructions are in Oma.
+
 ### Extra assignment, Infinite Scroll
 
 Using this reapo as a guide, add infinite scroll to the `MediaList` component: [Infinite Scroll](https://github.com/adrianhajdin/anime_vault).
