@@ -4,7 +4,7 @@
 
 [Next.js docs](https://nextjs.org/docs/getting-started/installation)
 
-### Assignment
+### Assignment 1
 
 **Create a new Next.js project called `my-next-app` and push it to GitHub.**
 
@@ -45,7 +45,7 @@
 
 [Next.js docs](https://nextjs.org/docs/getting-started/project-structure)
 
-### Assignment 1
+### Assignment 2
 
 #### Add pages to the project
 
@@ -121,7 +121,7 @@ resources on a server or within a web application.
 
 [Next.js docs](https://nextjs.org/docs/app/building-your-application/routing)
 
-### Assignment 2
+### Assignment 3
 
 #### Add routing to the project
 
@@ -221,7 +221,7 @@ resources on a server or within a web application.
 4. Third-party libraries on the client
    - For example [SWR](https://swr.vercel.app/) or [React Query](https://react-query.tanstack.com/)
 
-### Assignment 3
+### Assignment 4
 
 #### Get data from database and display it on the page
 
@@ -380,7 +380,7 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 
 "[Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications."
 
-### Assignment 4
+### Assignment 5
 
 #### Add authentication to the project
 
@@ -551,7 +551,7 @@ server-side logic needed for your application.
 - **Advanced Functionality:** They can be used to implement complex server-side logic, integrate with external services
   or databases etc.
 
-### Assignment 5
+### Assignment 6
 
 #### Create a form and API endpoints to upload a media file
 
@@ -645,8 +645,9 @@ server-side logic needed for your application.
    import { MediaItem } from '@sharedTypes/DBTypes';
    import { UploadResponse } from '@sharedTypes/MessageTypes';
    import { cookies } from 'next/headers';
+   import { NextRequest } from 'next/server';
 
-   export async function POST(request: Request) {
+   export async function POST(request: NextRequest) {
      try {
        // TODO: get the form data from the request
        // TODO: get the token from the cookie
@@ -660,12 +661,17 @@ server-side logic needed for your application.
        if (!postResult) {
          return new Response('Error adding media to database', { status: 500 });
        }
-       result.message += ' ' + postResult.media_id;
-       return new Response(JSON.stringify(result), {
+
+       const uploadResponse: MediaResponse = {
+         message: 'Media added to database',
+         media: postResult,
+       };
+
+       return new Response(JSON.stringify(uploadResponse), {
          headers: { 'content-type': 'application/json' },
        });
      } catch (error) {
-       console.error('Wtf' + (error as Error).message, error);
+       console.error((error as Error).message, error);
        return new Response((error as Error).message, { status: 500 });
      }
    }
@@ -673,7 +679,7 @@ server-side logic needed for your application.
 
 4. Test the application in the browser.
 
-Why do we need separate `MediaForm` client component instead if putting the form to the server component `upload/page.tsx`? Because the form is interactive; in this case that means the handleSumbit function. If a component is interactive and can be updated on the client, it has to be a client component. Server components can include client components, but not the other way around.
+Why do we need separate `MediaForm` client component instead if putting the form to the server component `upload/page.tsx`? Because the form is interactive; in this case that means the handleSumbit function, some other time it could mean form validation. If a component is interactive and can be updated on the client, it has to be a client component. Server components can include client components, but not the other way around.
 
 ---
 

@@ -46,7 +46,7 @@
 - [Tailwind CSS](Week5/tailwind.md)
 - [Advanced State Management](Week5/advanced-state-management.md) (likes)
   - [Zustand](Week5/zustand.md) (comments)
-  - [React Query](Week5/react-query.md) 
+  - [React Query](Week5/react-query.md)
 - [Using GraphQL with React](Week5/react-graphql.md)
 
 ---
@@ -65,5 +65,10 @@
 - [Rendering Strategies](Week7/strategies.md)
 - [Next.js](Week7/intro.md)
 - [Getting started](Week7/getting_started.md)
+  - Routing
+  - Data fetching
+  - Authentication
+  - Uploading files
+- [Optimization, publishing](Week7/images_tags.md)
 
 ---
