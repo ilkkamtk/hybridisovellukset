@@ -250,7 +250,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
 
 ## Submit the assignment to Oma
 
-1. Take screenshots of the app running on your phone/emulator
+1. Take multiple screenshots of the app running on your phone/emulator
 1. Place the screenshots to the project's folder `/screenshots`
 1. Modify `README.md`: add the screenshots. e.g. `![Profile](screenshots/profile.png)`
 1. Git add, commit & push to remote repository
