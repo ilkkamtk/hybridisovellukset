@@ -2,7 +2,7 @@
 
 ## Table of contents
 
-### Week 1
+### Week 1 - 2
 
 - [Typescript with Express](Week1/01-typescript-express.md)
 - [Databases](Week1/02-databases)
@@ -10,7 +10,7 @@
 
 ---
 
-### Week 2 React
+### Week 2 - 3 React
 
 - [Getting started, Components, JSX and Props](Week2/01-react-start.md)
 - [State management](Week2/02-react-state.md)
@@ -18,7 +18,7 @@
 
 ---
 
-### Week 3 React
+### Week 3 - 4 React
 
 - [Hooks](Week3/hooks.md)
 - [Custom hooks](Week3/custom-hooks.md)
@@ -28,7 +28,7 @@
 
 ---
 
-### Week 4 React
+### Week 4 - 5 React
 
 - [Tailwind CSS](Week4/tailwind.md)
 - [Advanced State Management](Week4/advanced-state-management.md) (likes)
@@ -37,7 +37,7 @@
 
 ---
 
-### Week 5 React Native
+### Week 6 React Native
 
 - [Expo & Native components](Week5/01-rn-start.md)
 - [Routing & navigation](Week5/02-rn-routing.md)
@@ -46,7 +46,7 @@
 
 ---
 
-### Week 6 Next.js
+### Week 7 Next.js
 
 - [Rendering Strategies](Week6/strategies.md)
 - [Next.js](Week6/intro.md)
