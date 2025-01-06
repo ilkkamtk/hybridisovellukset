@@ -4,71 +4,57 @@
 
 ### Week 1
 
-- [Databases](Week1/01-databases.md)
-- [Server architecture](Week1/02-server-arch.md)
+- [Typescript with Express](Week1/01-typescript-express.md)
+- [Databases](Week1/02-databases)
+- [Server architecture](Week1/03-server-arch)
 
 ---
 
-### Week 2 GraphQL
+### Week 2 React
 
-- [Introduction to GraphQL](Week2/intro.md)
-- [Toolchain and server setup](Week2/toolchain-setup.md)
-- [Schema and queries](Week2/concepts.md)
-- [Resolvers](Week2/concepts2.md)
-- [Adding schemas and resolvers to Apollo server](Week2/schemas-resolvers.md)
-- [Input types and mutations](Week2/concepts3.md)
-- [Adding mutations to Apollo server](Week2/mutations.md)
-- [Authentication and authorization](Week2/graphql-auth.md)
-- [File uploads](Week2/upload.md)
+- [Getting started, Components, JSX and Props](Week2/01-react-start.md)
+- [State management](Week2/02-react-state.md)
+- [Routing, Views and Navigation](Week2/03-react-routing.md)
 
 ---
 
 ### Week 3 React
 
-- [Getting started, Components, JSX and Props](Week3/01-react-start.md)
-- [State management](Week3/02-react-state.md)
-- [Routing, Views and Navigation](Week3/03-react-routing.md)
+- [Hooks](Week3/hooks.md)
+- [Custom hooks](Week3/custom-hooks.md)
+- [Forms](Week3/forms.md)
+- [Shared State](Week3/context.md)
+- [File upload](Week3/upload.md)
 
 ---
 
 ### Week 4 React
 
-- [Hooks](Week4/hooks.md)
-- [Custom hooks](Week4/custom-hooks.md)
-- [Forms](Week4/forms.md)
-- [Shared State](Week4/context.md)
-- [File upload](Week4/upload.md)
+- [Tailwind CSS](Week4/tailwind.md)
+- [Advanced State Management](Week4/advanced-state-management.md) (likes)
+  - [Zustand](Week4/zustand.md) (comments)
+  - [React Query](Week4/react-query.md)
 
 ---
 
-### Week 5 React
+### Week 5 React Native
 
-- [Tailwind CSS](Week5/tailwind.md)
-- [Advanced State Management](Week5/advanced-state-management.md) (likes)
-  - [Zustand](Week5/zustand.md) (comments)
-  - [React Query](Week5/react-query.md)
-- [Using GraphQL with React](Week5/react-graphql.md)
-
----
-
-### Week 6 React Native
-
-- [Expo & Native components](Week6/01-rn-start.md)
-- [Routing & navigation](Week6/02-rn-routing.md)
-- [Component libraries](Week6/03-comp-libs-forms.md)
-- [Native device features](Week6/04-native-apis.md)
+- [Expo & Native components](Week5/01-rn-start.md)
+- [Routing & navigation](Week5/02-rn-routing.md)
+- [Component libraries](Week5/03-comp-libs-forms.md)
+- [Native device features](Week5/04-native-apis.md)
 
 ---
 
-### Week 7 Next.js
+### Week 6 Next.js
 
-- [Rendering Strategies](Week7/strategies.md)
-- [Next.js](Week7/intro.md)
-- [Getting started](Week7/getting_started.md)
+- [Rendering Strategies](Week6/strategies.md)
+- [Next.js](Week6/intro.md)
+- [Getting started](Week6/getting_started.md)
   - Routing
   - Data fetching
   - Authentication
   - Uploading files
-- [Optimization, publishing](Week7/images_tags.md)
+- [Optimization, publishing](Week6/images_tags.md)
 
 ---
