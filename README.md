@@ -5,8 +5,8 @@
 ### Week 1 - 2
 
 - [Typescript with Express](Week1/01-typescript-express.md)
-- [Databases](Week1/02-databases)
-- [Server architecture](Week1/03-server-arch)
+- [Databases](Week1/02-databases.md)
+- [Server architecture](Week1/03-server-arch.md)
 
 ---
 
