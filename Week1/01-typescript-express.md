@@ -83,17 +83,35 @@ This way, TypeScript helps catch type errors at compile time and provides better
 
 The `Request` and `Response` objects in Express.js can be typed using TypeScript's generics to specify the structure of the parameters, query, body, and headers in your route handlers and middleware functions.
 
-- **`Request`** is a generic type provided by Express. It accepts **four type arguments**:
-    1. `Params`: Defines the shape of the route parameters (e.g., `id` in `/users/:id`).
-    2. `ResBody`: Defines the expected structure of the response body (though typically handled by the `Response` object).
-    3. `ReqBody`: Defines the expected structure of the request body (e.g., JSON payloads).
-    4. `ReqQuery`: Defines the expected structure of the query parameters (e.g., `/users?name=John`).
+- **`Request`** is a generic type provided by Express. It accepts **five type arguments**:
+  1. **`Params`**:  
+     Defines the shape of the route parameters (e.g., `id` in `/users/:id`).  
+     Default: `{}` (an empty object).
 
-  If you omit any of these arguments, they default to `any`.
+  2. **`ResBody`**:  
+    Defines the expected structure of the response body.  
+    **Important**: This is typically handled by the `Response` object instead of the `Request`.  
+    Default: `any`.
 
-- **`Response`** is also a generic type, but it only takes **one type argument**:
-    1. `ResBody`: Defines the structure of the response body being sent back to the client.
-  2. `Locals`: Specifies the type of the locals object, which is a property of Response used to store data locally scoped to a request. This is particularly useful for sharing data between middleware and route handlers.
+  3. **`ReqBody`**:  
+    Defines the expected structure of the request body (e.g., JSON payloads sent in POST or PUT requests).  
+    Default: `any`.
+
+  4. **`ReqQuery`**:  
+    Defines the expected structure of the query parameters (e.g., `/users?name=John`).  
+    Default: `any`.
+  
+  5. `Locals`: Rarely used. Use `res.locals` instead.
+
+- `Response` is a **generic type** that takes **two type arguments**:
+
+  1. **`ResBody`**:  
+     Defines the expected structure of the response body being sent back to the client.  
+     Default: `any`.
+
+  2. **`Locals`**:  
+     Specifies the type of the `locals` object, which is a property of `Response` used to share data between middleware and route handlers.  
+     Default: `Record<string, any>`.
 
 ---
 
@@ -241,10 +259,10 @@ In this example, the `CustomError` class extends the built-in `Error` class and 
 
 ## Assignment
 
-1. Clone the example server.
+1. Use the template repository to create a new Express.js server with TypeScript:
     - [express-ts-sqlite](https://github.com/ilkkamtk/express-ts-sqlite.git)
-    - Go to the cloned directory `cd express-ts-sqlite`
-    - Install dependencies and test run the server: 
+    - After creating the repository, clone it to your local machine.
+    - Install dependencies and run the server: 
        - `npm i`
        - `npm run dev`
     - Test the server by sending a GET request to `http://localhost:3000/api/v1/example`
@@ -254,12 +272,15 @@ In this example, the `CustomError` class extends the built-in `Error` class and 
    - Create a new table for authors in the SQLite database. See `src/database/db.ts` for an example of how to create a table and insert initial data.
       - The table should have the following columns: `id`, `name`, `email`.
       - The `id` column should be an auto-incrementing primary key.
-      - The `name` and `email` columns should be `TEXT` type.
+      - The `name` and `email` columns should be `TEXT` or `VARCHAR`.
+      - The `email` column should be unique so that two authors cannot have the same email address.
       - Also create a TypeScript type for the author.
    - Modify the existing table 'articles' to include an 'author_id' column.
+      - Also add a foreign key constraint to the 'authors' table. Note that now you cannot delete an author if there are articles associated with the author.
+      - Update the TypeScript type for the article to include the author_id. Note th
    - Add CRUD operations for authors.
       - Use existing model, controller and router files as a reference.
-   - Associate authors with articles.
-      - So when adding a new article, you can specify the author.
-   - Modify the existing routes to handle authors.
-      - Change the router `example` to `articles`. Add new router for authors.
+   - Update the existing CRUD operations for articles to include the author.
+      - When creating or updating an article, the author_id should be provided.
+         - example: `UPDATE articles SET title = ?, description = ? WHERE id = ? AND author_id = ?`
+      - When fetching an article, the author details should be included. Use a JOIN query to fetch the author details.
