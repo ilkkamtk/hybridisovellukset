@@ -276,11 +276,16 @@ In this example, the `CustomError` class extends the built-in `Error` class and 
       - The `email` column should be unique so that two authors cannot have the same email address.
       - Also create a TypeScript type for the author.
    - Modify the existing table 'articles' to include an 'author_id' column.
-      - Also add a foreign key constraint to the 'authors' table. Note that now you cannot delete an author if there are articles associated with the author.
+      - Also add a foreign key constraint to the 'authors' table. **_Note_** that now you **_cannot_** delete an author if there are articles associated with the author.
       - Update the TypeScript type for the article to include the author_id. Note th
    - Add CRUD operations for authors.
       - Use existing model, controller and router files as a reference.
    - Update the existing CRUD operations for articles to include the author.
-      - When creating or updating an article, the author_id should be provided.
+      - When creating, updating or deleting an article, the author_id should be provided so that the article can be modified/deleted only by the author (sort of).
          - example: `UPDATE articles SET title = ?, description = ? WHERE id = ? AND author_id = ?`
-      - When fetching an article, the author details should be included. Use a JOIN query to fetch the author details.
+      - When fetching an article, the author's name and email should be included. Use a JOIN query to fetch the author's details.
+         - Remember to update the return TypeScript type for the `getAllArticles` and `getArticle` methods in the `articleModel` file.
+4. Submitting
+    - Commit your changes to your repository, push to GitHub, and submit the repository URL to Oma.
+   - Uncomment the tests in the `integration.test.ts` file and run the tests with `npm test`. Take a screenshot of the test results and include it in the README.md.
+   
