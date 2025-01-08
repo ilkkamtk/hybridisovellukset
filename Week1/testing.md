@@ -214,4 +214,4 @@ individual test cases. Here's when and how to use each of these:
 
 ## Exercise
 
-Write unit tests for `userModerl.ts` you created in the previous exercise. See the unit tests for `articleModel.ts` as an example.
+Write unit tests for `authorModel.ts` you created in the previous exercise. See the unit tests for `articleModel.ts` in `unit.example.ts` for reference. To run the tests rename `unit.example.ts` to `unit.test.ts` and run `npm test`.
