@@ -276,7 +276,7 @@ In this example, the `CustomError` class extends the built-in `Error` class and 
       - The `email` column should be unique so that two authors cannot have the same email address.
       - Also create a TypeScript type for the author.
    - Modify the existing table 'articles' to include an 'author_id' column.
-      - Also add a foreign key constraint to the 'authors' table. **_Note_** that now you **_cannot_** delete an author if there are articles associated with the author.
+      - Also add a foreign key constraint to 'authors(id)' the 'articles' table. **_Note_** that now you **_cannot_** delete an author if there are articles associated with the author.
       - Update the TypeScript type for the article to include the author_id. Note th
    - Add CRUD operations for authors.
       - Use existing model, controller and router files as a reference.
