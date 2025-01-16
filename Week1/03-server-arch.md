@@ -1,4 +1,4 @@
-# Advanced server architecture
+# Modular server architecture
 
 The server system is composed of three main components: the authentication server, the REST API server and the database server. The authentication server is responsible for authenticating users and issuing JSON Web Tokens (JWTs). The REST API server is responsible for handling requests from the client and communicating with the database server. The database server is responsible for storing and retrieving data.
 
@@ -40,7 +40,7 @@ graph LR
 6. The Client may directly upload files to the File server (in the example, the file data responded by the File server must be stored to the Media REST API by doing an another request)
 7. The Media REST API Server and the File server may also interact with each other for deleting, storing or retrieving files.
 
-Separating the authentication, database, REST API, and file server into distinct components in a system architecture offers several advantages:
+Separating the authentication, database, REST API, and file server into distinct components in a system architecture offers several advantages compared to basic monolithic architecture:
 
 - **Enhanced Security:**
   - Isolation of Concerns: Each server (authentication, database, etc.) can focus on a specific set of security concerns. For instance, the authentication server can be optimized for securing user credentials and managing tokens, while the database server can be focused on protecting data.
@@ -58,14 +58,14 @@ Separating the authentication, database, REST API, and file server into distinct
   - Reduced Impact of Failures: If one component fails (e.g., the file server), the other components (like the REST API and authentication server) can continue functioning, possibly with reduced functionality.
   - Easier Troubleshooting and Recovery: Isolating components makes it easier to identify and fix issues without impacting the entire system.
 
-## Task: Implementing a more advanced server architecture
+## Task: Setting up modular server architecture
 
 1. Use the example database
 1. Clone the example servers (we'll be using TypeScript from now on).
     - [Media API server](https://github.com/ilkkamtk/hybrid-media-api)
     - [Authentication server](https://github.com/ilkkamtk/hybrid-auth-server)
     - [File server](https://github.com/ilkkamtk/hybrid-upload-server)
-    - [Shared types for all servers](https://github.com/ilkkamtk/hybrid-types)
+    - [Shared types for all servers](https://github.com/ilkkamtk/hybrid-types) (included as a dev dependency in example servers)
 1. Create `.env` files for all servers based on the .env.sample files
     - Add your own DB settings
     - Share the same secret key for verifying JWTs between all servers
@@ -84,9 +84,9 @@ Separating the authentication, database, REST API, and file server into distinct
 1. Review the code and test that the existing media endpoints work as expected
    - e.g. `GET http://localhost:3000/api/v1/media`, refer to route files for other endpoints
    - for endpoints that need authentication use the JWT as _Bearer token_
-1. Start writing missing endpoints
-   - for the _models_ refer to `@sharedTypes/DBTypes` (`hybrid-types/DBTypes.ts`, see `tsconfig.json`)
-   - **or the preferred option: design a database for your individual project and start writing endpoints for that**
+1. Start writing missing endpoints based the requirements of your individual project idea
+   - **design a database for your individual project first and start writing endpoints for that**
+   - remenber to update hybrid types accordingly, you may want to clone the types repo and swap to you own repo in `package.json`
 
 ### File/Upload server
 
