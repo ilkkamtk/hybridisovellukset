@@ -65,7 +65,7 @@ Separating the authentication, database, REST API, and file server into distinct
     - [Media API server](https://github.com/ilkkamtk/hybrid-media-api)
     - [Authentication server](https://github.com/ilkkamtk/hybrid-auth-server)
     - [File server](https://github.com/ilkkamtk/hybrid-upload-server)
-    - [Shared types for all servers](https://github.com/ilkkamtk/hybrid-types) (included as a dev dependency in example servers)
+    - [Shared types for all servers](https://github.com/ilkkamtk/hybrid-types) (included as a dev dependency in example media and authentication servers)
 1. Create `.env` files for all servers based on the .env.sample files
     - Add your own DB settings
     - Share the same secret key for verifying JWTs between all servers
@@ -100,15 +100,3 @@ Separating the authentication, database, REST API, and file server into distinct
 **Returning:** Check assignment in OMA.
 
 Start designing your individual project (see project requirements in Oma for details) and start implementing back-end features you would need for the application.
-
-### Extras
-
-- Security considerations
-   - CORS
-   - HTTPS
-   - Rate limiting
-   - Logging
-   - Database access
-   - Least Privilege Principle
-   - Network security
-   - Physical security
