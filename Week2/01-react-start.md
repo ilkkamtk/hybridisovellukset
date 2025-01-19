@@ -44,7 +44,7 @@ See [Learn React JS](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
     - `cd my-app`
     - `npm install`
     - `npm run dev`
-    - Open http://localhost:port in your browser (remember to check the port from the console output and open dev tools)
+    - Open <http://localhost:port> in your browser (remember to check the port from the console output and open dev tools)
     - Open the project folder in code editor
 
 1. Create new file '.editorconfig' and add this content:
@@ -61,8 +61,8 @@ See [Learn React JS](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
    insert_final_newline = true
    ```
 
-1. Install prettier: `npm install --save-dev prettier eslint-plugin-prettier eslint-config-prettier`
-1. If using VSCode, Create new file '.prettierrc' and add this content:
+1. Install prettier: `npm install --save-dev --save-exact prettier` and `npm install --save-dev eslint-config-prettier`
+1. If using VSCode, Create new file `.prettierrc` and add this content:
 
    ```json
    {
@@ -75,6 +75,9 @@ See [Learn React JS](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
    ```
 
 1. Review the example code and application structure in `src/` folder
+   - `main.tsx` is the starting point that creates the root component of the React app and binds it to the DOM
+   - `App.tsx` contains the main component of you app
+   - [`<StrictMode>`](https://react.dev/reference/react/StrictMode) lets you find common bugs in your components early during development
 1. Clean up & modify the example code in following files to get a clean starting point
     - `src/App.tsx`, modify to function component and remove unnecessary code:
 
@@ -103,7 +106,7 @@ See [Learn React JS](https://www.youtube.com/watch?v=w7ejDZ8SWv8)
 
 ### Components
 
-React components are the building blocks of React applications. They encapsulate parts of the user interface (UI) and manage the application's behavior in response to user interactions or data changes. Each component in React has a well-defined purpose and can be reused throughout the application. There are two main types of components in React: _class_ components and **functional** components which we will use in this course.
+React components are the building blocks of React applications. They encapsulate parts of the user interface (UI) and manage the application's behavior in response to user interactions or data changes. Each component in React has a well-defined purpose and can be reused throughout the application. There are two main types of components in React: **class** components and **functional** components which we will use in this course.
 
 **Class components** are more traditional in React. They are ES6 classes that extend from React.Component and provide more features than functional components. Example:
 
@@ -245,6 +248,7 @@ Props and JSX work together in React to create dynamic and reusable components. 
         title: 'Picture 1',
         description: 'This is a placeholder picture.',
         created_at: '2024-01-07T20:49:34.000Z',
+        screenshots: [],
       },
       {
         media_id: 9,
@@ -256,6 +260,7 @@ Props and JSX work together in React to create dynamic and reusable components. 
         title: 'Pic 2',
         description: '',
         created_at: '2024-01-07T21:32:27.000Z',
+        screenshots: [],
       },
       {
         media_id: 17,
@@ -268,15 +273,23 @@ Props and JSX work together in React to create dynamic and reusable components. 
         title: 'Bunny',
         description: 'Butterflies fly around the bunny.',
         created_at: '2024-01-07T20:48:13.000Z',
+        screenshots: [],
       },
     ];
     ```
 
-1. To use the `MediaItem` type, copy the types from the [hybrid-types repo](https://github.com/ilkkamtk/hybrid-types) to `src/types` folder and import from there:
+1. To use the `MediaItem` type, either:
+   - copy the types from the [hybrid-types repo](https://github.com/ilkkamtk/hybrid-types) to `src/types` folder and import from there:
 
     ```js
     import {MediaItem} from '../types/DBTypes';
     ```
+
+   - or install the types as a dev dependency `npm i --save-dev https://github.com/ilkkamtk/hybrid-types.git` and import like this (preferred if no specific need to edit the types locally):
+
+   ```js
+   import {MediaItem} from 'hybrid-types/DBTypes';
+   ```
 
 1. Create a `<table>` element and add rows for displaying all of the media items in the array.
     - Use the `map()` function to iterate over the array and create a new `<tr>` element for each item.
