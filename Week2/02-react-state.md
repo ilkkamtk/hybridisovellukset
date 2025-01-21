@@ -102,7 +102,7 @@ graph TD;
     import {MediaItem} from '../types/DBTypes';
 
     const SingleView = (props: {
-      item: MediaItem  | undefined;
+      item: MediaItem;
       setSelectedItem: (item: MediaItem | undefined) => void;
     }) => {
       const {item, setSelectedItem} = props;

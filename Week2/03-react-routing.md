@@ -86,7 +86,7 @@ const Users = () => <h2>Users Page</h2>;
 export default App;
 ```
 
-- BrowserRouter: This component uses the HTML5 history API to keep your UI in sync with the URL. It should wrap your route definitions, usually at the root of your application. In this example, the `App` component wraps everything in a `<Router>` to provide routing functionality.
+- `BrowserRouter`: This component uses the HTML5 history API to keep your UI in sync with the URL. It should wrap your route definitions, usually at the root of your application. In this example, the `App` component wraps everything in a `<Router>` to provide routing functionality.
 - Inside the `App`, a navigation bar is defined using `<Link>` components to enable navigation without page reloads.
 - The `<Routes>` component contains multiple `<Route>` components, each mapping a path to a component.
 - When the URL matches a path defined in one of the `<Route>` components, the corresponding component is rendered. For example, navigating to `/about` will render the `<About />` component.
@@ -102,7 +102,7 @@ Consider an application with a common layout for several sections, each with its
 First, define your routes with nesting:
 
 ```jsx
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 
 const App = () => (
   <Router>
@@ -123,7 +123,7 @@ const App = () => (
 `Layout` component with `<Outlet>`:
 
 ```jsx
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
 
 const Layout = () => (
   <div>
@@ -222,8 +222,8 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
 1. Copy the JSX needed for displaying the media item from `components/SingleView.tsx` to `views/Single.tsx` and modify it to use the `item` from `useLocation().state` instead of `selectedItem` state variable.
 
     ```jsx
-    import {useLocation} from "react-router-dom";
-    import {MediaItem} from "../types/DBTypes";
+    import {useLocation} from 'react-router-dom';
+    import {MediaItem} from 'hybrid-types/DBTypes';;
 
     const Single = () => {
       const {state} = useLocation();
@@ -251,11 +251,11 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
 1. Check [Building for Production](https://vitejs.dev/guide/build)
 1. To fix the paths for `assets` and navigation in production build, set the _public base path_ e.g. by adding `base` property to `vite.config.ts`:
 
-    ```js
+    ```ts
     ...
     export default defineConfig({
       plugins: [react()],
-      base: '/~your-username/hybrid-week3/',
+      base: '/~your-username/hybrid-react-build/',
     });
     ```
 
@@ -266,9 +266,9 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
     ```
 
 1. Run `npm build` or `npm run build`
-1. Copy contents of build folder (`dist/*`) to your home dir's `public_html/hybrid-week3/` (shell.metropolia.fi)
-    - Can be done with scp tool in terminal: `scp -r dist/* your-username@shell.metropolia.fi:~/public_html/hybrid-week3/`
+1. Copy contents of build folder (`dist/*`) to your home dir's `public_html/hybrid-react-build/` folder (shell.metropolia.fi)
+    - Can be done with scp tool in terminal: `scp -i <PATH-TO-YOUR-KEY-FILE> -r dist/* your-username@shell.metropolia.fi:~/public_html/hybrid-react-build/`
 1. Test your app: <https://users.metropolia.fi/~your-username/hybrid-week3/>
-1. Modify `README.md`. Add a text paragraph and link: `Open [link text here](https://users.metropolia.fi/~your-username/hybrid-week3/) to view it in the browser.`
+1. Modify `README.md`: Add a text paragraph and link to you live application: `Open [your link text here](https://users.metropolia.fi/~your-username/hybrid-react-build/) to view it in the browser.`
 1. git add, commit & push current branch to the remote repository (GitHub)
 1. Submit the link to correct branch of your repository to Oma
