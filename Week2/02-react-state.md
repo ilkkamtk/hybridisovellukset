@@ -127,7 +127,7 @@ graph TD;
 1. Add a button for each file in the `MediaRow` component that calls the `setSelectedItem` function with the corresponding media item as a parameter.
     - Use the `setSelectedItem` function to update the `selectedItem` state variable in the `MediaRow` component.
     - Use the `selectedItem` state variable to [conditionally render](https://react.dev/learn/conditional-rendering) the `SingleView` component in the `Home` component.
-1. Add a button to the `SingleView` component that hides the `SingleView` component (calls the `setSelectedItem` function with `null` as a parameter).
+1. Add a button to the `SingleView` component that hides the `SingleView` component (calls the `setSelectedItem` function with `undefined` as a parameter).
 1. Use the item's `media_type` property to determine whether to render an image or a video in the `SingleView` component (use condiotinal rendering).
 1. Add your own styling to the `index.css` file to make the `SingleView` component look better. (or use [Teacher's example](./sample-index.css))
 1. Commit your changes and push the branch to GitHub `git push origin state-management`.
