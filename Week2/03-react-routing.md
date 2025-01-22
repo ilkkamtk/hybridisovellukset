@@ -235,7 +235,7 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
 1. You can navigate back to listing with browser's back button or by using React Router's [`useNavigate`](https://reactrouter.com/en/main/hooks/use-navigate) hook with a button (more about hooks in the next week):
 
     ```jsx
-    import {NavigateFunction, useNavigate} from "react-router-dom";
+    import {NavigateFunction, useNavigate} from 'react-router-dom';
     ...
 
     const Single = () => {
@@ -267,6 +267,7 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
 1. Run `npm build` or `npm run build`
 1. Copy contents of build folder (`dist/*`) to your home dir's `public_html/hybrid-react-build/` folder (shell.metropolia.fi)
     - Can be done with scp tool in terminal: `scp -i <PATH-TO-YOUR-KEY-FILE> -r dist/* your-username@shell.metropolia.fi:~/public_html/hybrid-react-build/`
+    - [Authentication instructions for Metropolia's shell server](https://wiki.metropolia.fi/pages/viewpage.action?pageId=307791540)
 1. Test your app: <https://users.metropolia.fi/~your-username/hybrid-react-build/>
 1. Modify `README.md`: Add a text paragraph and link to you live application: `Open [your link text here](https://users.metropolia.fi/~your-username/hybrid-react-build/) to view it in the browser.`
 1. git add, commit & push current branch to the remote repository (GitHub)
