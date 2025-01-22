@@ -5,8 +5,7 @@ resources on a server or within a web application.
 
 ## Routing in Full-Stack Development
 
-- **Path Navigation:** Routing manages how a web application responds to different URLs or paths requested by a client (
-  usually a web browser).
+- **Path Navigation:** Routing manages how a web application responds to different URLs or paths requested by a client (usually a web browser).
 - **Client-Side and Server-Side Routing:** In full-stack development, routing occurs both on the client side (in the
   browser) and the server side (on the server handling requests).
 
@@ -16,7 +15,7 @@ resources on a server or within a web application.
   a web application are handled by the browser. This often involves JavaScript frameworks like React, Angular, or
   Vue.js.
 - **Changing Views without Full Page Reload:** Client-side routing enables seamless navigation within a web app by
-  updating the URL and rendering content dynamically without reloading the entire page.
+  updating the URL and rendering content dynamically without reloading the entire page. (like Single-page application (SPA)).
 
 ## Server-Side Routing
 
@@ -268,7 +267,7 @@ Study: [React Router Tutorial](https://reactrouter.com/en/main/start/tutorial)
 1. Run `npm build` or `npm run build`
 1. Copy contents of build folder (`dist/*`) to your home dir's `public_html/hybrid-react-build/` folder (shell.metropolia.fi)
     - Can be done with scp tool in terminal: `scp -i <PATH-TO-YOUR-KEY-FILE> -r dist/* your-username@shell.metropolia.fi:~/public_html/hybrid-react-build/`
-1. Test your app: <https://users.metropolia.fi/~your-username/hybrid-week3/>
+1. Test your app: <https://users.metropolia.fi/~your-username/hybrid-react-build/>
 1. Modify `README.md`: Add a text paragraph and link to you live application: `Open [your link text here](https://users.metropolia.fi/~your-username/hybrid-react-build/) to view it in the browser.`
 1. git add, commit & push current branch to the remote repository (GitHub)
 1. Submit the link to correct branch of your repository to Oma
