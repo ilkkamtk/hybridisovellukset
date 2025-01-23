@@ -16,6 +16,7 @@
 - [Getting started, Components, JSX and Props](Week2/01-react-start.md)
 - [State management](Week2/02-react-state.md)
 - [Routing, Views and Navigation](Week2/03-react-routing.md)
+- [Component testing 1](Week2/04-react-testing.md)
 
 ---
 
