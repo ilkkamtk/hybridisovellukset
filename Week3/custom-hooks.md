@@ -19,6 +19,7 @@
 3. The idea is to make hooks for each path in the APIs we are using: login, users, media, etc.
 4. Create a custom hook `useMedia` to `ApiHooks.ts` and move the functionalities from `Home.tsx` that are used to fetch
    media from the APIs to the useMedia hook:
+
    ```tsx
    // TODO: add necessary imports
    const useMedia = () => {
@@ -30,7 +31,9 @@
    
    export {useMedia};
    ```
+
 5. `Home` component after refactoring:
+
    ```tsx
    const Home = () => {
         const [selectedItem, setSelectedItem] = useState<MediaItemWithOwner | null>(
@@ -45,7 +48,7 @@
                 <table>
                     <tbody>
                         {mediaArray.map((mediaItem) => (
-                            <MediaItemCard
+                            <MediaRow
                                 key={mediaItem.media_id}
                                 item={mediaItem}
                                 setSelectedItem={setSelectedItem}
@@ -57,12 +60,14 @@
         );
     };
    ```
+
 6. The app should work as before. Test it.
 7. Git add, commit and push the changes to your repository.
 
 **(If we have time, we can refactor the other functionalities to custom hooks as well. For example, useUser hook for the user functionalities: `getUserByToken()`, `postUser()` etc. )**
 
 ## Submit
+
 1. Run `npm build` or `npm run build`
 2. Move build folder to your public_html
 3. Test your app: `http://users.metropolia.fi/~username/custom-hooks`
