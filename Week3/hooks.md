@@ -219,9 +219,9 @@ export default Example;
 ## Lab assignment 2
 
 1. Continue last exercise. Now we get the data from the Media API.
-   - Media API: https://media2.edu.metropolia.fi/media-api
-   - Auth API: https://media2.edu.metropolia.fi/auth-api
-   - Upload API: https://media2.edu.metropolia.fi/upload-api
+   - Media API: https://media2.edu.metropolia.fi/media-api/api/v1
+   - Auth API: https://media2.edu.metropolia.fi/auth-api/api/v1
+   - Upload API: https://media2.edu.metropolia.fi/upload-api/api/v1
    - Files: https://media2.edu.metropolia.fi/upload-api/uploads/
 2. Add and edit `.env.local` file to include `VITE_MEDIA_API=https://osotetähän` environment variable.
 3. Replace `test.json` with `import.meta.env.VITE_MEDIA_API + '/media'` in `getMedia` function.
