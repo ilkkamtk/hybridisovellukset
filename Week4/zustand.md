@@ -80,7 +80,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
 7. Add a form to the `Comments` component to add a new comment. 
     - The form should be shown only when the user is logged in. 
     - The form should have an input field for the comment and a submit button.
-    - Use the previously made `FormHooks` to handle the form. See `LoginForm` for an example.
+    - Use the previously made `formHooks` to handle the form. See `LoginForm` for an example.
     - When submitting the form, the `addComment` function from the store should be called with the comment_text, media_id, and user_id.
     - Use `useRef` to reset the form after the form is submitted.
 8. Add the comments to the `Comments` component. Use the `map` function to map the comments to `li` elements after the form.
@@ -88,7 +88,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
 
 ## Lab assignment 2
 1. Continue in the same branch.
-2. Now we post the comments to the api. We need to add a new hook to `ApiHooks.ts`. The hook is called `useComment` and it is used to send and receive comments from the server. The hook should look like this:
+2. Now we post the comments to the api. We need to add a new hook to `apiHooks.ts`. The hook is called `useComment` and it is used to send and receive comments from the server. The hook should look like this:
    ```tsx
    const useComment = () => {
       const postComment = async (

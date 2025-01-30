@@ -71,7 +71,7 @@ In this example, we have a simple counter component. The state is an object with
 4. Add a like button to the `Likes` component. The button should be shown only when the user is logged in. The button should be styled the same way as the `Show` button in `MediaRow`. Also add a paragraph to show the number of likes with a hard-coded number.
 5. Add prop `item` to the `Likes` component. The `item` is the media item that the user can like. The type of the `item` is `MediaItemWithOwner` or `null` like in the `SingleView` component (because it is passed from the `SingleView` component).
 6. Add `<Likes item={item} />` to the `SingleView` component where you want to show the like button and the number of likes.
-7. To send and receive likes from the server, we need to add a new hook to `ApiHooks.ts`. The hook is called `useLike` and it is used to send and receive likes from the server. The hook should look like this:
+7. To send and receive likes from the server, we need to add a new hook to `apiHooks.ts`. The hook is called `useLike` and it is used to send and receive likes from the server. The hook should look like this:
 
    ```tsx
    const useLike = () => {
@@ -149,7 +149,7 @@ In this example, we have a simple counter component. The state is an object with
     ```
 
     - The `likeState` is the current state and the `likeDispatch` is the dispatch function.
-12. Import the `useLike` hook to `Likes` component and all four functions from `ApiHooks.ts`:
+12. Import the `useLike` hook to `Likes` component and all four functions from `apiHooks.ts`:
 
     ```tsx
     const {postLike, deleteLike, getCountByMediaId, getUserLike} = useLike();

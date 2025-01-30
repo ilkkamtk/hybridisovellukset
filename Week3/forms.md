@@ -14,7 +14,7 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
 1. Continue last exercise. Create a new branch 'forms' with git.
 2. Create files:
     - `Login.tsx` and `Logout.tsx` to `views`
-    - `FormHooks.ts` to `hooks`
+    - `formHooks.ts` to `hooks`
     - `LoginForm.tsx` and `RegisterForm.tsx` to `components`
 3. Login.tsx will hold LoginForm and RegisterForm components
     * Add the usual imports, component function and export to Login.tsx, LoginForm.tsx and RegisterForm.tsx
@@ -72,7 +72,7 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
         );
    };
    ```
-7. In `FormHooks.ts` create a new hook `useForm`:
+7. In `formHooks.ts` create a new hook `useForm`:
    ```typescript
    import React, { useState } from 'react';
 
@@ -147,7 +147,7 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
    ```
 10. Add `handleInputChange` and `doLogin` to the `<form>` and `<input>` components. Which one goes where?
 11. Test the form. Check the console. What is happening?
-12. In APiHooks.ts create a new hook `useAuthentication`. Create `postLogin` function to `useAuthentication`:
+12. In apiHooks.ts create a new hook `useAuthentication`. Create `postLogin` function to `useAuthentication`:
      ```typescript
      const postLogin = async (inputs) => {
        const fetchOptions = {
@@ -171,11 +171,10 @@ Study [useState with forms](https://www.youtube.com/watch?v=R7T5GQLxRD4)
     - Then `doRegister` should log the result to the console.
 
 ## Submit
+
 1. Run `npm build` or `npm run build`
 2. Move build folder to your public_html
 3. Test your app: `http://users.metropolia.fi/~username/forms`
 4. Modify README.md. Change the link in `Open [X](X) to view it in the browser.` to point to the above link.
 5. git add, commit & push to remote repository
 6. Submit the link to correct branch of your repository to Oma
-
-

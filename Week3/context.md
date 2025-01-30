@@ -169,7 +169,7 @@ export default Profile;
     // UserContext.tsx
     import React, { createContext, useState } from 'react';
     import { UserWithNoPassword } from '@sharedTypes/DBTypes';
-    import { useAuthentication, useUser } from '../hooks/ApiHooks';
+    import { useAuthentication, useUser } from '../hooks/apiHooks';
     import { useNavigate } from 'react-router-dom';
     import { AuthContextType, Credentials } from '../types/LocalTypes';
     
