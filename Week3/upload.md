@@ -21,7 +21,7 @@
       const [uploading, setUploading] = useState(false);
       const [file, setFile] = useState<File | null>(null);
     
-      const handleSubmit = () => {
+      const doUpload = () => {
         setUploading(true);
         setTimeout(() => {
           setUploading(false);
