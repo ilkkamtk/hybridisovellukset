@@ -20,45 +20,23 @@
 ## Lab assignment 1
 
 1. Continue last exercise. Create a new branch 'tailwind' with git.
-2. Download the full version of the [MediaAPI](https://github.com/ilkkamtk/hybrid-media-api). Put it in the same main folder as the rest of this course's projects.
-3. Also check if the [common types](https://github.com/ilkkamtk/hybrid-types) have been updated and need to be downloaded.
-4. [Install Tailwind CSS to your project.](https://tailwindcss.com/docs/guides/vite#react)
-5. [Editor setup.](https://tailwindcss.com/docs/editor-setup)
-   - Add plugins to `prettier.config.js`:
-
-   ```js
-   export default {
-      ...
-      plugins: ["prettier-plugin-tailwindcss"],
-   };
-   ```
-
-   - Or in json format to `.prettierrc` file if it's in use: `"plugins": ["prettier-plugin-tailwindcss"]`
-
-6. Rename `index.css` to `index_old.css`. Create a new blank `index.css` and add the following the beginning of the
-   file:
-
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   ```
-
-   - These are the [default styles](https://tailwindcss.com/docs/preflight) that Tailwind CSS provides.
-7. Copy `:root` rule from `index_old.css` to `index.css` to get the basic styles back to the app.
-8. Open `Layout.tsx` and add the same styles to the `Layout` component as you had before, but use Tailwind CSS classes
+2. Rename `index.css` to `index_old.css` and create a new blank `index.css` file.
+3. [Install Tailwind CSS to your project.](https://tailwindcss.com/docs/guides/vite#react)
+4. [Editor setup.](https://tailwindcss.com/docs/editor-setup)
+5. Copy `:root` rule from `index_old.css` to `index.css` to get the basic styles back to the app.
+6. Open `Layout.tsx` and add the same styles to the `Layout` component as you had before, but use Tailwind CSS classes
    instead of CSS.
    - Start with `ul` and `li` elements in `Nav` component. Use [Tailwind CSS docs](https://tailwindcss.com/docs) to
      find the right classes. The old styles are in `index_old.css` if you need to check them.
-9. Do you really need to add the same styles to all `<li>` components? Isn't that repeating
+7. Do you really need to add the same styles to all `<li>` components? Isn't that repeating
    yourself? [Yes it is. And it is supposed to be like that.](https://tailwindcss.com/docs/reusing-styles#/dashboard)
    - You can however use pseudo classes like `*:`
      to [add styles to direct children](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children)
      of E.g. `ul` element.
-10. Go through `index_old.css` and make the app look like it did before (or better) with Tailwind CSS classes.
-    - [Colors](https://tailwindcolor.com/)
-    - [Default spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale)
-    - [Font size](https://tailwindcss.com/docs/font-size)
+8. Go through `index_old.css` and make the app look like it did before (or better) with Tailwind CSS classes.
+   - [Colors](https://tailwindcolor.com/)
+   - [Default spacing](https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale)
+   - [Font size](https://tailwindcss.com/docs/font-size)
 
 ## Lab assignment 2
 
