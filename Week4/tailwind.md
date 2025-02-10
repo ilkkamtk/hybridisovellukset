@@ -28,7 +28,7 @@
    instead of CSS.
    - Start with `ul` and `li` elements in `Nav` component. Use [Tailwind CSS docs](https://tailwindcss.com/docs) to
      find the right classes. The old styles are in `index_old.css` if you need to check them.
-7. Do you really need to add the same styles to all `<li>` components? Isn't that repeating
+7. Do you really need to add the same styles to all `<li>` or `<td>` etc. components? Isn't that repeating
    yourself? [Yes it is. And it is supposed to be like that.](https://tailwindcss.com/docs/reusing-styles#/dashboard)
    - You can however use pseudo classes like `*:`
      to [add styles to direct children](https://tailwindcss.com/docs/hover-focus-and-other-states#styling-direct-children)
@@ -41,7 +41,7 @@
 ## Lab assignment 2
 
 1. Continue in the same branch.
-2. In this exercise we'll add two buttons to `MediaItemRow` component: `Modify` and `Delete` which are shown only when the user is logged in. At this point the buttons don't do anything but console.log something.
+2. In this exercise we'll add two buttons to `MediaRow` component: `Modify` and `Delete` which are shown only when the user is logged in. At this point the buttons don't do anything but console.log something.
 3. Use `useUserContext()` to get the `user` from the context.
 4. Add the buttons to the `MediaItemRow` component. Use Tailwind CSS classes to style the buttons the same way as the `Show` button/`View` link is styled.
 5. Use conditional rendering to show the buttons only when the user is logged in and the user is the owner of the media. If user is admin, the buttons are shown always. If the user is not logged in, the buttons are not shown at all.
@@ -59,22 +59,16 @@
 ## Lab assignment 3
 
 1. Continue in the same branch.
-2. Check if the username and/or email are available. If not, show an error message below the input field.
+2. Check if the username and/or email are available with the registration form. If not, show an error message below the input field.
 3. Add two new functions to `useUser` hook in `apiHooks.ts`: `getUsernameAvailable` and `getEmailAvailable`:
 
    ```ts
    const getUsernameAvailable = async (username: string) => {
-     const result = await fetchData<{available: boolean}>(
-       import.meta.env.VITE_AUTH_API + '/users/username/' + username
-     );
-     return result;
+    // fetch from endpoint /users/username/:username
    };
 
    const getEmailAvailable = async (email: string) => {
-     const result = await fetchData<{available: boolean}>(
-       import.meta.env.VITE_AUTH_API + '/users/email/' + email
-     );
-     return result;
+     // fetch from endpoint /users/email/:email
    };
    ```
 
