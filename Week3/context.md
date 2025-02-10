@@ -333,7 +333,7 @@ export default Profile;
     if (!user) {
         // console.log(user);
         // replace and state are used to redirect to origin when page is refreshed
-        return <Navigate to="/" replace state={{ from: location }} />;
+        return <Navigate to="/" state={{from: location.pathname}} />;
     }
     ...
     ```
@@ -354,8 +354,7 @@ export default Profile;
                 const userResult = await getUserByToken(token);
                 setUser(userResult.user);
                 // when page is refreshed, the user is redirected to origin (see ProtectedRoute.tsx)
-                const origin = location.state.from.pathname || '/';
-                navigate(origin);
+                navigate(location.pathname || '/');
             }
         } catch (e) {
             console.log((e as Error).message);
