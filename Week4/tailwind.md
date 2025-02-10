@@ -23,7 +23,7 @@
 2. Rename `index.css` to `index_old.css` and create a new blank `index.css` file.
 3. [Install Tailwind CSS to your project.](https://tailwindcss.com/docs/guides/vite#react)
 4. [Editor setup.](https://tailwindcss.com/docs/editor-setup)
-5. Copy `:root` rule from `index_old.css` to `index.css` to get the basic styles back to the app.
+5. Use [@layer base](https://tailwindcss.com/docs/adding-custom-styles#adding-base-styles) to convert `:root` and `#root` rules from `index_old.css` to Tailwind (in index.css) to get the basic styles back to the app.
 6. Open `Layout.tsx` and add the same styles to the `Layout` component as you had before, but use Tailwind CSS classes
    instead of CSS.
    - Start with `ul` and `li` elements in `Nav` component. Use [Tailwind CSS docs](https://tailwindcss.com/docs) to
