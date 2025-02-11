@@ -45,6 +45,7 @@
 3. Use `useUserContext()` to get the `user` from the context.
 4. Add the buttons to the `MediaItemRow` component. Use Tailwind CSS classes to style the buttons the same way as the `Show` button/`View` link is styled.
 5. Use conditional rendering to show the buttons only when the user is logged in and the user is the owner of the media. If user is admin, the buttons are shown always. If the user is not logged in, the buttons are not shown at all.
+    - admin: `mediaAdmin`, passwd: `12345`
 6. Add event listeners to the buttons. Something like this:
 
    ```tsx
