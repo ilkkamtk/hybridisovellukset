@@ -4,7 +4,7 @@ React's built-in state management is enough for many use cases. However, when th
 
 ## useReducer
 
-[`useReducer`](https://react.dev/reference/react/useReducer) is a hook that is used to manage state in a more organized way. It is similar to [Redux](https://redux.js.org/), which is a popular state management library for React. `useReducer` is a built-in hook in React, so you don't need to install any additional libraries to use it.
+[`useReducer`](https://react.dev/reference/react/useReducer) is a hook that is used to manage state in a more organized way. It is similar to [Redux](https://redux.js.org/), which is a popular state management library used often with React. `useReducer` is a built-in hook in React, so you don't need to install any additional libraries to use it.
 
 The term **reducer** comes from the [reducer function](https://medium.com/@jsmuster/understanding-reducers-d0f934aceccd) in functional programming. A reducer function is a function that takes an accumulator and a value and returns a new accumulator. In the context of `useReducer`, the reducer function takes the current state and an action and returns the new state.
 
@@ -28,7 +28,7 @@ type Action = {
 
 const initialState: State = {count: 0};
 
-function reducer(state: State, action: Action): State {
+const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'increment':
       return {count: state.count + (action.payload ?? 1)};
@@ -37,9 +37,9 @@ function reducer(state: State, action: Action): State {
     default:
       throw new Error();
   }
-}
+};
 
-export default function Counter() {
+const Counter = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
@@ -49,7 +49,9 @@ export default function Counter() {
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
     </>
   );
-}
+};
+
+export default Counter;
 ```
 
 In this example, we have a simple counter component. The state is an object with a `count` property. In the switch statement in the `reducer` function, we check the `action.type` and return the new state based on the action type. When the user clicks the `+` button, the `dispatch` function is called with the `increment` action. When the user clicks the `-` button, the `dispatch` function is called with the `decrement` action.
@@ -69,8 +71,8 @@ In this example, we have a simple counter component. The state is an object with
    - In `LikeState` the `count` property is the number of likes and the `userLike` property is the user's like. It is `null` if the user hasn't liked the media.
 3. Create a new component `Likes.tsx` to `components` folder.
 4. Add a like button to the `Likes` component. The button should be shown only when the user is logged in. The button should be styled the same way as the `Show` button in `MediaRow`. Also add a paragraph to show the number of likes with a hard-coded number.
-5. Add prop `item` to the `Likes` component. The `item` is the media item that the user can like. The type of the `item` is `MediaItemWithOwner` or `null` like in the `SingleView` component (because it is passed from the `SingleView` component).
-6. Add `<Likes item={item} />` to the `SingleView` component where you want to show the like button and the number of likes.
+5. Add prop `item` to the `Likes` component. The `item` is the media item that the user can like. The type of the `item` is `MediaItemWithOwner` or `null` like in the `SingleView` or `Single` component (because it is passed from the `SingleView`/`Single` component).
+6. Add `<Likes item={item} />` to the `SingleView` or `Single` component where you want to show the like button and the number of likes.
 7. To send and receive likes from the server, we need to add a new hook to `apiHooks.ts`. The hook is called `useLike` and it is used to send and receive likes from the server. The hook should look like this:
 
    ```tsx
@@ -205,7 +207,7 @@ In this example, we have a simple counter component. The state is an object with
 
 16. Add the `handleLike` function to the like button's `onClick` event.
 17. Use `likeState.count` to show the number of likes and `likeState.userLike` to conditionally render `like` or `unlike` to the like button.
-18. Test the like button. You can use the `like` and `unlike` buttons in the `SingleView` component to test the like functionality.
+18. Test the like button. You can use the `like` and `unlike` buttons in the `SingleView`/`Single` component to test the like functionality.
 
 ## Submit
 
