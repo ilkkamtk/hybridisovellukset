@@ -46,7 +46,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
 ## Lab assignment 1
 
 1. Create a new branch `zustand` with git.
-2. The goal of this exercise is to add commenting to the media items. The comments are shown in the `SingleView` component. The comments are shown always, but the user can add a new comment only when the user is logged in. The state of the comments is managed with Zustand.
+2. The goal of this exercise is to add commenting to the media items. The comments are shown in the `SingleView` or `Single` component. The comments are shown always, but the user can add a new comment only when the user is logged in. The state of the comments is managed with Zustand.
 3. Install Zustand to your project:
 
    ```bash
@@ -82,7 +82,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
 
    ```
    - In this example, we have a simple store for the comments. The `useStore` hook is used to get the `comments` and `addComment` from the store. The `addComment` function is used to add a new comment to the store. Note that the comments are not yet fetched/sent to the server. 
-6. Create a new component `Comments.tsx` to the `components` folder. Add the component to the `SingleView` component where you want to show the comments.
+6. Create a new component `Comments.tsx` to the `components` folder. Add the component to the `SingleView`/`Single` component where you want to show the comments.
 7. Add a form to the `Comments` component to add a new comment. 
     - The form should be shown only when the user is logged in. 
     - The form should have an input field for the comment and a submit button.
