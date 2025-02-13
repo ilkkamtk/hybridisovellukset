@@ -1,5 +1,6 @@
 # Zustand
-Zustand is a library for managing state in React applications. It is similar to Redux, but with a much simpler API and less boilerplate. It is a small library that is easy to learn and use. It is a good choice for small to medium-sized applications.
+
+[Zustand](https://zustand.docs.pmnd.rs/getting-started/introduction) is a library for managing state in React applications. It is similar to Redux, but with a much simpler API and less boilerplate. It is a small library that is easy to learn and use. It is a good choice for small to medium-sized applications.
 
 Zustand is simple and unopinionated. It doesn't wrap the applications in a provider component, so you can use it in any component you like. You can use it with any other library you like.
 
@@ -43,14 +44,18 @@ In this example, we have a simple counter component. The `useStore` hook is used
 
 
 ## Lab assignment 1
+
 1. Create a new branch `zustand` with git.
 2. The goal of this exercise is to add commenting to the media items. The comments are shown in the `SingleView` component. The comments are shown always, but the user can add a new comment only when the user is logged in. The state of the comments is managed with Zustand.
 3. Install Zustand to your project:
+
    ```bash
    npm install zustand
    ```
+
 4. Create a new file `store.ts` to the `src` folder.
 5. Add the following code to the `store.ts` file:
+
    ```tsx
    type CommentStore = {
       comments: Partial<Comment & {username: string}>[];
@@ -74,6 +79,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
                  ],
               })),
    }));
+
    ```
    - In this example, we have a simple store for the comments. The `useStore` hook is used to get the `comments` and `addComment` from the store. The `addComment` function is used to add a new comment to the store. Note that the comments are not yet fetched/sent to the server. 
 6. Create a new component `Comments.tsx` to the `components` folder. Add the component to the `SingleView` component where you want to show the comments.
@@ -87,8 +93,10 @@ In this example, we have a simple counter component. The `useStore` hook is used
 9. Test that the comments are shown and that the form works.
 
 ## Lab assignment 2
+
 1. Continue in the same branch.
 2. Now we post the comments to the api. We need to add a new hook to `apiHooks.ts`. The hook is called `useComment` and it is used to send and receive comments from the server. The hook should look like this:
+
    ```tsx
    const useComment = () => {
       const postComment = async (
@@ -107,7 +115,9 @@ In this example, we have a simple counter component. The `useStore` hook is used
       return { postComment, getComments };
     };
     ```
+
 3. Modify `store.ts`. Add a new function `setComments` to the store. The `setComments` function is used to set the comments to the store after fetching them from the server. The `setComments` function should look like this:
+
    ```tsx
    export const useCommentStore = create<CommentStore>((set) => ({
       comments: [],
@@ -132,6 +142,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
       
    }));
    ```
+
    - Add `setComments: (comments: Partial<Comment & {username: string}>[]) => void;` to the `CommentStore` type.
 4. Modify the `Comments` component. Add a `useEffect` hook to fetch the comments from the server when the component is mounted. Use the `getCommentsByMediaId` function from the `useComment` hook to fetch the comments. Use the `setComments` function from the store to set the comments to the store.
 5. Test that the comments are fetched from the server and that the form works.
@@ -141,6 +152,7 @@ In this example, we have a simple counter component. The `useStore` hook is used
 8. Test that the comments are fetched from the server and that the form works.
 
 ## Submit
+
 1. Run `npm build` or `npm run build`
 2. Move build folder to your public_html
 3. Test your app: `http://users.metropolia.fi/~username/zustand`
