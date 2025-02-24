@@ -1,9 +1,8 @@
 # React Native Routing and Navigation
 
 - [React Navigation](https://reactnavigation.org/docs/getting-started/)
-- [Stack Navigation](https://reactnavigation.org/docs/hello-react-navigation/)
-- [Tab Navigation](https://reactnavigation.org/docs/tab-based-navigation/)
-- API Reference: [Navigation prop reference](https://reactnavigation.org/docs/navigation-prop), [createStackNavigator](https://reactnavigation.org/docs/stack-navigator), [createBottomTabNavigator](https://reactnavigation.org/docs/bottom-tab-navigator)
+- [Stack Navigation](https://reactnavigation.org/docs/hello-react-navigation/) and [createStackNavigator](https://reactnavigation.org/docs/stack-navigator)
+- [Tab Navigation]()
 
 ## Lab assignment 1
 
@@ -13,7 +12,7 @@
 ## Lab assignment 2
 
 1. Create a new react native project called 'Tabs' with Expo CLI. Make this separate from the app we did in previous labs. No need to submit this or push it to Git
-1. Follow [Tab Navigation](https://reactnavigation.org/docs/tab-based-navigation/) article to create a simple tab navigation
+1. Follow [Tab Navigation](https://reactnavigation.org/docs/bottom-tab-navigator) article to create a simple tab navigation
 
 ## Lab assignment 3
 
