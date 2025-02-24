@@ -8,11 +8,11 @@ React Native is an open-source framework developed by Facebook (now Meta) for bu
 
 React Native is a versatile and efficient framework for developing mobile applications, offering the benefits of cross-platform development while maintaining a user experience that's close to native. While it is suitable for developing a wide range of applications, from simple utilities to complex, high-performance apps, it's essential to evaluate whether it's the right choice for a specific project. For applications requiring heavy computational work, intricate native animations, or extensive use of device-specific features, native development might be more appropriate.
 
-Key Features:
+Main advantages of React Native:
 
 - Cross-Platform Development: One of the most significant advantages of React Native is its ability to create applications for both iOS and Android from a single codebase. This can lead to faster development times and easier maintenance compared to writing separate codebases for each platform.
-- [Native Components](https://reactnative.dev/docs/intro-react-native-components#native-components): React Native uses native components under the hood. This means that the elements you use in your application compile to native UI components, which helps your application perform like a native app in terms of look, feel, and performance.
-- Hot Reloading: React Native supports hot reloading, which allows developers to immediately see the results of the latest changes without having to recompile the entire application. This feature enhances developer productivity by providing instant feedback.
+- [Native Components](https://reactnative.dev/docs/intro-react-native-components): React Native uses native components under the hood. This means that the elements you use in your application compile to native UI components, which helps your application perform like a native app in terms of look, feel, and performance.
+- [Hot Reloading](https://www.geeksforgeeks.org/difference-between-hot-reloading-and-live-reloading-in-react-native/): React Native supports hot reloading, which allows developers to immediately see the results of the latest changes without having to recompile the entire application. This feature enhances developer productivity by providing instant feedback.
 - Developers who are familiar with JavaScript and React can easily transition to mobile development with React Native. The framework uses React's declarative UI paradigm and component-based structure, making it accessible to web developers.
 - React Native has a large and active community, providing a wealth of libraries, tools, and frameworks that extend its capabilities. This ecosystem makes it easier to add features like navigation, gestures, and access to device hardware.
 
@@ -42,14 +42,14 @@ Study:
 1. Use the [expo](https://docs.expo.dev/get-started/create-a-new-app/) to generate an app skeleton
    - create a folder for your React Native projects
    - use Git Bash or terminal to go to this folder `cd foldername/otherfoldername/etc...`
-   - `npx create-expo-app --template`
+   - `npx create-expo-app@latest --template`
      - choose 'Blank (TypeScript)' template
      - if this fails on Windows due to missing interactive mode, use power shell instead of Git Bash
-   - or without "wizard": `npx create-expo-app my-expo-app --template expo-template-blank-typescript`
+   - or without "wizard": `npx create-expo-app@latest my-expo-app-name --template expo-template-blank-typescript`
 1. [Configure ESlint and Prettier](https://docs.expo.dev/guides/using-eslint/) for your project:
 
-   - `cd my-expo-app` & `npm install --save-dev eslint prettier eslint-plugin-prettier eslint-config-prettier eslint-config-universe typescript-eslint`
-   - Create new file `.prettierrc` and add this content:
+   - `cd my-expo-app-name` & `npx expo lint`
+   - Install prettier `npx expo install prettier eslint-config-prettier -- --save-dev` and create new file `.prettierrc` and add this content:
 
      ```json
      {
@@ -59,23 +59,6 @@ Study:
        "useTabs": false,
        "bracketSpacing": false
      }
-     ```
-
-   - Create new file `.eslintrc.js` and add this content:
-
-     ```js
-     module.exports = {
-       extends: ['universe', 'universe/shared/typescript-analysis'],
-       overrides: [
-         {
-           files: ['*.ts', '*.tsx', '*.d.ts'],
-           parserOptions: {
-             project: './tsconfig.json',
-           },
-         },
-       ],
-       rules: {'import/order': ['error', {'newlines-between': 'never'}]},
-     };
      ```
 
 1. Create new file `.editorconfig` and add this content:
@@ -122,21 +105,23 @@ Study:
     export default App;
     ```
 
-1. Test that app works
+1. Test that the app works
    - `npm start`
-   - Scan the QR code with your phone's camera (open link in Expo GO app)
-   - Server can be stopped by pressing _ctrl-c_
+   - Scan the QR code with your phone's camera (open link in Expo GO app).
+   - Try debugger by adding some `console.log()` to `App.tsx` and press _j_ in the terminal to open the debugger.
+   - Server can be stopped by pressing _ctrl-c_.
 1. Create a new git branch `first`, add & commit you changes.
 1. Create a new GitHub repository for your project and push the code to it.
 
 ## Lab assignment 2: Start Converting the existing React application to React Native
 
 1. Create a new branch `native-components`
-1. Copy the `hooks/apiHooks.ts` and `lib/functions.ts` files from the React project of the previous weeks into `src/` folder. Copy also the types from the [hybrid-types](https://github.com/ilkkamtk/hybrid-types) repo.
+1. Copy the `hooks/apiHooks.ts` and `lib/functions.ts` files from the React project of the previous weeks into `src/` folder. Copy/install also the types from the [hybrid-types](https://github.com/ilkkamtk/hybrid-types) repo.
 1. Copy the [environment variables](https://docs.expo.dev/guides/environment-variables/) (`.env.local` file) too and add it to `.gitignore`.
    - Replace the _VITE_ prefix with _EXPO_PUBLIC_ in the `.env.local` file.
    - Replace references like `import.meta.env.VITE_[VARNAME]` with `process.env.EXPO_PUBLIC_[VARNAME]` in the `apiHooks.ts` file.
    - NOTE: When using Expo Go on real mobile device, you need to have network access from your device to the servers (localhost is not valid server address anymore because the servers are not running on your mobile device).
+   - Add also a sample file for `.env.local` to the repository.
 1. Create `src/views/Home.tsx` and `src/components/MediaListItem.tsx` components.
    - They are very similar to their equivalents in 'plain' React app (`Home` and `MediaRow` compents).
    - Use React Native [Core Components](https://reactnative.dev/docs/components-and-apis) like `<View>`, `<Text>`, `<Flatlist>` and `<Image>` instead of HTML elements.
