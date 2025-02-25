@@ -102,7 +102,6 @@ In this example, we have a simple counter component. The `useStore` hook is used
       const postComment = async (
          comment_text: string,
          media_id: number,
-         user_id: number,
          token: string) => {
           // TODO: Send a POST request to /comments with the comment object and the token in the Authorization header.
       };

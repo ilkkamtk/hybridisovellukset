@@ -142,7 +142,7 @@
        >
    ```
 
-    - Alternatively, you can [use the `useNavigation` hook to access the `navigation` prop](https://reactnavigation.org/docs/connecting-navigation-prop/)
+    - Alternatively, you can [use the `useNavigation` hook to access the `navigation` prop](https://reactnavigation.org/docs/use-navigation/)
 1. The app should at this point navigate to `Single` component when any of the thumbnails is tapped
 
 ### Step C - Show selected file in 'Single' component
