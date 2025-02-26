@@ -37,7 +37,7 @@ We use React Native Elements in this lab assignment example. You are free to cho
    - Some components you may find useful for the task: `Button`, `Card`, `Divider`, `Content`, `Header`, `Icon`, `Text`...
    - For media listing you can use [`ListItem` component](https://reactnativeelements.com/docs/components/listitem)
    - By default [Icon component](https://reactnativeelements.com/docs/components/icon) uses [Material icons](https://material.io/resources/icons/?style=baseline) as value for type attribute
-1. For adding icons to bottom tabs refer this [example](https://reactnavigation.org/docs/material-bottom-tab-navigator/#example)
+1. For adding icons to bottom tabs refer this [example](https://reactnavigation.org/docs/customizing-tabbar/?config=dynamic#add-icons-for-each-tab)
 
 ## Lab assignment 2: Implementing login and registration functionality with React Hook Form
 
