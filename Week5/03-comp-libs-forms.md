@@ -7,10 +7,9 @@ React Native component libraries are collections of pre-built, reusable componen
 Some popular React Native Component Libraries in no particular order are:
 
 - [React Native Elements](https://reactnativeelements.com/): This is one of the most popular and versatile component libraries in the React Native ecosystem. It provides a variety of components that are easy to use and customize, making it suitable for a wide range of applications.
-- [NativeBase](https://nativebase.io/): NativeBase offers a comprehensive set of components that allow developers to build responsive apps with a native look and feel. It supports both iOS and Android platforms and provides a seamless way to include cross-platform components in your app.
+- [gluestack](https://gluestack.io/): React & React Native copy-paste components & patterns crafted with Tailwind CSS (NativeWind)
 - [UI Kitten](https://akveo.github.io/react-native-ui-kitten/): UI Kitten is a React Native UI library that follows the Eva Design System. It's particularly useful for developers looking to implement a consistent design language across their app with minimal effort. It also offers theming capabilities that make it easy to customize the appearance of components.
 - [React Native Paper](https://reactnativepaper.com/): Inspired by Google's Material Design, React Native Paper provides a wide range of components that adhere to Material Design guidelines. It's a great choice if you're looking to incorporate Material Design elements into your React Native app.
-- [Shoutem UI](https://new.shoutem.com/): Shoutem UI is a set of styleable components that follow a clear design pattern, making it easy to build beautiful and functional React Native apps. The library is part of the Shoutem UI toolkit, which also includes themes and a customizable architecture.
 - [React Native UI Lib](https://wix.github.io/react-native-ui-lib/): This library, developed by Wix, offers a wide range of UI components and helpers designed to build high-quality user interfaces. It emphasizes performance and customizability.
 - And [many more](https://www.codeinwp.com/blog/react-native-component-libraries/)...
 
