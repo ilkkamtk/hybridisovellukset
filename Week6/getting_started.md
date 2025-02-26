@@ -11,31 +11,20 @@
 1. Run the following command in your terminal:
 
    ```bash
-   npx create-next-app my-next-app
+   npx create-next-app@latest next-labs
    ```
 
-2. Answer the questions:
-
-   ```text
-   Would you like to use TypeScript? Yes
-   Would you like to use ESLint? Yes
-   Would you like to use Tailwind CSS? Yes
-   Would you like to use `src/` directory? Yes
-   Would you like to use App Router? (recommended) Yes
-   Would you like to customize the default import alias (@/*)? No
-   ```
+2. Choose the default options for all questions.
+3. Change to the project directory and start the development server:
 
    ```bash
    cd my-next-app
    npm run dev
    ```
 
-3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-4. We are using the same types as earlier in this course. Copy them from previous project to the `src/types` folder of the
-   new project or add the @sharedTypes path to tsconfig.json.
-
-5. Check that the .gitignore file ignores your `node_modules` and IDE files like `.idea` and `.vscode`.
+5. We are using the same types as earlier in this course. Install with npm: `npm i -D https://github.com/ilkkamtk/hybrid-types.git`
 
 6. Create new repository in GitHub and push the project to GitHub.
 
@@ -69,8 +58,8 @@
    ```
 
 3. Test the application in the browser. Open the following URLs:
-   - [http://localhost:3000/profile](http://localhost:3000/users)
-   - [http://localhost:3000/upload](http://localhost:3000/about)
+   - [http://localhost:3000/profile](http://localhost:3000/profile)
+   - [http://localhost:3000/upload](http://localhost:3000/upload)
 
 ---
 
@@ -89,8 +78,7 @@ resources on a server or within a web application.
 ### Client-Side Routing
 
 - **Client-Side Routing:** In client-side routing, the navigation and rendering of different views or components within
-  a web application are handled by the browser. This often involves JavaScript frameworks like React, Angular, or
-  Vue.js.
+  a web application are handled by the browser. This often involves JavaScript frameworks like React, Angular, or Vue.js.
 - **Changing Views without Full Page Reload:** Client-side routing enables seamless navigation within a web app by
   updating the URL and rendering content dynamically without reloading the entire page.
 
@@ -134,11 +122,9 @@ resources on a server or within a web application.
    </main>
    ```
 
-2. Modify `app/layout.tsx`. Add a menu to navigate between pages:
+2. Modify `app/layout.tsx`. Add a menu to navigate between pages. Insert following to `<body>`:
 
    ```tsx
-   <html lang="en">
-     <body className={inter.className}>
        <nav className="flex items-center justify-between flex-wrap bg-teal-500 p-6">
          <div className="flex items-center flex-shrink-0 text-white mr-6">
            <span className="font-semibold text-xl tracking-tight">
@@ -175,8 +161,6 @@ resources on a server or within a web application.
          </div>
        </nav>
        <div className="container mx-auto pt-4">{children}</div>
-     </body>
-   </html>
    ```
 
 3. Test the application in the browser.
@@ -221,6 +205,10 @@ resources on a server or within a web application.
 4. Third-party libraries on the client
    - For example [SWR](https://swr.vercel.app/) or [React Query](https://react-query.tanstack.com/)
 
+#### Server Actions
+
+"[Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications."
+
 ### Assignment 4
 
 #### Get data from database and display it on the page
@@ -233,41 +221,16 @@ resources on a server or within a web application.
    npm install mysql2
    ```
 
-2. Create `.env.local` file to the root of the project and add the following content:
+2. Create `.env.local` file to the root of the project and copy the content from Oma assignment "Next.js".
 
-   ```text
-   DB_HOST=mysql.metropolia.fi or localhost
-   DB_USER=your_username
-   DB_PASS=your_password
-   DB_NAME=your_username
-   UPLOAD_URL=http://localhost:3002/uploads/
-   AUTH_API=http://localhost:3001/auth-api/api/v1
-   UPLOAD_SERVER=http://localhost:3002/upload/api/v1
-   JWT_SECRET=your_secret
-   ```
-
-3. Create `src/lib/db.ts` file and add the following content:
-
-   ```ts
-   import mysql from 'mysql2/promise';
-
-   const promisePool = mysql.createPool({
-     host: process.env.DB_HOST,
-     user: process.env.DB_USER,
-     password: process.env.DB_PASS,
-     database: process.env.DB_NAME,
-     waitForConnections: true,
-     connectionLimit: 10,
-     queueLimit: 0,
-   });
-
-   export { promisePool };
-   ```
-
-4. We are using the same database tables as earlier in this course. Copy all the model files to `src/models` folder of your project.
-5. Also copy the contents of `src/lib` to `src/app/lib`.
-6. Fix the paths in imports in the copied files: `../../src/lib` -> `@/app/lib/`
-7. Create new file `src/components/MediaList.tsx` and add the following content:
+3. We are using the same database tables as earlier in this course. Copy the following items and create the necessary files and folders:
+   - [the contents of `src/api/models`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/api/models) to `src/models`
+   - [the contents of `src/lib`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/lib) to `src/app/lib`.
+   - [the contents of `src/utils`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/utils) to `src/app/utils`.
+   - [the contents of `src/classes`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/classes) to `src/app/classes`.
+4. Fix the paths in imports in the copied files: `../../src/lib` -> `@/app/lib/` etc.
+5. Also delete the unnecessary function `handleError` from `src/lib/functions.ts`.
+6. Create new file `src/components/MediaList.tsx` and add the following content:
 
    ```tsx
    import { fetchAllMedia } from '@/models/mediaModel';
@@ -301,7 +264,7 @@ resources on a server or within a web application.
    export default MediaList;
    ```
 
-8. Modify `app/page.tsx` and add the following content:
+7. Modify `app/page.tsx` and add the following content:
 
    ```tsx
    import MediaList from '@/components/MediaList';
@@ -318,7 +281,7 @@ resources on a server or within a web application.
    export default MediaPage;
    ```
 
-9. Test the application in the browser. Note that there are no images shown yet and that is OK.
+8. Test the application in the browser. Note that there are no images shown yet and that is OK.
 
 ---
 
@@ -376,30 +339,23 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 
 - More on this in the next course. For now you can check out [Database Sessions](https://nextjs.org/docs/app/building-your-application/authentication#database-sessions).
 
-#### Server Actions
-
-"[Server Actions](https://nextjs.org/docs/app/building-your-application/data-fetching/server-actions-and-mutations) are asynchronous functions that are executed on the server. They can be used in Server and Client Components to handle form submissions and data mutations in Next.js applications."
-
 ### Assignment 5
 
 #### Add authentication to the project
 
 1. Use the example from the video to add authentication to the project. The example files are in [this repository](https://github.com/balazsorban44/auth-poc-next/tree/main).
-2. Create new file `src/app/lib/authActions.ts` and copy the content of `lib.ts` from the example repository.
+2. Create new file `src/app/lib/authActions.ts` and copy the content of `lib.ts` from the example repository. Don't mind the errors in the file, we are going to fix them in the next steps.
 3. Create new file `middleware.ts` to the root of your project and copy the content of `middleware.ts` from the example repository.
 4. Create new file `src/app/login/page.tsx` and use this as the content (a modified version of the example from the video):
 
    ```tsx
    import { redirect } from 'next/navigation';
-   import { getSession, login, logout } from '../lib/authActions';
+   import { login, logout } from '@/lib/authActions';
 
    export default async function Page() {
-     // const session = await getSession();
-
      return (
        <section>
          <div className="flex flex-col p-8">
-           {/* {!session ? ( */}
            <form
              action={async (formData) => {
                'use server';
@@ -444,7 +400,6 @@ Sessions are server-side data storage mechanisms that maintain state for each us
                Login
              </button>
            </form>
-           {/* ) : ( */}
            <form
              action={async () => {
                'use server';
@@ -459,7 +414,6 @@ Sessions are server-side data storage mechanisms that maintain state for each us
                Logout
              </button>
            </form>
-           {/* )} */}
          </div>
        </section>
      );
@@ -468,35 +422,39 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 
 5. Add link to the login page to the menu in `app/layout.tsx`.
 
-6. Install `bcrypt` and `jsonwebtoken` packages:
+6. Install `bcryptjs` and `jsonwebtoken` packages:
 
    ```bash
-   npm i bcrypt jsonwebtoken
+   npm i bcryptjs jsonwebtoken
    ```
 
 7. In `src/app/lib/authActions.ts` we are going to use the user model instead of the Auth API. Copy the `userModel.ts` from the [Auth API repository](https://github.com/ilkkamtk/hybrid-auth-server/tree/main/src/api/models) to the `src/models` folder of your project.
 
 8. In `src/app/lib/authActions.ts` delete the hard coded user and replace it with user from the database: `const user = await getUserByUsername(formData.get('username') as string);`
 
-9. Check that you get user and the password is correct with `bcrypt.compareSync` method. Use [auhtCotroller.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L29) as an example. Throw `new Error()` instead of `new CustomError()`.
+9. Check that you get user and the password is correct with `bcrypt.compareSync` method. Use [auhtCotroller.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L18) as an example.
 
-10. Instead of `jose` use `jsonwebtoken` to create the token. Use the same JWT_SECRET as in the Auth API.
+10. Instead of `jose` use `jsonwebtoken` to create the token. Use the same JWT_SECRET as in the Auth API (already in .env.local).
 
-    - Delete the `encrypt()` and `decrypt()` functions and all references to them. Instead of `encrypt()` use `jwt.sign()` and instead of `decrypt()` use `jwt.verify()`.
-    - Create the token the same way as in the [authController.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L53).
+    - Delete the `encrypt()` and `decrypt()` functions. Instead of `encrypt()` use `jwt.sign()` and instead of `decrypt()` use `jwt.verify()`.
+    - Create the token the same way as in the [authController.ts](https://github.com/ilkkamtk/hybrid-auth-server/blob/main/src/api/controllers/authController.ts#L36).
     - Note that the video example's `session` variable is the same as `token` variable in the Auth API. Use `session` as the variable name.
 
 11. Add [`expiresIn` property to the options](https://github.com/auth0/node-jsonwebtoken?tab=readme-ov-file#usage) in `jwt.sign` method. Use the `7d` as the value. This means that the token is valid for 7 days.
 
 12. To set the expiration date to seven days in the future, you can use this as the value for the `expires` property in the `set` method of the `cookies` object: `new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)`.
 
-13. Modify `getSession()` and `updateSession()` functions to use jwt.verify() and jwt.sign() methods. The type for the `getSession()` function is `Promise<TokenContent | null>`.
+13. Modify `getSession()` and `updateSession()` functions to use jwt.verify() and jwt.sign() methods. The return type for the `getSession()` function is `Promise<TokenContent | null>`.
 
-14. To handle login errors, add a `error.tsx` to the `src/app/login` folder and use [this example](https://nextjs.org/docs/app/building-your-application/routing/error-handling#recovering-from-errors) as content.
+14. To handle login errors, add a `error.tsx` to the `src/app/login` folder and use [this example](https://nextjs.org/docs/app/building-your-application/routing/error-handling#using-error-boundaries) as content.
 
 15. To protect routes, add `requireAuth()` function to the `src/app/lib/authActions.ts`:
 
     ```ts
+    import { redirect } from 'next/navigation';
+    
+    ...
+    
     export async function requireAuth() {
       const session = await getSession();
       if (!session?.user_id) {
@@ -509,7 +467,7 @@ Sessions are server-side data storage mechanisms that maintain state for each us
 
 16. Add conditional rendering to the `app/layout.tsx` to show/hide `upload` and `profile` links based on the user's authentication status.
 
-17. Test the application in the browser. Use the users that you have in your database from previous classes to test the login.
+17. Test the application in the browser. Use the users that you have in the database from previous classes to test the login.
 
 ---
 
@@ -559,7 +517,7 @@ server-side logic needed for your application.
 
    ```tsx
    'use client';
-   import { fetchData } from '@/utils/functions';
+   import { fetchData } from '@/lib/functions';
    import { useRouter } from 'next/navigation';
 
    const MediaForm = () => {
@@ -640,39 +598,39 @@ server-side logic needed for your application.
 3. Create new file `app/api/media/route.ts` and add the following content:
 
    ```ts
-   import { fetchData } from '@/app/lib/functions';
+   import { fetchData } from '@/lib/functions';
    import { postMedia } from '@/models/mediaModel';
-   import { MediaItem } from '@sharedTypes/DBTypes';
-   import { UploadResponse } from '@sharedTypes/MessageTypes';
+   import { MediaItem, UploadResponse} from 'hybrid-types'; 
    import { cookies } from 'next/headers';
-   import { NextRequest } from 'next/server';
+   import { NextRequest, NextResponse } from 'next/server';
 
    export async function POST(request: NextRequest) {
      try {
        // TODO: get the form data from the request
        // TODO: get the token from the cookie
        // TODO: send the form data to the uppload server. See apiHooks from previous classes.
-       // TODO: if the upload response is valid, add the media to the database
-       // TODO: get title, description, size and type from the form data
-       // TODO: get the filename from the upload response
+       // TODO: if the upload response is not valid, return an error response with NextResponse
+       // TODO: get title and description from the form data
+       // TODO: get the filename, filesize and media_type  from the upload response
+       // TODO: get user_id from getSession() function
        // TODO: create a media item object, see what postMedia funcion in mediaModel wants for input.
        // TODO: use the postMedia function from the mediaModel to add the media to the database. Since we are putting data to the database in the same app, we dont need to use a token.
 
        if (!postResult) {
-         return new Response('Error adding media to database', { status: 500 });
+         return new NextResponse('Error adding media to database', { status: 500 });
        }
 
-       const uploadResponse: MediaResponse = {
+       const uploadResponse: UploadResponse = {
          message: 'Media added to database',
-         media: postResult,
+         data: postResult,
        };
 
-       return new Response(JSON.stringify(uploadResponse), {
+       return new NextResponse(JSON.stringify(uploadResponse), {
          headers: { 'content-type': 'application/json' },
        });
      } catch (error) {
        console.error((error as Error).message, error);
-       return new Response((error as Error).message, { status: 500 });
+       return new NextResponse((error as Error).message, { status: 500 });
      }
    }
    ```
@@ -690,8 +648,8 @@ Why do we need separate `MediaForm` client component instead if putting the form
 3. Added a database connection to the project
 4. Added data fetching to the project
 5. Added authentication to the project
-6. Added API endpoints to the project
-7. Used external API to upload a file to the server
+6. Used external API to upload a file to the file server
+7. Added Next.js API endpoints to the project to save media item to the database
 
 ## Things to think about
 
