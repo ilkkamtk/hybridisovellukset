@@ -161,7 +161,7 @@ We use React Native Elements in this lab assignment example. You are free to cho
       - check availability
       - use proper regex pattern
     - Confirm password should match the actual password, you can do this by adding _validate_ to _rules_ of `<Controller>` of confirm password field
-      - extract [_getValues_](https://react-hook-form.com/api/useform/getvalues) from _useForm_ to get the value of password field
+      - extract [_getValues_](https://react-hook-form.com/docs/useform/getvalues) from _useForm_ to get the value of password field
       - before sending the form to the API you'll need to delete confirm password property from the data object because API might reject data if it has extra properties.
 1. In `Login` Add a link/button for switching between login/register forms ("No account yet?" or something).
 1. Implement a token based auto login feature in `Login` component
