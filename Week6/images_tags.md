@@ -17,18 +17,20 @@ Add images to `src/app/components/MediaList.tsx`.
 2. Open `next.config.js` and add the following:
 
    ```javascript
-   module.exports = {
+   import type { NextConfig } from 'next';
+   
+   const nextConfig: NextConfig = {
      images: {
        remotePatterns: [
          {
-           hostname: 'localhost',
+           hostname: 'media2.edu.metropolia.fi',
          },
        ],
      },
    };
    ```
 
-3. If you have images hosted on a different domain like Azure or Metropolia ecloud, you can add them to the `remotePatterns` array.
+3. If you have images hosted on a different domain like localhost, Azure or Metropolia ecloud, you can add them to the `remotePatterns` array.
 
 4. Create a page to display the full-size media when clicking on the thumbnail.
 

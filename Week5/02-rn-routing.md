@@ -6,7 +6,7 @@
 
 ## Lab assignment 1
 
-1. Create a new react native project called 'Stack' with Expo CLI. Make this separate from the app we did in previous labs. No need to submit this or push it to Git
+1. Create a new React Native project called 'Stack' with Expo CLI. Make this separate from the app we did in previous labs. No need to submit this or push it to Git
 1. Follow [Hello React Navigation](https://reactnavigation.org/docs/hello-react-navigation/) and [Moving between screens](https://reactnavigation.org/docs/navigating/) articles to create a simple stack navigation
 
 ## Lab assignment 2
@@ -142,7 +142,7 @@
        >
    ```
 
-    - Alternatively, you can [use the `useNavigation` hook to access the `navigation` prop](https://reactnavigation.org/docs/use-navigation/)
+    - Alternatively, you can [use the `useNavigation` hook to access the `navigation` prop](https://reactnavigation.org/docs/use-navigation/).  Here is an example how to [use it with TypeScript.](https://gist.github.com/ilkkamtk/1ee2cc6cd649e1ace5447b8e26815e46)
 1. The app should at this point navigate to `Single` component when any of the thumbnails is tapped
 
 ### Step C - Show selected file in 'Single' component

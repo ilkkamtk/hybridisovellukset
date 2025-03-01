@@ -44,6 +44,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
     - `result.assets[0].type:` type of the file (can be used for switching between image and video views)
     - `result.assets[0].mimeType:` file's [Media Type](https://en.wikipedia.org/wiki/Media_type) e.g. _image/jpeg_ or _video/mov_ (first part can be used for swithing between image and video views, second part for example for filtering specific image/video types)
     - `result.assets[0].fileName:` original filename of the image
+    - [Expo Video example here](https://gist.github.com/ilkkamtk/46825478d52af24512333a4c6c2b1f7d)
 1. For posting the file to the API, use [Expo FileSystem](https://docs.expo.dev/versions/latest/sdk/filesystem/) that provides access to a file system stored locally on the device and it's also capable of uploading and downloading files from network URLs
     - Install the package with `npx expo install expo-file-system`
     - Create a new function `postExpoFile` to `useFile` hook in `apiHooks.ts`:
@@ -59,7 +60,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
       ): Promise<UploadResponse> => {
         // TODO: display loading indicator
         const fileResult = await FileSystem.uploadAsync(
-          process.env.EXPO_PUBLIC_UPLOAD_SERVER + '/upload',
+          process.env.EXPO_PUBLIC_UPLOAD_API + '/upload',
           imageUri,
           {
             httpMethod: 'POST',
@@ -81,7 +82,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
    ```tsx
       // Upload.tsx
       ...
-      const onSubmit = async (inputs: {title: string; description: string}) => {
+      const doUpload = async (inputs: {title: string; description: string}) => {
          // TODO: if image is not selected, Alert error message and stop running this function
          // TODO: read token
          // TODO: call postExpoFile() with image uri and token
@@ -91,7 +92,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
       }
       ...
    ```
-
+   - To navgate to 'Home' tab you need to use `useNavigate`. [Here is an example how to use it with TypeScript.](https://gist.github.com/ilkkamtk/1ee2cc6cd649e1ace5447b8e26815e46)
 1. Display an [`<ActivityIndicator>`](https://reactnative.dev/docs/activityindicator) when file is being uploaded or if you are using `<Button>` from React Native Elements, you can use [loading](https://reactnativeelements.com/docs/components/button#button-with-loading-spinner) prop. You'll need to add a new state (e.g. _loading_) to your `useFile` hook to achieve this.
 1. Upload button should be activated only when the form is correctly filled and media file is selected
     - _Title_ is required and minimun length is ?
@@ -119,20 +120,36 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
 1. Create a new file `UpdateContext.ts` to `contexts` folder and add a new state _update_ to _Context_ to control the file list refreshing. Set default value to `false`:
 
     ```ts
-    import {Dispatch, SetStateAction, createContext, useState} from 'react';
+    import {Dispatch, SetStateAction, createContext, useState, useCallback, useMemo} from 'react';
 
     type UpdateContextType = {
       update: boolean;
       setUpdate: Dispatch<SetStateAction<boolean>>;
+      triggerUpdate: () => void;
     };
 
     const UpdateContext = createContext<UpdateContextType | null>(null);
 
     const UpdateProvider = ({children}: {children: React.ReactNode}) => {
       const [update, setUpdate] = useState<boolean>(false);
+      
+      // Dedicated function to toggle update state
+      const triggerUpdate = useCallback(() => {
+         setUpdate((prevState) => !prevState);
+      }, []);
+   
+      // Memoize context value to prevent unnecessary re-renders
+      const contextValue = useMemo(
+         () => ({
+            update,
+            setUpdate,
+            triggerUpdate,
+         }),
+         [update, triggerUpdate],
+      );
 
       return (
-        <UpdateContext.Provider value={{update, setUpdate}}>
+        <UpdateContext.Provider value={contextValue}>
           {children}
         </UpdateContext.Provider>
       );
@@ -141,13 +158,11 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
     export {UpdateProvider, UpdateContext};
     ```
 
-1. Create a new file `UpdateHook.ts` to `hooks` folder and add a new hook `useUpdateContext` for accessing the `update` state:
+1. Modify `Contexthooks.ts` in `hooks` folder and add a new hook `useUpdateContext` for accessing the `update` state:
 
     ```ts
-    import {useContext} from 'react';
-    import {UpdateContext} from '../contexts/UpdateContext';
-
-    // Current recommendation is to use custom hook instead of the context directly
+    ...
+   
     const useUpdateContext = () => {
       const context = useContext(UpdateContext);
       if (!context) {
@@ -155,8 +170,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
       }
       return context;
     };
-
-    export default useUpdateContext;
+    ...
     ```
 
 1. Provide the new context in `App.tsx`:
@@ -168,7 +182,6 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
         ...
         <UpdateProvider>
           <Navigator></Navigator>
-          <StatusBar style="auto" />
         </UpdateProvider>
         ...
       );
@@ -177,7 +190,11 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
     ```
 
 1. Modify `useEffect()` hook inside `useMedia()` hook to react when that state changes in context (hint: square brackets) to refresh the `mediaArray`.
-    - Now `getMedia` is called every time the `update` state changes. Import and use `update` and `setUpdate` context state in `Upload.tsx`: `const {update, setUpdate} = useUpdateContext();`. When you have a successful upload, change the value of `update` to opposite (true/false) to trigger the update of `mediaArray`: `setUpdate(!update)`
+    - Now `getMedia` is called every time the `update` state changes. Import and use `setUpdate` context function in `Upload.tsx`: `const {update, setUpdate} = useUpdateContext();`. When you have a successful upload, change the value of `update` to opposite (true/false) to trigger the update of `mediaArray`: `setUpdate(update => !update);`
+
+
+### Extra
+
 1. You can use the new context and hook in the `Home` component to let the user refresh the list by swiping too, add also a loading indicator when the list is being refreshed:
     - Add a new state for loading indicator in `apiHooks.ts` / `useMedia` hook
 
@@ -186,15 +203,15 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
     // TODO: Set true when starting to fetch data and false when data is fetched or fetch fails
     ```
 
-    - Use the state and the new context in `Home.tsx` and add appropriate props to the `FlatList` component:
+    - For manual updates you can use the new context in `Home.tsx` and add appropriate props to the `FlatList` component:
 
     ```tsx
       ...
       const {mediaArray, loading} = useMedia();
-      const {update, setUpdate} = useUpdateContext();
+      const {setUpdate} = useUpdateContext();
 
       const onRefresh = () => {
-        setUpdate(!update);
+        setUpdate(update => !update);
       };
       ...
       ...
@@ -207,7 +224,7 @@ The [Expo SDK](https://docs.expo.dev/versions/latest/) is a collection of JavaSc
       ...
       ```
 
-### Extra
+### Considerations
 
 1. Show ActivityIndicators always when loading and uploading data
 1. Could the code be cleaner? Maybe put some JSX into separate files (to components folder)
