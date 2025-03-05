@@ -6,7 +6,7 @@
 
 ### Assignment 1
 
-**Create a new Next.js project called `my-next-app` and push it to GitHub.**
+**Create a new Next.js project called `next-labs` and push it to GitHub.**
 
 1. Run the following command in your terminal:
 
@@ -18,7 +18,7 @@
 3. Change to the project directory and start the development server:
 
    ```bash
-   cd my-next-app
+   cd next-labs
    npm run dev
    ```
 
