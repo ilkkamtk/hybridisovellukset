@@ -513,7 +513,7 @@ server-side logic needed for your application.
 
 #### Create a form and API endpoints to upload a media file
 
-1. Create new file `app/components/MediaForm.tsx` and add the following content:
+1. Create new file `src/components/MediaForm.tsx` and add the following content:
 
    ```tsx
    'use client';
