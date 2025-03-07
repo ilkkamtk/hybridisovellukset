@@ -225,9 +225,9 @@ resources on a server or within a web application.
 
 3. We are using the same database tables as earlier in this course. Copy the following items and create the necessary files and folders:
    - [the contents of `src/api/models`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/api/models) to `src/models`
-   - [the contents of `src/lib`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/lib) to `src/app/lib`.
-   - [the contents of `src/utils`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/utils) to `src/app/utils`.
-   - [the contents of `src/classes`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/classes) to `src/app/classes`.
+   - [the contents of `src/lib`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/lib) to `src/lib`.
+   - [the contents of `src/utils`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/utils) to `src/utils`.
+   - [the contents of `src/classes`](https://github.com/ilkkamtk/hybrid-media-api/tree/main/src/classes) to `src/classes`.
 4. Fix the paths in imports in the copied files: `../../src/lib` -> `@/app/lib/` etc.
 5. Also delete the unnecessary function `handleError` from `src/lib/functions.ts`.
 6. Create new file `src/components/MediaList.tsx` and add the following content:
