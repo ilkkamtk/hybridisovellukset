@@ -12,7 +12,7 @@
 
 1. Create a new directory for your project and navigate to it in the terminal.
 2. Run `npm init -y` to create a new `package.json` file.
-3. Install the required dependencies by running `npm i express` and `npm i -D typescript @types/node @types/express`.
+3. Install the required dependencies by running `npm i express` and `npm i -D typescript @types/node @types/express nodemon ts-node`.
 4. Create a new `tsconfig.json` file in the root of your project with the following configuration:
 
     ```json
