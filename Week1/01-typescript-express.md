@@ -51,7 +51,7 @@
     {
       "scripts": {
         "start": "node dist/index.js",
-        "dev": "nodemon ts-node src/index.ts",
+        "dev": "nodemon src/index.ts",
         "build": "tsc"
       }
     }
