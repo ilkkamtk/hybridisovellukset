@@ -70,7 +70,8 @@ Separating the authentication, database, REST API, and file server into distinct
     - Add your own DB settings
     - Share the same secret key for verifying JWTs between all servers
     - Note that the servers use the same database and run concurrently on different ports
-1. Install dependencies and test run the servers `npm i && npm run dev`
+1. Install dependencies, generate api docs and test run the servers `npm i && npm run apidoc && npm run dev`
+1. If you don't want to start all servers separately, you can use [concurrently](https://www.npmjs.com/package/concurrently) package to start all servers with a single script in a main `package.json` file: `concurrently --kill-others \"cd hybrid-upload-server; npm run dev\" \"cd hybrid-media-api; npm run dev\" ...`. See lecture example for more details. 
 
 ### Authentication server
 
