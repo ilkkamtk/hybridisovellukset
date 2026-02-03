@@ -165,20 +165,21 @@ export default Profile;
     - In this type we define the context values that we want to share between components. Note that we don't need to
       define the `setUser` function, because we will use the `handleLogin` and `handleLogout` functions to set the user.
 5. Create `contexts` folder in the `src` of your project. Add `UserContext.tsx` file to the `contexts` folder.
+
     ```tsx
     // UserContext.tsx
-    import React, { createContext, useState } from 'react';
-    import { UserWithNoPassword } from '@sharedTypes/DBTypes';
-    import { useAuthentication, useUser } from '../hooks/apiHooks';
-    import { useNavigate } from 'react-router-dom';
-    import { AuthContextType, Credentials } from '../types/LocalTypes';
+    import React, {createContext, useState} from 'react';
+    import {UserWithNoPassword } from '@sharedTypes/DBTypes';
+    import {useAuthentication, useUser} from '../hooks/apiHooks';
+    import {useNavigate } from 'react-router-dom';
+    import {AuthContextType, Credentials} from '../types/LocalTypes';
     
     const UserContext = createContext<AuthContextType | null>(null);
     
-    const UserProvider = ({ children }: { children: React.ReactNode }) => {
+    const UserProvider = ({children}: {children: React.ReactNode}) => {
         const [user, setUser] = useState<UserWithNoPassword | null>(null);
-        const { postLogin } = useAuthentication();
-        const { getUserByToken } = useUser();
+        const {postLogin} = useAuthentication();
+        const {getUserByToken} = useUser();
         const navigate = useNavigate();
         
         // login, logout and autologin functions are here instead of components
@@ -216,20 +217,22 @@ export default Profile;
         };
                
         return (
-            <UserContext.Provider value={{ user, handleLogin, handleLogout, handleAutoLogin }}>
+            <UserContext.Provider value={{user, handleLogin, handleLogout, handleAutoLogin}}>
                 {children}
             </UserContext.Provider>
         );
     };
-    export { UserProvider, UserContext };
-   ```
+    export {UserProvider, UserContext};
+    ```
+
     - Note that in this case we don't make a custom hook in the context file, because linter will recommend to create
       the custom hook in a separate file.
 6. Create `ContextHooks.ts` to `hooks` folder:
+
    ```tsx
    // ContextHooks.ts
-   import { useContext } from 'react';
-   import { UserContext } from '../contexts/UserContext';
+   import {useContext} from 'react';
+   import {UserContext} from '../contexts/UserContext';
     
    // Current recommendation is to use custom hook instead of the context directly
    // this way we don't have errors when UserContext is not defined or null (thats why we have the if statement)
@@ -243,12 +246,14 @@ export default Profile;
        return context;
    };
     
-   export { useUserContext };
+   export {useUserContext};
    ```
+
 7. Add `UserProvider` to `App.tsx`:
+
    ```tsx
    // App.tsx
-   import { UserProvider } from './contexts/UserContext';
+   import {UserProvider} from './contexts/UserContext';
     
    const App = () => {
      return (
@@ -260,15 +265,17 @@ export default Profile;
      );
    }
    ```
+
     - Note that the provider must be inside the Router and outside the Routes.
 8. Now we can use the context in our components. For example in `LoginForm.tsx`:
+
    ```tsx
    // LoginForm.tsx
-   import { useUserContext } from '../hooks/ContextHooks';
+   import {useUserContext} from '../hooks/ContextHooks';
    
    ...
    
-   const { handleLogin } = useUserContext();
+   const {handleLogin} = useUserContext();
    
    const doSubmit = async () => {
         try {
@@ -285,26 +292,27 @@ export default Profile;
 12. Test the app. Check the console. What is happening? When you are logged out and write `/profile` to the address bar,
     what happens? You can still access the profile page, so we need to protect the route.
 13. Add new component `ProtectedRoute.tsx` to `src/components` folder:
+
     ```tsx
     // ProtectedRoute.tsx
-    import { Navigate, useLocation } from 'react-router-dom';
-    import { useUserContext } from '../hooks/ContextHooks';
+    import {Navigate, useLocation} from 'react-router-dom';
+    import {useUserContext} from '../hooks/ContextHooks';
 
-    const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
-        const { user } = useUserContext();
-    
+    const ProtectedRoute = ({children}: {children: React.ReactNode}) => {
+        const {user} = useUserContext();
         if (!user) {
             return <Navigate to="/" />;
         }
-    
         return children;
     };
     
     export default ProtectedRoute;
     ```
+
     - This component is used to protect routes that require the user to be logged in. If the user is not logged in, the
       component will redirect to the home page.
 14. Use `ProtectedRoute` in `App.tsx` to protect the necessary routes:
+
     ```tsx
     // App.tsx
     import ProtectedRoute from './components/ProtectedRoute';
@@ -320,13 +328,15 @@ export default Profile;
         }
     />
     ```
+
 15. Test the app. When you are logged out and write `/profile` to the address bar, you can't access the profile page
     anymore.
 16. Login, open one of the protected routes and then refresh the page. What happens? Why?
-16. If you want to automatically redirect to the same page you can use the useLocation hook in ProtectedRoute:
+17. If you want to automatically redirect to the same page you can use the useLocation hook in ProtectedRoute:
+
     ```tsx
     // ProtectedRoute.tsx
-    import { Navigate, useLocation } from 'react-router-dom';
+    import {Navigate, useLocation} from 'react-router-dom';
     
     ...
     const location = useLocation();
@@ -337,9 +347,10 @@ export default Profile;
     }
     ...
     ```
+
     ```tsx
     // UserContext.tsx
-    import { useLocation, useNavigate } from 'react-router-dom';
+    import {useLocation, useNavigate} from 'react-router-dom';
     
     ...
 
@@ -361,6 +372,7 @@ export default Profile;
         }
     };
     ```
+
     - Now when you refresh the page, you will be redirected to the same page.
 
 ## Submit
