@@ -121,14 +121,14 @@ Study:
 ## Lab assignment 2: Start Converting the existing React application to React Native
 
 1. Create a new branch `native-components`
-1. Copy the `hooks/apiHooks.ts` and `lib/functions.ts` files from the React project of the previous weeks into `src/` folder. Copy/install also the types from the [hybrid-types](https://github.com/ilkkamtk/hybrid-types) repo.
+1. Copy `hooks/apiHooks.ts` and `types/LocalTypes.ts` files and `fetchData` function from the React project of the previous weeks into `src/` folder. Copy/install also the types from the [hybrid-types](https://github.com/ilkkamtk/hybrid-types) repo.
 1. Copy the [environment variables](https://docs.expo.dev/guides/environment-variables/) (`.env.local` file) too and add it to `.gitignore`.
    - Replace the _VITE_ prefix with _EXPO_PUBLIC_ in the `.env.local` file.
    - Replace references like `import.meta.env.VITE_[VARNAME]` with `process.env.EXPO_PUBLIC_[VARNAME]` in the `apiHooks.ts` file.
    - NOTE: When using Expo Go on real mobile device, you need to have network access from your device to the servers (localhost is not valid server address anymore because the servers are not running on your mobile device).
    - Add also a sample file for `.env.local` to the repository.
 1. Create `src/views/Home.tsx` and `src/components/MediaListItem.tsx` components.
-   - They are very similar to their equivalents in 'plain' React app (`Home` and `MediaRow` compents).
+   - They are very similar to their equivalents in 'plain' React app (`Home` and `MediaRow` components).
    - Use React Native [Core Components](https://reactnative.dev/docs/components-and-apis) like `<View>`, `<Text>`, `<Flatlist>` and `<Image>` instead of HTML elements.
    - Use `<TouchableOpacity>` instead of `<button>` to record taps.
    - Use [StyleSheet](https://reactnative.dev/docs/stylesheet) to style the components.
