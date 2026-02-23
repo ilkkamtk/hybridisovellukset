@@ -39,6 +39,8 @@ Study:
 - [Using TypeScript with Expo](https://docs.expo.dev/guides/typescript/)
 
 1. Install Expo app to your phone. [iOS](https://apps.apple.com/us/app/expo-client/id982107779) or [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=fi)
+   - and/or install [Android Studio](https://developer.android.com/studio) and [set up an Android emulator](https://developer.android.com/studio/run/emulator).
+   - and/or [install Xcode and set up an iOS simulator](https://developer.apple.com/documentation/safari-developer-tools/installing-xcode-and-simulators) (only available on macOS).
 1. Use the [expo](https://docs.expo.dev/get-started/create-a-project) to generate an app skeleton
    - create a folder for your React Native projects
    - use Git Bash or terminal to go to this folder `cd foldername/otherfoldername/etc...`
@@ -49,7 +51,7 @@ Study:
 1. [Configure ESlint and Prettier](https://docs.expo.dev/guides/using-eslint/) for your project:
 
    - `cd my-expo-app-name` & `npx expo lint`
-   - Install prettier `npx expo install prettier eslint-config-prettier -- --save-dev` and create new file `.prettierrc` and add this content:
+   - Install prettier `npx expo install prettier eslint-config-prettier -- --save-dev` and create new file `.prettierrc.json` and add this content:
 
      ```json
      {
@@ -86,20 +88,31 @@ Study:
 
     const App = () => {
       return (
-        <SafeAreaProvider>
+        <SafeAreaProvider style={styles.container}>
           <Text>Hello, React Native!</Text>
           <StatusBar style="auto" />
         </SafeAreaProvider>
       );
     };
 
+    const styles = StyleSheet.create({
+      container: {
+        flex: 1,
+        // quick fix for status bar in some Android devices
+        paddingTop: Platform.OS === 'android' ? 30 : 0,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        //justifyContent: 'center',
+      },
+    });
 
     export default App;
     ```
 
 1. Test that the app works
-   - `npm start`
-   - Scan the QR code with your phone's camera (open link in Expo GO app).
+   - Run `npm start`
+   - Scan the QR code with your phone's camera (open link in Expo GO app). Your device and your computer need to be on the same network for this to work.
+   - Alternatively, you can run the app on an emulator/simulator by pressing _a_ for Android or _i_ for iOS in the terminal.
    - Try debugger by adding some `console.log()` to `App.tsx` and press _j_ in the terminal to open the debugger.
    - Server can be stopped by pressing _ctrl-c_.
 1. Create a new git branch `first`, add & commit you changes.
