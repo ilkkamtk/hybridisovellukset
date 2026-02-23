@@ -39,7 +39,7 @@ Study:
 - [Using TypeScript with Expo](https://docs.expo.dev/guides/typescript/)
 
 1. Install Expo app to your phone. [iOS](https://apps.apple.com/us/app/expo-client/id982107779) or [Android](https://play.google.com/store/apps/details?id=host.exp.exponent&hl=fi)
-1. Use the [expo](https://docs.expo.dev/get-started/create-a-new-app/) to generate an app skeleton
+1. Use the [expo](https://docs.expo.dev/get-started/create-a-project) to generate an app skeleton
    - create a folder for your React Native projects
    - use Git Bash or terminal to go to this folder `cd foldername/otherfoldername/etc...`
    - `npx create-expo-app@latest --template`
@@ -77,30 +77,22 @@ Study:
 
 1. In VSCode fix potential curly-braces error in Preferences/Settings
    - search for 'braces' and uncheck all 'Insert space after...' checkboxes
-1. Convert the App function to arrow function and add [SafeAreaView](https://reactnative.dev/docs/safeareaview):
+1. Convert the App function to arrow function and add [react-native-safe-area-context](https://github.com/AppAndFlow/react-native-safe-area-context/blob/main/README.md):
 
     ```tsx
     import {StatusBar} from 'expo-status-bar';
-    import {Platform, SafeAreaView, StyleSheet, Text} from 'react-native';
+    import {Platform, StyleSheet, Text} from 'react-native';
+    import {SafeAreaProvider} from 'react-native-safe-area-context';
 
     const App = () => {
       return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaProvider>
           <Text>Hello, React Native!</Text>
           <StatusBar style="auto" />
-        </SafeAreaView>
+        </SafeAreaProvider>
       );
     };
 
-    const styles = StyleSheet.create({
-      container: {
-        flex: 1,
-        paddingTop: Platform.OS === 'android' ? 30 : 0,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-      },
-    });
 
     export default App;
     ```
