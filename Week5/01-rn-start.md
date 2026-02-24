@@ -24,7 +24,7 @@ Main advantages of React Native:
 
 - Simplified Setup: Expo offers a managed workflow that abstracts away much of the complexity involved in configuring the native development environment. Developers can start building a React Native app without having to install Android Studio or Xcode.
 - [Expo CLI](https://docs.expo.dev/more/expo-cli/): A command-line tool that provides a set of commands for creating, developing, and building React Native applications.
-- [Expo Go](https://docs.expo.dev/get-started/expo-go/) App: Expo provides the Expo Go app, available on both iOS and Android, which allows developers and testers to open and preview React Native apps instantly on their devices without needing to build and compile the app natively.
+- [Expo Go](https://expo.dev/go) App: Expo provides the Expo Go app, available on both iOS and Android, which allows developers and testers to open and preview React Native apps instantly on their devices without needing to build and compile the app natively.
 - [Expo SDK](https://docs.expo.dev/versions/latest/): The Expo SDK is a collection of JavaScript APIs that give access to device and platform functionality like the camera, notifications, sensors, and much more. This means developers can easily integrate native features into their apps without dealing with native code.
 - [Expo Snack](https://snack.expo.dev/): Expo offers an online tool called Snack, which lets you write React Native code in the browser and preview the results in real-time on a device or simulator.
 - Over-the-Air Updates (OTA): Expo supports OTA updates, enabling developers to publish updates to their apps directly to users without going through the app stores' review processes each time.
@@ -115,6 +115,9 @@ Study:
    - Alternatively, you can run the app on an emulator/simulator by pressing _a_ for Android or _i_ for iOS in the terminal.
    - Try debugger by adding some `console.log()` to `App.tsx` and press _j_ in the terminal to open the debugger.
    - Server can be stopped by pressing _ctrl-c_.
+   - If having problems with the network connection between Expo GO and your development computer, try to use a network tunnel instead of direct LAN connection:
+     - install ngrok: `npm install @expo/ngrok`
+     - start the server with tunnel: `npm start -- --tunnel`
 1. Create a new git branch `first`, add & commit you changes.
 1. Create a new GitHub repository for your project and push the code to it.
 
