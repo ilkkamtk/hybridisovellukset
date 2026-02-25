@@ -28,6 +28,7 @@ We use React Native Elements in this lab assignment example. You are free to cho
 
 1. Continue last exercise. Create a new branch 'comp-lib' with git.
 1. Install React Native Elements to your project `npm install @rneui/base @rneui/themed`.
+    - if having dependency issues with installation, you can try [bleeding edge](https://reactnativeelements.com/docs/installation#bleeding-edge) version of the library
 1. Modify your components to use appropriate components from React Native Elements.
    - import the [components](https://reactnativeelements.com/docs) from `@rneui/themed` and use them in your components
    - remove all stylesheets, styles and unnecessary imports
