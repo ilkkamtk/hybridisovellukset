@@ -58,19 +58,7 @@
    export default Navigator;
    ```
 
-   - Modify `App.tsx` (remember to add neccessary and remove unneccessary imports. If you still need safe area view and styles, you need to move them to view components):
-
-   ```tsx
-   const App = () => {
-     return (
-       <>
-         <Navigator></Navigator>
-         <StatusBar style="auto" />
-       </>
-     );
-   };
-   ```
-
+   - Replace `Home` component with `Navigator` in `App.tsx` (remember to add neccessary and remove unneccessary imports).
    - The app should at this point have a tab navigation between _Home_ and _Profile_ views
 
 ### Step B - Stack navigation: navigate to 'Single' component by tapping thumbnails
