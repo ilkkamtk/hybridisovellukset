@@ -138,7 +138,7 @@
 1. Study [Passing parameters to routes](https://reactnavigation.org/docs/params/)
 1. In `MediaListItem` you have file data in prop (`item`). Pass the file data as a parameter with `navigation.navigate`
 1. In `Single.tsx` receive the file parameters and use it's properties to display the image files with `<Image>` component
-1. Video files can played with Expo SDK's [`<Video>` component in expo-av](https://docs.expo.dev/versions/latest/sdk/av/) or using [expo-video](https://docs.expo.dev/versions/latest/sdk/video/)
+1. Video files can played with Expo SDK's [expo-video](https://docs.expo.dev/versions/latest/sdk/video/) package.
 1. Display file info using `<Text>` components
 1. Git add, commit & push your _navigation_ branch to the remote repository and merge it to the _main_ branch
 
