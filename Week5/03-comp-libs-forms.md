@@ -27,9 +27,6 @@ When selecting a component library for your React Native project, consider facto
 We use React Native Elements in this lab assignment example. You are free to choose any other library in your individual project assignment.
 
 1. Continue last exercise. Create a new branch 'comp-lib' with git.
-1. Install [SafeAreaContext](https://docs.expo.dev/versions/latest/sdk/safe-area-context/): `npm install react-native-safe-area-context`
-   - This is a dependency for React Native Elements and replaces the `SafeAreaView` component
-   - Wrap the whole app with `<SafeAreaProvider>` in `App.tsx`
 1. Install React Native Elements to your project `npm install @rneui/base @rneui/themed`.
 1. Modify your components to use appropriate components from React Native Elements.
    - import the [components](https://reactnativeelements.com/docs) from `@rneui/themed` and use them in your components
