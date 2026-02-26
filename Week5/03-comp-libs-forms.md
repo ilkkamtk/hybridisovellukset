@@ -46,7 +46,18 @@ We use React Native Elements in this lab assignment example. You are free to cho
 1. Install React Hook Form `npm i react-hook-form`
 1. Copy `contexts/UserContext.tsx` and `hooks/ContextHooks.ts` from the 'plain' React app to your React Native app
     - Remove all navigation related code not used with React Native: `useNavigate`, `useLocation` and function calls that use them
-    - Replace all `localStorage` usage with [`AsyncStorage`](https://react-native-async-storage.github.io/async-storage/docs/install/)
+    - Replace all `localStorage` usage with [`AsyncStorage`](https://react-native-async-storage.github.io) (install with expo: `npx expo install @react-native-async-storage/async-storage`):
+
+      ```ts
+      import AsyncStorage from '@react-native-async-storage/async-storage';
+      ...
+      await AsyncStorage.setItem('token', result.token);
+      ...
+      const token = await AsyncStorage.getItem('token');
+      ...
+      await AsyncStorage.removeItem('token');
+      ```
+
 1. Wrap the `Navigator` with `UserProvider` in `App.tsx`
 1. Create components `LoginForm.tsx` and `RegisterForm.tsx` to `components` folder and copy `views/Login.tsx` from the 'plain' React app to your React Native app
 1. Add `Login` view to stack navigator in `Navigator.tsx` and display it instead of other navigation components if user is not logged in
