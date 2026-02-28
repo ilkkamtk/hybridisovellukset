@@ -2,39 +2,42 @@
 
 ## Component Libraries
 
-React Native component libraries are collections of pre-built, reusable components that you can use to build your mobile applications more efficiently. These libraries offer a wide range of UI components such as buttons, forms, navigation elements, and much more, which adhere to specific design systems or are customizable to fit your app's design requirements. Utilizing these libraries can significantly speed up the development process, ensure consistency across the app, and improve the overall user experience with polished and tested components.
+React Native component libraries are collections of pre-built, reusable components designed to speed up mobile development. Modern libraries are optimized for the **New Architecture (Fabric)**, providing high-performance UI elements that adhere to established design systems or offer deep customizability. Utilizing these libraries ensures consistency, improves accessibility, and leverages polished components that have been tested across various device types and screen sizes.
 
-Some popular React Native Component Libraries in no particular order are:
+Recommended React Native Component Libraries include:
 
-- [React Native Elements](https://reactnativeelements.com/): This is one of the most popular and versatile component libraries in the React Native ecosystem. It provides a variety of components that are easy to use and customize, making it suitable for a wide range of applications.
-- [gluestack](https://gluestack.io/): React & React Native copy-paste components & patterns crafted with Tailwind CSS (NativeWind)
-- [UI Kitten](https://akveo.github.io/react-native-ui-kitten/): UI Kitten is a React Native UI library that follows the Eva Design System. It's particularly useful for developers looking to implement a consistent design language across their app with minimal effort. It also offers theming capabilities that make it easy to customize the appearance of components.
-- [React Native Paper](https://reactnativepaper.com/): Inspired by Google's Material Design, React Native Paper provides a wide range of components that adhere to Material Design guidelines. It's a great choice if you're looking to incorporate Material Design elements into your React Native app.
-- [React Native UI Lib](https://wix.github.io/react-native-ui-lib/): This library, developed by Wix, offers a wide range of UI components and helpers designed to build high-quality user interfaces. It emphasizes performance and customizability.
-- And [many more](https://www.codeinwp.com/blog/react-native-component-libraries/)...
+* **[NativeWind](https://www.nativewind.dev/):** The industry standard for styling React Native apps. It brings Tailwind CSS to the mobile ecosystem, enabling shared styling logic between web and mobile with zero-runtime performance overhead.
+* **[React Native Reusables](https://rnr-docs.vercel.app/):** A collection of high-quality, copy-paste components built using NativeWind and accessible primitives. It provides a "shadcn/ui" experience for mobile, giving developers full ownership of their component code.
+* **[Tamagui](https://tamagui.dev/):** A sophisticated UI kit and optimizing compiler. It is built for ultimate performance, automatically flattening component trees to native code to eliminate the rendering bottlenecks found in legacy libraries.
+* **[gluestack-ui](https://gluestack.io/):** A modular, accessible UI library designed from the ground up for the New Architecture. It offers a utility-first approach that is highly compatible with modern developer workflows.
+* **[React Native Paper](https://reactnativepaper.com/):** A robust implementation of Material Design. Maintained by industry leaders, it is a "batteries-included" choice for applications that require a stable, well-documented, and platform-agnostic design language.
+* **[UI Kitten](https://akveo.github.io/react-native-ui-kitten/):** Based on the Eva Design System, this library is ideal for creating visually consistent apps with a focus on theming and design-led development.
 
-Benefits of Using Component Libraries:
+### Benefits of Using Modern Component Libraries:
 
-- **Efficiency:** Component libraries save time by providing ready-to-use, customizable components that you can integrate into your app without building them from scratch.
-- **Consistency:** Using components from the same library throughout your app helps maintain visual and functional consistency.
-- **Quality and Reliability:** Well-maintained libraries offer components that have been tested and optimized for performance and compatibility across devices.
-- **Customization:** Many libraries provide a high degree of customization, allowing you to adjust the components to fit your app's branding and design requirements.
+* **Native Performance:** Modern libraries are built to leverage the **Fabric renderer**, ensuring smooth animations and synchronous layout calculations.
+* **Development Efficiency:** They provide complex components—such as Bottom Sheets, Modals, and Date Pickers—that are difficult to build from scratch while maintaining native-level feel.
+* **Cross-Platform Consistency:** Many modern kits allow for "Write Once, Run Anywhere" styling, ensuring your app looks and behaves consistently on iOS, Android, and Web.
+* **Accessibility (A11y):** High-quality libraries include built-in support for screen readers, haptics, and focus management, which are critical for professional-grade applications.
 
-When selecting a component library for your React Native project, consider factors such as the library's design system, the range and flexibility of components, community support, and how actively the library is maintained. It's also helpful to review the documentation and examples to ensure that the library meets your project's needs and that you'll be comfortable working with it.
+### Selection Criteria:
 
-## Lab assignment 1: Convert the app we've made so far to use React Native Elements
+When selecting a library, prioritize **active maintenance** and **New Architecture compatibility**. Ensure the library is compatible with your current Expo SDK or React Native version. If a library relies on legacy native modules that have not been updated for current rendering engines, it may lead to performance issues or build failures in modern projects.
 
-We use React Native Elements in this lab assignment example. You are free to choose any other library in your individual project assignment.
+## Lab assignment 1: Convert the app we've made so far to use NativeWind and React Native Reusables
+
+We use NativeWind and React Native Reusables in this lab assignment example. You are free to choose any other library in your individual project assignment.
 
 1. Continue last exercise. Create a new branch 'comp-lib' with git.
-1. Install React Native Elements to your project `npm install @rneui/base @rneui/themed`.
-    - if having dependency issues with installation, you can try [bleeding edge](https://reactnativeelements.com/docs/installation#bleeding-edge) version of the library
-1. Modify your components to use appropriate components from React Native Elements.
-   - import the [components](https://reactnativeelements.com/docs) from `@rneui/themed` and use them in your components
+1. Install [SafeAreaContext](https://docs.expo.dev/versions/latest/sdk/safe-area-context/): `npm install react-native-safe-area-context`
+    - This is a dependency for React Native Elements and replaces the `SafeAreaView` component
+    - Wrap the whole app with `<SafeAreaProvider>` in `App.tsx`
+1. Install [React Native Reusables](reusables.md) (including NativeWind) to your project.
+1. Modify your components to use appropriate components from React Native Reusables.
+   - install RNR components with command line e.g. `npx @react-native-reusables/cli@latest add card` and use them in your components
    - remove all stylesheets, styles and unnecessary imports
-   - Some components you may find useful for the task: `Button`, `Card`, `Divider`, `Content`, `Header`, `Icon`, `Text`...
-   - For media listing you can use [`ListItem` component](https://reactnativeelements.com/docs/components/listitem)
-   - By default [Icon component](https://reactnativeelements.com/docs/components/icon) uses [Material icons](https://material.io/resources/icons/?style=baseline) as value for type attribute
+   - Some components you may find useful for the task: `Button`, `Card`, `Input`...
+   - You can add icons with [Expo Vector Icons](https://docs.expo.dev/guides/icons/)
 1. For adding icons to bottom tabs refer this [example](https://reactnavigation.org/docs/customizing-tabbar/?config=dynamic#add-icons-for-each-tab)
 
 ## Lab assignment 2: Implementing login and registration functionality with React Hook Form

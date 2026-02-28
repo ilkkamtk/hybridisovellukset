@@ -59,4 +59,3 @@
   - Uploading files
 - [Optimization, publishing](Week6/images_tags.md)
 
----
