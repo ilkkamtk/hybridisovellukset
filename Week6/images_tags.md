@@ -57,7 +57,7 @@ Add tags to the media items.
 
 2. Run `npm run start` to start the application in production mode. Open your browser and go to `http://localhost:3000` to see the application running in production mode.
 
-3. Deploy the application to Render.com or Vercel.
+3. Optional: Deploy the application to Render.com or Vercel. Both platforms have free tiers that are suitable for small projects. You can follow the instructions on their websites to deploy your Next.js application. The catch is however, you need to switch database from local MariaDB to e.g. Turso or similar cloud database service. Turso has a free tier that allows you to create a database and connect it to your application. You can follow the instructions on their website to set up the database and connect it to your application.
 
 ### Extra assignment, Infinite Scroll
 
