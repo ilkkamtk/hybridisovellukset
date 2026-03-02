@@ -48,7 +48,7 @@
 
 ---
 
-### Week 7 Next.js
+### Week 7 Next.js (siiretään palvelinohjelmointikurssille, syksy 2026)
 
 - [Rendering Strategies](Week6/strategies.md)
 - [Next.js](Week6/intro.md)
