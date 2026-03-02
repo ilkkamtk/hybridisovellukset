@@ -57,7 +57,7 @@ Add tags to the media items.
 
 2. Run `npm run start` to start the application in production mode. Open your browser and go to `http://localhost:3000` to see the application running in production mode.
 
-3. Deploy the application to Azure or Metropolia ecloud. For Azure you can use the same method as in the previous weeks. For Metroplia ecloud, the instructions are in Oma.
+3. Deploy the application to Render.com or Vercel.
 
 ### Extra assignment, Infinite Scroll
 
