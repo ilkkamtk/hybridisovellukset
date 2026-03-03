@@ -461,4 +461,4 @@ You can add various components using the CLI:
 - Dropdown Menu
 - And many more...
 
-For a full list of available components, visit the [React Native Reusables documentation](https://react-native-reusables.vercel.app/).
+For a full list of available components, visit the [React Native Reusables documentation](https://reactnativereusables.com/docs).
